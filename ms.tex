@@ -235,7 +235,12 @@ The DHS spectra span two of NIRCam's short-wavelength detectors covering 1-2$\mu
 The DHS mode is well suited for one bright source because it spreads the light over the 10 separate spectra, but would be ill-suited for a crowded field, where the spectra would overlap.
 Each of the DHS spectra are separated in the spatial direction by an average of 123 pixels, so a sub-array of at least 1300 pixels must be extracted to gather all DHS flux for a single source.
 Each DHS spectrum roughly covers 4\% of the JWST pupil, though they vary in size and throughput depending on where they lie relative to the secondary mirror strut supports, seen in Figure \ref{fig:DHSvsPupilOverlay}.
-Table \ref{tab:pupfrac} lists the fractional pupil coverage of each DHS spectrum.
+We elected to clock the pupil wheel by 1.9$^\circ$ in order to align the spectra with rows on the short wavelength detector.
+Aligning spectra along the rows enables small stripe mode readouts (such as 2048 $\times$ 64) to read one DHS spectra simultaneously with long wavelength grism spectra.
+This is needed for bright targets that will saturate the long wavelength detector with longer frame times, as shown in Section \ref{sec:readout}.
+There is a price for clocking the DHS pupil wheel to align spectra with rows: all DHS grisms are partially obscured, save element 7.
+Fortunately, the relative obscuration for all 10 DHS spectra is small, going from 32\% when the pupil wheel is centered (which produces tilted spectra), versus 29\% if the pupil wheel is clocked to align the spectra along rows.
+Table \ref{tab:pupfrac} lists the fractional pupil coverage of each DHS spectrum where 1.00 would use the entire pupil and JWST collecting area.
 For a sub-array size encompassing only 1 DHS spectrum (such as a 2048 $\times$ 64 subarray), the largest unobscured DHS grisms should be used - element number 7 in Figure \ref{fig:DHSvsPupilOverlay}.
 
 %The two DHS pupil configurations include 10 prisms spanning adjoining edges of JWST's hexagonal mirrors, at 60 degrees from each other to encompass different mirror pairs.
@@ -253,20 +258,21 @@ Only 3 detectors will be needed for transit observations \textbf{Update w/ Mod A
 \begin{tabular}{cc}
 DHS \# & Pupil Fraction \\
 \hline \hline
-1 & ?? \\
-2 & ?? \\
-3 & ?? \\
-4 & ?? \\
-5 & ?? \\
-6 & ?? \\
-7 & ?? \\
-8 & ?? \\
-9 & ?? \\
-10 &??  \\
+1 & 0.012 \\
+2 & 0.032 \\
+3 &  0.032 \\
+4 & 0.040 \\
+5 & 0.021 \\
+6 & 0.015 \\
+7 & 0.042 \\
+8 & 0.040 \\
+9 & 0.036 \\
+10 & 0.022 \\
+\hline
+Total & 0.292
 \end{tabular}
 \caption{Pupil Coverage}\label{tab:pupfrac}
-\tablecomments{The approximate pupil coverage of the 10 DHS grisms compared to the total primary collecting area.
-\textbf{Needs updating after correcting for the OSIM circles and for clocking.}}\label{tab:pupfrac}
+\tablecomments{The approximate pupil coverage of the 10 DHS grisms compared to the total primary collecting area.}\label{tab:pupfrac}
 \end{table}
 
 \begin{figure}
@@ -275,7 +281,7 @@ DHS \# & Pupil Fraction \\
 \caption{DHS pupil coverage by each of the 10 DHS prisms, with the fractional throughput given in Table \ref{tab:pupfrac}. 
 The throughput is modulated by the size of the DHS grism as well as whether it coincides with a secondary mirror support (black lines).
 The circles in the image are products of the OSIM (optical telescope element simulator) test source used in Cryogenic Vacuum testing of the instrument suite, and will not be present in flight.
-The pupil wheel is clocked to make the DHS spectra straight along rows, but moves the DHS elements off-center from JWST's pupil and masks.
+The pupil wheel is clocked to make the DHS spectra straight along rows, but this moves the DHS elements off-center from JWST's pupil and masks.
 \textbf{Remove circles and secondary struts from Orange}}\label{fig:DHSvsPupilOverlay}
 \end{figure}
 
@@ -294,9 +300,13 @@ No reset frames or dropped frames are saved.``1 Group Readout" can be used to in
 The BRIGHT1 readout increases the observing efficiency and reduces data volume over CDS but will saturate more easily.}\label{fig:readout}
 \end{figure}
 
-Each NIRCam array must be read out with identical window sizes and exposure times due to restrictions in the Onboard Scripting Software (OSS) (\textbf{and the SSR?}).
+Each NIRCam array must be read out with identical window sizes and exposure times due to restrictions in the Onboard Scripting Software (OSS).
 The window sizes could theoretically be different between the long-wavelength and short-wavelength detectors with only software changes, but would require large changes to the existing software.
 This means that some balance must be made between saturating the grism spectrum (which has much higher throughput) in the long-wavelength and getting the most flux in the short-wavelength DHS spectra (which have lower throughput and also spread the light over more pixels).
+The current software requires that the sub-array locations must be identical for NIRCam's short wavelength arrays and long wavelength arrays.
+We recommend  the sub-array locations to be adjustable so that the short wavelength sub-array can be centered on one DHS spectrum or a subset of the 10 and the long wavelength array can be centered on a single grism spectrum.
+The software also is limited subarray sizes of 2048 $\times$ 64, 2048 $\times$ 128, 2048 $\times$ 256 and 2048 $\times$ 2048 (full frame), which would cover 1, 1, 2 and 10 DHS spectra.
+
 
 The balance between saturating the long-wavelength grism and getting enough SNR in the DHS is listed in Table \ref{tab:SatSNRsubA}.
 The table shows the brightest observable G2V star  for a given array size in the long-wavelength grism and the DHS noise at 1.5$\mu$m for a G2V type star at this brightness observing a 1 hour long transit duration and binned to a resolution of 100.
