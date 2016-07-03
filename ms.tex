@@ -48,7 +48,7 @@
 \bibliographystyle{astroads}
 
 \newcommand{\vdag}{(v)^\dagger}
-\newcommand{\DHSres}{3000 ?}
+\newcommand{\DHSres}{272 - 304}
 
 %% You can insert a short comment on the title page using the command below.
 
@@ -206,18 +206,26 @@ In section \ref{sec:addedScience} we discuss the added science that can be achie
 \subsection{DHS properties}
 The DHS expands the wavelength range that NIRCam can achieve on a single observation by simultaneously obtaining spectroscopy with NIRCam's short wavelength arm and long wavelength arm.
 The wavelength range for the F150W2 filter in the short wavelength arm is fixed at 1.01 to 2.02$\mu$m with the region from 2.02-2.35$\mu$m contaminated by second order overlap.
+The DHS are slitless, so the resolution is set by the pupil sizes of the individual DHS elements, which are approximately the same width in the dispersion direction.
+Figure \ref{fig:DHSRes} shows the resolution as a function of wavelength, estimated from the spatial PSF and the aspect ratio of dispersion and spatial directions.
 There will be about a 0.04$\mu$m gap in the spectrum due to the gap between short wavelength detectors.
 The center of this gap depends on source position.
 The DHS can be used in tandem with either the F322W2 or F444W filter for the long wavelength grism observations.
 The The properties of the DHS, which can be used simultaneously with the long-wavelength grisms, are listed in Table \ref{tab:DHSgprop}.
 If the region from 2-2.2 is highly desirable, the DHS can be used with a F200W filter (1.75 to 2.23$\mu$m half maximum) to partially fill in the gap between the short to long wavelength arms.
 
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.4\textwidth]{dhs_res.pdf}
+\caption{Resolution as a function of wavelength for the DHS.}\label{fig:DHSRes}
+\end{figure}
+
 \begin{table}
 \centering
 \begin{tabular}{ccr}
 		& DHS	& Grism \\
  \hline \hline		
-Resolution &  \DHSres & 1770 \\
+Resolution &  \DHSres & 1200 - 1550 \\
 Dispersion & 0.29 nm / px & 1.0 nm / px \\
 Wavelengths & 1.01 - 2.02$\mu$m (F150W2)\footnote{There is a 0.05$\mu$m gap between detectors that depends on field position} & 2.44 - 4.02$\mu$m (F322W2)\\
 				& 								& 3.88 - 4.98$\mu$m (F444W) \\
@@ -250,7 +258,7 @@ For a sub-array size encompassing only 1 DHS spectrum (such as a 2048 $\times$ 6
 \includegraphics[width=0.5\textwidth]{dhs_image_example.png}
 \caption{Example images of the same source observed simultaneously with the DHS on the short-wavelength arm (left) producing 10 spectra and the F444W filter and C grism on the long-wavelength arm (right).
 These images were taken during cryogenic vacuum testing of the NIRCam flight instrument and detectors at NASA Goddard.
-Only 3 detectors will be needed for transit observations \textbf{Update w/ Mod A image and w/ C grism estimate}.}\label{fig:DHSimage}
+Only 3 detectors will be needed for transit observations \textbf{Update w/ Mod A image and w/ R grism estimate}.}\label{fig:DHSimage}
 \end{figure}
 
 \begin{table}
