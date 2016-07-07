@@ -5,7 +5,7 @@
 *.top
 *.synctex.gz
 *.blg
-*.pdf
+ms.pdf
 *.tui
 *-mpgraph.mp
 es_apj.log
@@ -16,3 +16,5 @@ dhs_white_paper_draf*.pdf
 sync_bib.sh
 msNotes.bib
 *~
+ms_aastex.pdf
+ms_emulateapj.pdf
