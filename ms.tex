@@ -190,7 +190,7 @@ The DHS is expected to perform similarly to HST's WFC3 grisms, so it is like a f
 
 \begin{figure}[!ht]
 \includegraphics[width=0.5\textwidth]{molecules_DHS_HD209.pdf}
-\caption{Model spectra separated by molecule for HD209458b.
+\caption{Model spectra separated by molecule for HD 209458b.
 The new DHS mode would allow simultaneous spectra at 1-2$\mu$m ``for free'' when observing with either NIRCam's F322W2 or F444W slitless grism observations in its long-wavelength arm.
 The simulated data are for one transit in each of the long-wavelength grism modes, each accompanied by simultaneous DHS grism spectra.
 The observations longer than 5$\mu$m are simulated for MIRI's Low Resolution Spectrometer.}\label{fig:DHSmolecules}
@@ -225,6 +225,13 @@ We first simulate a forward model of a transmission spectrum for a planet (in th
 We then add Gaussian noise using the SNR estimated on the target to create a simulated spectrum.
 Finally, we run a Markov Chain Monte Carlo (MCMC) retrieval of the atmospheric parameters for simulated spectrum to try to recover the initial abundances and determine the uncertainties in those abundances, as in \citet{greene2016jwst_trans}.
 We combine the individual gases' posterior distributions for the C/O ratio and metallicity.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{HAT-P-12b_kmr_clear_DHS_nc.pdf}
+\caption{Model spectra separated by molecule for for the inflated warm Saturn HAT-P-12b.
+Error bars shown are for simulated observation with the DHS grism, F322W2 and F444W modes, for a total of 2 transits or about 17 hours of JWST time.}\label{fig:DHSvsNIRISS209}
+\end{figure}
 
 For the initial model, we use solar abundances of \citet{asplund} and reduce the oxygen by a factor of 24\% to account for the settling out of MgSiO$_3$ and MgSiO$_4$ which are below their condensation temperatures \citep{sing2016continuum}.
 The atomic abundances are converted to molecular mixing ratios using the Chemical Equilibrium code with Applications (CEA) \footnote{http://www.grc.nasa.gov/WWW/CEAWeb/ceaHome.htm}\citep{gordon1996cea} to calculate the fractions of molecules at the given pressure and temperature.
