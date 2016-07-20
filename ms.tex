@@ -61,7 +61,7 @@
 %% head is a modified title of up to roughly 44 characters.
 %% Running heads will not print in the manuscript style.
 
-\shorttitle{JWST NIRCam SW and LW}
+\shorttitle{NIRCam's DHS Mode}
 \shortauthors{Schlawin et al.}
 
 %% This is the end of the preamble.  Indicate the beginning of the
@@ -228,9 +228,9 @@ We combine the individual gases' posterior distributions for the C/O ratio and m
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{HAT-P-12b_kmr_clear_DHS_nc.pdf}
-\caption{Model spectra separated by molecule for for the inflated warm Saturn HAT-P-12b.
-Error bars shown are for simulated observation with the DHS grism, F322W2 and F444W modes, for a total of 2 transits or about 17 hours of JWST time.}\label{fig:DHSvsNIRISS209}
+\includegraphics[width=0.5\textwidth]{HAT-P-12b_kmr_cloudy_dhs.pdf}
+\caption{Model spectra separated by molecule for for the inflated warm Saturn HAT-P-12b, with an opaque cloud deck at 1 mbar.
+Error bars shown are for simulated observation with the DHS grism, F322W2 and F444W modes, for a total of 2 transits or about 17 hours of JWST time. A metallicity of 22 $\times$ solar from the relation in \citet{kreidberg2014wasp43}.}\label{fig:DHSvsNIRISS209}
 \end{figure}
 
 For the initial model, we use solar abundances of \citet{asplund} and reduce the oxygen by a factor of 24\% to account for the settling out of MgSiO$_3$ and MgSiO$_4$ which are below their condensation temperatures \citep{sing2016continuum}.
@@ -241,7 +241,7 @@ We include H$_2$O, CO, CO$_2$, CH$_4$, NH$_3$, C$_2$,H$_2$, HCN and collision-in
 % if we run the simulations later, also mention emission spectra
 
 For the simulated observations, we assume one transit is obtained in each of NIRCam's long-wavelength filters (F322W2 and F444W) to cover the wavelength range from 2.44$\mu$m to 4.99$\mu$m.
-We assume that each of these was accompanied by a DHS observation for the 1.01$\mu$m to 2.0$\mu$m wavelength range, which benefits in SNR by $\sqrt(2)$ for the two separate observations.
+We assume that each of these was accompanied by a DHS observation for the 1.01$\mu$m to 2.0$\mu$m wavelength range, which benefits in SNR by $\sqrt{2}$ for the two separate observations.
 This is compared to observations taken without the DHS to show the added scientific value of using the DHS spectra.
 The noise models for the hot Jupiter HD 209458b are shown in Figure \ref{fig:DHSvsNIRISS209}, which is dominated by the detector noise floor (35 ppm) for the long-wavelength grisms ($>$2.44$\mu$m) but photon noise is more significant for the short-wavelength DHS observations.
 The DHS has lower throughput and a smaller wavelength coverage than the NIRISS instrument in SOSS mode, so observations which require higher SNR and full wavelength coverage from 0.7 to 2.4$\mu$m can take advantage of NIRISS (also shown in Figure \ref{fig:DHSvsNIRISS209}) at the expense of more telescope time.
@@ -272,7 +272,13 @@ The autocorrelation time for the retrievals is about ~100 steps and we run all r
 The H$_2$O correlates strongly with CO$_2$ and CO, meaning that improved measurements of H$_2$O with the DHS actually help improve constraints on the Carbon bearing species, even though there aren't any significant CO or CO$_2$ features in the 1-2$\mu$m range.}\label{fig:cornerRun}
 \end{figure*}
 
-One of the surprising aspects to the retrievals is that the DHS improves both the constraints on the CO and CO$_2$ abundances as well as the H$_2$O abundances, seen in Figure \ref{fig:cornerRun}.
+\begin{figure*}
+\centering
+\includegraphics[width=1.0\textwidth]{HAT-P-12b_kmr_cloudy_corner.png}
+\caption{Posterior distributions an MCMC retrieval of parameters for HAT-P-12b with the DHS (blue) and without the DHS (gray).}\label{fig:cornerHATp12}
+\end{figure*}
+
+One of the surprising aspects to the retrievals is that the DHS improves both the constraints on the CO and CO$_2$ abundances as well as the H$_2$O abundances, seen in Figure \ref{fig:cornerRun} and Figure \ref{fig:cornerHATp12}. 
 A quick glance at the contributions of individual molecules to the spectrum shown in Figure \ref{fig:DHSmolecules} would indicate that the DHS is mainly important for water vapor.
 However, the retrieval for the spectrum with only NIRCam's long-wavelength grisms has a strong correlation between the retrieved H$_2$O abundances with CO$_2$ and CO, shown in Figure \ref{fig:cornerRun}.
 Improving the water vapor constraint with the DHS, reduces the correlation and therefore improves the abundance constraints for all three.
@@ -306,6 +312,7 @@ Dispersion & 0.29 nm / px & 1.0 nm / px \\
 Wavelengths & 1.01 - 2.02$\mu$m (F150W2)\footnote{There is a 0.05$\mu$m gap between detectors that depends on field position} & 2.44 - 4.02$\mu$m (F322W2)\\
 				& 								& 3.88 - 4.98$\mu$m (F444W) \\
 Plate Scale & 32 mas/px  &  65 mas / px\\
+Undeviated \\Wavelength & 1.36 $\mu$m & 4.00 $\mu$m   \\
 \hline
 \end{tabular}
 \caption{Properties of DHS and simultaneous long-wavelength grism spectra.}\label{tab:DHSgprop}
@@ -424,7 +431,8 @@ For most transiting planet science, the targets are bright and so the pixels wil
 The amount of data streaming from the detectors can overload the Solid State Recorder (SSR), which has a capacity of 540 Gbits \citep{johns2008L2comm} (\textbf{compressed data?}).
 This overload can happen in as few as 10 hours if three NIRCam detectors are used simultaneously and all are read out with four amplifiers in RAPID mode (meaning no samples are co-added or dropped).
 
-In normal operations, up to 232 Gbits of compressed science and telemetry data from James Webb Space Telescope are downlinked once per day over the 4 hour contact time with an antenna in the Deep Space Network (SDN)  \citep{dashevsky2008groundflight}.
+In normal operations, up to 232 Gbits of compressed science and telemetry data from James Webb Space Telescope are downlinked in a  4 hour contact time with an antenna in the Deep Space Network (SDN)  \citep{dashevsky2008groundflight}.
+There will be two downlinks per day so on average the total data rate can be about 540 Gbits per 12 hours.
 Science operations can continue during the 4 hour contact time, but re-pointing the high gain antenna can cause $<$0.07 \arcsec\ disturbances \citep{beichman2014pasp}.
 To satisfy these normal operations, the data volume must be reduced for observations longer than \textbf{How many do you think? 6 hours to allow for telemetry and other science?} when using 3 detectors and 4 amplifiers simultaneously.
 
