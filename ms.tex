@@ -222,7 +222,7 @@ The filters used are F150W2 (blue), F322W2 (red) and F444W (green).}\label{fig:D
 \subsection{CHIMERA Simulations}\label{sec:simulations}
 
 We use the CHIMERA atmospheric retrieval suite \citep{line2013chimera,line2014CtOsecE} to show the scientific value of using the DHS simultaneously with NIRCam's long-wavelength grisms.
-We first simulate a forward model of a transmission spectrum for a planet (in this case HD 209458b).
+We first simulate a forward model of a transmission spectrum for two planets, HD 209458b and HAT-P-12b.
 We then add Gaussian noise using the SNR estimated on the target to create a simulated spectrum.
 Finally, we run a Markov Chain Monte Carlo (MCMC) retrieval of the atmospheric parameters for simulated spectrum to try to recover the initial abundances and determine the uncertainties in those abundances, as in \citet{greene2016jwst_trans}.
 We combine the individual gases' posterior distributions for the C/O ratio and metallicity.
@@ -234,11 +234,13 @@ We combine the individual gases' posterior distributions for the C/O ratio and m
 Error bars shown are for simulated observation with the DHS grism, F322W2 and F444W modes, for a total of 2 transits or about 17 hours of JWST time. A metallicity of 22 $\times$ solar from the relation in \citet{kreidberg2014wasp43}.}\label{fig:DHSvsNIRISS209}
 \end{figure}
 
-For the initial model, we use solar abundances of \citet{asplund} and reduce the oxygen by a factor of 24\% to account for the settling out of MgSiO$_3$ and MgSiO$_4$ which are below their condensation temperatures \citep{sing2016continuum}.
-The atomic abundances are converted to molecular mixing ratios using the Chemical Equilibrium code with Applications (CEA) \footnote{http://www.grc.nasa.gov/WWW/CEAWeb/ceaHome.htm}\citep{gordon1996cea} to calculate the fractions of molecules at the given pressure and temperature.
-For HD209458b, this is at a reference pressure of 0.01 bars and a reference temperature of 1440K.
+For the initial model of HD 209458b, we use solar abundances of \citet{asplund} and reduce the oxygen by a factor of 24\% to account for the settling out of MgSiO$_3$ and MgSiO$_4$ which are below their condensation temperatures \citep{sing2016continuum}.
+For HAT-P-12b, we scale the atomic abundances of all elements except Hydrogen and Helium by a factor of 22 using the mass-metallicity relation of \citep{kreidberg2014wasp43} and \citep{line2016hd209wfc3}.
+The atomic abundances are converted to molecular mixing ratios using the Chemical Equilibrium code with Applications (CEA)\footnote{http://www.grc.nasa.gov/WWW/CEAWeb/ceaHome.htm}\citep{gordon1996cea} to calculate the fractions of molecules at the given pressure and temperature.
+For HD209458b and HAT-P-12b, this is at a reference pressure of 0.01 bars and a reference temperature of 1440K and 960 K respectively.
 We assume that the abundances and temperature are constant with altitude.
 We include H$_2$O, CO, CO$_2$, CH$_4$, NH$_3$, C$_2$,H$_2$, HCN and collision-induced absorption (CIA) of hydrogen as sources of opacity, but only H$_2$O, CO, and CO$_2$ contribute significantly to the opacity, as seen in Figure \ref{fig:DHSmolecules}.
+For the HAT-P-12b model, we include an opaque cloud deck at 1 mbar to simulate the effect of clouds on reducing spectral features in a planet spectrum.
 % if we run the simulations later, also mention emission spectra
 
 For the simulated observations, we assume one transit is obtained in each of NIRCam's long-wavelength filters (F322W2 and F444W) to cover the wavelength range from 2.44$\mu$m to 4.99$\mu$m.
@@ -255,7 +257,7 @@ Similar wavelength coverage can be achieved in just 3 different transits or $\si
 \end{figure}
 
 We use CHIMERA and a Markov Chain Monte Carlo (MCMC) retrieval to recover the individual atmospheric abundances of the simulated spectrum.
-The retrieval model includes 13 free parameters: 1) the temperature of the isothermal profile 2) the altitude of the 10-bar pressure surface where the model begins 3) a cloud pressure level below which all stellar flux is absorbed at all wavelengths 4-11) the abundances of H$_2$O, CH$_4$, CO, CO$_2$, NH$_3$, C$_2$H$_2$, HCN, N$_2$, respectively 12) an amplitude of a Raleigh-like haze and 13) a power law index for the Raleigh-type haze.
+The retrieval model includes 13 free parameters: 1) the temperature of the isothermal profile 2) the altitude of the 10-bar pressure surface where the model begins 3) a cloud pressure level below which all stellar flux is absorbed at all wavelengths 4) through 11) the abundances of H$_2$O, CH$_4$, CO, CO$_2$, NH$_3$, C$_2$H$_2$, HCN, N$_2$, respectively 12) an amplitude of a Raleigh-like haze and 13) a power law index for the Raleigh-type haze.
 We assume flat priors in log space for all abundances from volume mixing ratios of 10$^{-12}$ to 1.
 The autocorrelation time for the retrievals is about ~100 steps and we run all retrievals to 20,000 steps, only using the last 5,000 to allow for burn-in.
 
@@ -380,7 +382,7 @@ The pupil wheel is clocked to make the DHS spectra straight along rows, but this
 \begin{figure}
 \centering
 \includegraphics[width=0.49\textwidth]{grism_pos_for_max_wcoverage.pdf}
-\caption{DHS Wavelength coverage for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength arm for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors are labeled for the A channel.}\label{fig:DHSwaveWGrism}
+\caption{DHS Wavelength coverage for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength arm for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors (A1 - A5) are shown with their (0,0) corners as black boxes.}\label{fig:DHSwaveWGrism}
 \end{figure}
 
 \subsection{Readout Considerations}\label{sec:readout}
