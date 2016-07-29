@@ -93,7 +93,7 @@
 \author{M. Line\altaffilmark{1,2,3,4}}
 \affil{Department of Astronomy and Astrophysics, University of California, Santa Cruz, CA 95064}
 
-\author{N. Lewis?, J. Stansberry}
+\author{N. Lewis, J. Stansberry}
 \affil{Space Telescope Science Institute, 3700 San Martin Drive, Baltimore, MD 21218, USA}
 
 %% Notice that each of these authors has alternate affiliations, which
@@ -177,10 +177,10 @@ This was calculated with the Astronomer's Proposal Tools software\footnote{http:
 The NIRCam instrument is primarily an imager, but it includes several spectroscopic modes originally designed for wavefront sensing.
 These include the grisms installed in its long-wavelength arm as well as the Dispersed Hartmann Sensors (DHSs) installed in its short-wavelength arm.
 The long-wavelength grisms are used in concert with broadband filters.
-The F322W2 filter encompasses 2.44$\mu$m to 4.02$\mu$m half maximum throughput while the F444W filter encompasses 3.88$\mu$ to 4.98$\mu$m at half maximum throughput.
+The F322W2 filter encompasses 2.44$\mu$m to 4.02$\mu$m half maximum throughput while the F444W filter encompasses 3.88$\mu$m to 4.98$\mu$m at half maximum throughput.
 These filters and grism are enabled and supported JWST science modes.
 The DHS would be used primarily with the F150W2 filter, which covers from 1.01$\mu$m to 2.35$\mu$m at half maximum throughput.
-The range from 2.0$\mu$m to 2.35$\mu$m will probably be discarded because the first order of the spectrum begins to overlap at at 2.0$\mu$m.
+The range from 2.0$\mu$m to 2.35$\mu$m will probably be discarded because the first order of the spectrum begins to overlap at at 2.0$\mu$m.\footnote{The prism that spatially separate the 10 DHS spectra separate the second order spectrum by 0 to 15 pixels, so the contamination can be reduced in some cases.}
 
 The NIRCam instrument can reduce the number of transits needed to build up a transmission or emission spectrum of a planet from 1$\mu$m to 5 $\mu$m.
 This is because the instrument has a dichroic that splits the incoming beam into a short-wavelength arm and long-wavelength arm, so simultaneous imaging and/or spectroscopy are possible at short ($<$2.4$\mu$m) and long ($>$2.4$\mu$m) wavelengths.
@@ -210,7 +210,7 @@ In section \ref{sec:implementation}, we discuss how the DHS would work for time-
 The DHS has the best brightness limits of any spectroscopic mode on JWST because it spreads light over many pixels and reduces the effective aperture of JWST.
 Figure \ref{fig:DHSaps} shows the saturation limits for the DHS mode along with NIRCam's long-wavelength grisms.
 Any known transiting planet host system can be observed with the DHS, including the transiting super-Earth  55 Cnc e \citep{mcarthur2004disc55cnce} at $K$=4.0, which is right at the limit of saturation of the long-wavelength grism and the brightest known transiting system HD 219134b \citep{motalebi2015hd219134b} at $K$=3.4.
-The DHS also enables characterization of any future targets found in this brightness range, such as by the Transiting Exoplanet Survey Satellite (TESS).
+The DHS also enables characterization of any future targets found in this brightness range, such as by the Transiting Exoplanet Survey Satellite (TESS) \citep{ricker2014tess}.
 
 \begin{figure}[!ht]
 \includegraphics[width=0.5\textwidth]{sat_limits.jpg}
@@ -310,8 +310,8 @@ If the region from 2-2.2 is highly desirable, the DHS can be used with a F200W f
  \hline \hline		
 Resolution &  \DHSres & 1200 - 1550 \\
 Dispersion & 0.29 nm / px & 1.0 nm / px \\
-Wavelengths & 1.01 - 2.02$\mu$m (F150W2)\footnote{There is a 0.05$\mu$m gap between detectors that depends on field position} & 2.44 - 4.02$\mu$m (F322W2)\\
-				& 								& 3.88 - 4.98$\mu$m (F444W) \\
+Wavelengths & 1.08 - 2.02$\mu$m \footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
+			& 	1.01 - 1.98$\mu$m \footnote{For a field point matched to the F444W filter and long wavelength grism. There is a 0.05$\mu$m gap between detectors that depends on field position.}		& 3.88 - 4.98$\mu$m (F444W) \\
 Plate Scale & 32 mas/px  &  65 mas / px\\
 Undeviated \\Wavelength & 1.36 $\mu$m & 4.00 $\mu$m   \\
 \hline
@@ -375,6 +375,12 @@ The throughput is modulated by the size of the DHS grism as well as whether it c
 The circles in the image are products of the OSIM (optical telescope element simulator) test source used in Cryogenic Vacuum testing of the instrument suite, and will not be present in flight.
 The pupil wheel is clocked to make the DHS spectra straight along rows, but this moves the DHS elements off-center from JWST's pupil and masks.
 \textbf{Remove circles and secondary struts from Orange}}\label{fig:DHSvsPupilOverlay}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.49\textwidth]{grism_pos_for_max_wcoverage.pdf}
+\caption{DHS Wavelength coverage for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength arm for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors are labeled for the A channel.}\label{fig:DHSwaveWGrism}
 \end{figure}
 
 \subsection{Readout Considerations}\label{sec:readout}
