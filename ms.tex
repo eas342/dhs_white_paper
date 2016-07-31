@@ -50,6 +50,7 @@
 \newcommand{\vdag}{(v)^\dagger}
 \newcommand{\DHSres}{299 - 334}
 \newcommand{\DHSresApprox}{300}
+\newcommand{\DHSgap}{0.04}
 
 %% You can insert a short comment on the title page using the command below.
 
@@ -311,7 +312,7 @@ The DHS expands the wavelength range that NIRCam can achieve on a single observa
 The maximum wavelength range for the F150W2 filter in the short wavelength arm is fixed at 1.01 to 2.02$\mu$m with the region from 2.02-2.35$\mu$m contaminated by second order overlap.
 The DHS are slitless, so the resolution is set by the pupil sizes of the individual DHS elements, which are approximately the same width in the dispersion direction.
 Figure \ref{fig:DHSRes} shows the resolution as a function of wavelength, estimated from a narrowly peaked input spectrum and the fits to the spatial width along the spectrum.
-There will be about a 0.04$\mu$m gap in the spectrum due to the gap between short wavelength detectors.
+There will be about a \DHSgap$\mu$m gap in the spectrum due to the gap between short wavelength detectors.
 The center of this gap depends on source position.
 The DHS can be used in tandem with either the F322W2 or F444W filter for the long wavelength grism observations.
 The properties of the DHS, which can be used simultaneously with the long-wavelength grisms, are listed in Table \ref{tab:DHSgprop}.
@@ -332,7 +333,7 @@ Resolution &  \DHSres & 1200 - 1550 \\
 Dispersion & 0.29 nm / px & 1.0 nm / px \\
 Wavelengths & 1.05 - 2.00$\mu$m (F150W2)\footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
 			 & 1.75 - 2.23$\mu$m (F200W)\footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
-			& 	1.01 - 1.94$\mu$m (F150W2) \footnote{For a field point matched to the F444W filter and long wavelength grism. There is a 0.04$\mu$m gap between detectors that depends on field position.}		& 3.88 - 4.98$\mu$m (F444W) \\
+			& 	1.01 - 1.94$\mu$m (F150W2) \footnote{For a field point matched to the F444W filter and long wavelength grism. There is a \DHSgap$\mu$m gap between detectors that depends on field position.}		& 3.88 - 4.98$\mu$m (F444W) \\
 Plate Scale & 32 mas/px  &  65 mas / px\\
 Undeviated \\Wavelength & 1.36 $\mu$m & 3.94 $\mu$m   \\
 \hline
@@ -343,9 +344,9 @@ Undeviated \\Wavelength & 1.36 $\mu$m & 3.94 $\mu$m   \\
 
 \subsection{DHS Layout}
 
-A point source observed with the DHS and grism modes of NIRCam will produce 10 spectra on the short-wavelength arm and one spectrum on the long-wavelength arm -- see Figure \ref{fig:DHSimage}.
-The DHS spectra span two of NIRCam's short-wavelength detectors covering 1-2$\mu$m with a 0.05$\mu$m due to the separation between detectors.
-The DHS mode is well suited for one bright source because it spreads the light over the 10 separate spectra, but would be ill-suited for a crowded field, where the spectra would overlap.
+A point source observed with the DHS and grism modes of NIRCam will produce 10 spectra on the short-wavelength arm and one spectrum on the long-wavelength arm -- see Figure \ref{fig:DHSwaveWGrism}.
+The DHS spectra span two of NIRCam's short-wavelength detectors covering $\sim$1 to $\sim$ 2$\mu$m with a \DHSgap$\mu$m gap due to the separation between detectors.
+The DHS mode is well suited for one bright source because it spreads the light over the 10 separate spectra, but is ill-suited for a crowded field, where the spectra would overlap.
 Each of the DHS spectra are separated in the spatial direction by an average of 123 pixels, so a sub-array of at least 1300 pixels must be extracted to gather all DHS flux for a single source.
 Each DHS spectrum roughly covers 4\% of the JWST pupil, though they vary in size and throughput depending on where they lie relative to the secondary mirror strut supports, seen in Figure \ref{fig:DHSvsPupilOverlay}.
 We elected to clock the pupil wheel by 1.9$^\circ$ in order to align the spectra with rows on the short wavelength detector.
@@ -356,15 +357,16 @@ Fortunately, the relative obscuration for all 10 DHS spectra is small, going fro
 Table \ref{tab:pupfrac} lists the fractional pupil coverage of each DHS spectrum where 1.00 would use the entire pupil and JWST collecting area.
 For a sub-array size encompassing only 1 DHS spectrum (such as a 2048 $\times$ 64 subarray), the largest unobscured DHS grisms should be used - element number 7 in Figure \ref{fig:DHSvsPupilOverlay}.
 
+\begin{figure}
+\centering
+\includegraphics[width=0.49\textwidth]{grism_pos_for_max_wcoverage.pdf}
+\caption{DHS Wavelength coverage for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength arm for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors (A1 - A5) are shown with their (0,0) corners as black boxes. The circles plotted for each grism are the shortest usable wavelength, undispersed wavelength and longest usable wavelength.}\label{fig:DHSwaveWGrism}
+\end{figure}
+
 %The two DHS pupil configurations include 10 prisms spanning adjoining edges of JWST's hexagonal mirrors, at 60 degrees from each other to encompass different mirror pairs.
 %The resulting image, shown in Figure \ref{fig:DHSimage} is that 10 separate spectra are produced for every point source covering the wavelengths from 1$\mu$m to 2$\mu$m.
 %If two JWST mirrors are misaligned, they will produce a ``barber pole''-shaped interference pattern on the array.
-\begin{figure}[!ht]
-\includegraphics[width=0.5\textwidth]{dhs_image_example.png}
-\caption{Example images of the same source observed simultaneously with the DHS on the short-wavelength arm (left) producing 10 spectra and the F444W filter and C grism on the long-wavelength arm (right).
-These images were taken during cryogenic vacuum testing of the NIRCam flight instrument and detectors at NASA Goddard.
-Only 3 detectors will be needed for transit observations \textbf{Update w/ Mod A image and w/ R grism estimate}.}\label{fig:DHSimage}
-\end{figure}
+
 
 \begin{table}
 \centering
@@ -390,18 +392,17 @@ Total & 0.292
 
 \begin{figure}
 \centering
-\includegraphics[width=0.4\textwidth]{dhs_pupil_overlay.png}
+\includegraphics[width=0.49\textwidth]{dhs_pupil_labels_modA.pdf}
 \caption{DHS pupil coverage by each of the 10 DHS prisms, with the fractional throughput given in Table \ref{tab:pupfrac}. 
-The throughput is modulated by the size of the DHS grism as well as whether it coincides with a secondary mirror support (black lines).
-The circles in the image are products of the OSIM (optical telescope element simulator) test source used in Cryogenic Vacuum testing of the instrument suite, and will not be present in flight.
-The pupil wheel is clocked to make the DHS spectra straight along rows, but this moves the DHS elements off-center from JWST's pupil and masks.
-\textbf{Remove circles and secondary struts from Orange}}\label{fig:DHSvsPupilOverlay}
+The throughput is modulated by the size of the DHS grism as well as whether it coincides with a secondary mirror support (inverted "Y" shaped feature).
+The pupil wheel is clocked to make the DHS spectra straight along rows, but this moves the DHS elements off-center from JWST's pupil and masks and thus decreases throughput to elements 1 and 6 significantly.}\label{fig:DHSvsPupilOverlay}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=0.49\textwidth]{grism_pos_for_max_wcoverage.pdf}
-\caption{DHS Wavelength coverage for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength arm for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors (A1 - A5) are shown with their (0,0) corners as black boxes. The circles plotted for each grism are the shortest usable wavelength, undispersed wavelength and longest usable wavelength.}\label{fig:DHSwaveWGrism}
+\begin{figure}[!ht]
+\includegraphics[width=0.5\textwidth]{dhs_image_example.png}
+\caption{Example images of the same source observed simultaneously with the DHS on the short-wavelength arm (left) producing 10 spectra and the F444W filter and C grism on the long-wavelength arm (right).
+These images were taken during cryogenic vacuum testing of the NIRCam flight instrument and detectors at NASA Goddard.
+Only 3 detectors will be needed for transit observations \textbf{Update w/ Mod A image and w/ R grism estimate}.}\label{fig:DHSimage}
 \end{figure}
 
 \subsection{Readout Considerations}\label{sec:readout}
