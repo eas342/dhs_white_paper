@@ -43,6 +43,9 @@
 
 %Packages
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{graphicx}
+%\usepackage{caption}
+\usepackage{subcaption}
 
 \usepackage{natbib}
 \bibliographystyle{astroads}
@@ -161,7 +164,7 @@ Combining both of NIRCam's arms will maximize the science potential of JWST, whi
 
 \section{Introduction}
 
-The James Webb Space Telescope (JWST) \citep[e.g.][]{gardner2006SSRv} has the potential to profoundly expand and deepen the science of transiting exoplanets \citep[e.g.][]{greene2016jwst_trans}.
+The James Webb Space Telescope \citep[JWST; e.g.][]{gardner2006SSRv} has the potential to profoundly expand and deepen the science of transiting exoplanets \citep[e.g.][]{greene2016jwst_trans}.
 The wavelength coverage from 0.6$\mu$m to 28$\mu$m adds significantly to the wavelengths covered by the Hubble Space Telescope (HST) (currently 0.09$\mu$m to 1.7$\mu$m).
 Its unprecedented infrared sensitivity and stable orbit at the second Lagrange (L2) point make it an excellent observatory for characterizing the atmospheres of planets that transit their host stars with time series observations.
 Ground-based observatories and the Hubble Space Telescope have made important measurements of Na, K, H$_2$O in a variety of hot Jupiter, hot Neptune planets \cite[e.g.][]{snellen2008Na209,kreidberg2014wasp43,fraine2014hatp11,deming13,sing2016continuum}.
@@ -171,7 +174,7 @@ Depending on the composition and size of the clouds and hazes in exoplanet atmos
 No single JWST instrument may measure a spectrum over the full wavelength range from 0.6$\mu$m to 28$\mu$m, so multiple transits or secondary eclipses are necessary to piece together a broadband spectrum.
 The largest bandwidths possible are NIRSpec's low resolution prism covering 0.7$\mu$m to 5$\mu$m and MIRI's low resolution prism (LRS) covering 5$\mu$m to 12$\mu$m.
 Unfortunately, NIRSpec's low resolution prism mode is so sensitive, it saturates for most sources at a $J$ magnitude of $\sim$11 \citep{beichman2014pasp}, so many nearby bright planet systems must be observed with higher resolution (but smaller wavelength coverage) modes and instruments.
-For example, to create a transmission spectrum for HD 209458b \citep{henry00,charbonneau00} from 0.7 $\mu$m to 12 $\mu$m, an observer would have to stitch together at least four different transits: one with NIRISS (0.7 to 2.5$\mu$m), two with NIRCam's long-wavelength arm (2.44$\mu$m to 4.98 $\mu$m) \footnote{Or, alternatively NIRSpec's G235H and G395H  grisms covering 1.7$\mu$ to 5.0$\mu$m.} and one with MIRI (5$\mu$m to 12$\mu$m).
+For example, to create a transmission spectrum for HD 209458b \citep{henry00,charbonneau00} from 0.7$\mu$m to 12$\mu$m, an observer would have to stitch together at least four different transits: one with NIRISS (0.7$\mu$m to 2.5$\mu$m), two with NIRCam's long-wavelength arm (2.44$\mu$m to 4.98$\mu$m)\footnote{Or, alternatively NIRSpec's G235H and G395H  grisms covering 1.7~$\mu$ to 5.0$\mu$m.} and one with MIRI (5$\mu$m to 12$\mu$m).
 With typical overheads of $\sim$2 hr for 9 hours of pre-ingress, transit and post-ingress, this totals to about ~11 hours per transit or 44 JWST hours.
 This was calculated with the Astronomer's Proposal Tools software\footnote{http://www.stsci.edu/hst/proposing/apt} with the NIRISS SOSS mode, NIRCam's F322W2 and F444W grism time series and the MIRI Low Resolution spectrograph (LRS).
 
@@ -183,25 +186,35 @@ These filters and grism are enabled and supported JWST science modes.
 The DHS would be used primarily with the F150W2 filter, which covers from 1.01$\mu$m to 2.35$\mu$m at half maximum throughput.
 The range from 2.0$\mu$m to 2.35$\mu$m will probably be discarded because the first order of the spectrum begins to overlap at at 2.0$\mu$m.\footnote{The prism that spatially separate the 10 DHS spectra separate the second order spectrum by 0 to 15 pixels, so the contamination can be reduced in some cases.}
 
-The NIRCam instrument can reduce the number of transits needed to build up a transmission or emission spectrum of a planet from 1$\mu$m to 5 $\mu$m.
-This is because the instrument has a dichroic that splits the incoming beam into a short-wavelength arm and long-wavelength arm, so simultaneous imaging and/or spectroscopy are possible at short ($<$2.4$\mu$m) and long ($>$2.4$\mu$m) wavelengths.
-In particular, the DHS can be used to simultaneously cover 1.0$\mu$m to 2.0$\mu$m while the long-wavelength grisms cover either 2.44$\mu$m to 4.02$\mu$m (with the F322W2 filter) or 3.88$\mu$m to 4.98$\mu$m (with the F444W) filter.
-Thus, the DHS data comes ``for free'' with any long-wavelength NIRCam grism data, aside from readout and data rate considerations discussed in Section \ref{sec:readout}.
-For the example above of HD 209458b, this could save about 11 JWST hours per transit if the wavelengths from 2.0 to 2.4$\mu$m and higher Signal to Noise ratios (SNRs) from NIRISS are not required.
-The DHS is expected to perform similarly to HST's WFC3 grisms, so it is like a free coordinated HST observation for every long-wavelength NIRCam grism transit.
-
-\begin{figure}[!ht]
-\includegraphics[width=0.5\textwidth]{molecules_DHS_HD209.pdf}
+\begin{figure}[t]
+\centering
+\includegraphics[width=1.0\columnwidth]{molecules_DHS_HD209.pdf}
 \caption{Model spectra separated by molecule for HD 209458b.
 The new DHS mode would allow simultaneous spectra at 1-2$\mu$m ``for free'' when observing with either NIRCam's F322W2 or F444W slitless grism observations in its long-wavelength arm.
 The simulated data are for one transit in each of the long-wavelength grism modes, each accompanied by simultaneous DHS grism spectra.
 The observations longer than 5$\mu$m are simulated for MIRI's Low Resolution Spectrometer.}\label{fig:209spec}
 \end{figure}
 
+
+The NIRCam instrument can reduce the number of transits needed to build up a transmission or emission spectrum of a planet from 1$\mu$m to 5$\mu$m.
+This is because the instrument has a dichroic that splits the incoming beam into a short-wavelength arm and long-wavelength arm, so simultaneous imaging and/or spectroscopy are possible at short ($<$2.4$\mu$m) and long ($>$2.4$\mu$m) wavelengths.
+In particular, the DHS can be used to simultaneously cover 1.0$\mu$m to 2.0$\mu$m while the long-wavelength grisms cover either 2.44$\mu$m to 4.02$\mu$m (with the F322W2 filter) or 3.88$\mu$m to 4.98$\mu$m (with the F444W) filter.
+Thus, the DHS data comes ``for free'' with any long-wavelength NIRCam grism data, aside from readout and data rate considerations discussed in Section \ref{sec:readout}.
+For the example above of HD 209458b, this could save about 11 JWST hours per transit if the wavelengths from 2.0$\mu$m to 2.4$\mu$m and higher Signal to Noise ratios (SNRs) from NIRISS are not required.
+The DHS is expected to perform similarly to HST's WFC3 grisms, so it is like a free coordinated HST observation for every long-wavelength NIRCam grism transit.
+
+
 Since the DHS was not originally designed for science observations, it is not yet an approved mode for the James Webb Space Telescope.
 In this white paper, we argue for the inclusion of the DHS mode to fully take advantage of two NIRCam arms to maximize JWST's science potential for transiting planets.
 In section \ref{sec:addedScience} we discuss the added science that can be achieved with the DHS, including the brightness limits and improved precision in retrieved parameters for a representative system.
 In section \ref{sec:implementation}, we discuss how the DHS would work for time-series observations and the implications of reading out several detectors simultaneously at a high frame rate.
+
+\begin{figure}[!b]
+\includegraphics[width=1.0\columnwidth]{sat_limits.jpg}
+\caption{Saturation limits of the DHS mode (blue), and long-wavelength grism's F322W2 filter (red) and F444W filter (light green) for a G2V star.
+The magnitudes are Vega K magnitudes where 80\% of the well depth is filled in the standard CDS readout mode described in Figure \ref{fig:readout}  for a 2048 $\times$ 64 pixel sub-array using 4 amplifiers.
+The filters used are F150W2 (blue), F322W2 (red) and F444W (green).}\label{fig:saturationLim}
+\end{figure}
 
 
 \section{Science Benefits with the DHS}\label{sec:addedScience}
@@ -213,12 +226,6 @@ Figure \ref{fig:saturationLim} shows the saturation limits for the DHS mode alon
 Any known transiting planet host system can be observed with the DHS, including the transiting super-Earth  55 Cnc e \citep{mcarthur2004disc55cnce} at $K$=4.0, which is right at the limit of saturation of the long-wavelength grism and the brightest known transiting system HD 219134b \citep{motalebi2015hd219134b} at $K$=3.4.
 The DHS also enables characterization of any future targets found in this brightness range, such as by the Transiting Exoplanet Survey Satellite (TESS) \citep{ricker2014tess}.
 
-\begin{figure}[!ht]
-\includegraphics[width=0.5\textwidth]{sat_limits.jpg}
-\caption{Saturation limits of the DHS mode (blue), and long-wavelength grism's F322W2 filter (red) and F444W filter (light green) for a G2V star.
-The magnitudes are Vega K magnitudes where 80\% of the well depth is filled in the standard CDS readout mode described in Figure \ref{fig:readout}  for a 2048 $\times$ 64 pixel sub-array using 4 amplifiers.
-The filters used are F150W2 (blue), F322W2 (red) and F444W (green).}\label{fig:saturationLim}
-\end{figure}
 
 \subsection{CHIMERA Models}\label{sec:models}
 
@@ -228,11 +235,11 @@ We then add Gaussian noise using the SNR estimated on the target to create a sim
 Finally, we run a Markov Chain Monte Carlo (MCMC) retrieval of the atmospheric parameters for simulated spectrum to try to recover the initial abundances and determine the uncertainties in those abundances, as in \citet{greene2016jwst_trans}.
 We combine the individual gases' posterior distributions for the C/O ratio and metallicity.
 
-\begin{figure}
+\begin{figure}[t]
 \centering
-\includegraphics[width=0.5\textwidth]{HAT-P-12b_kmr_cloudy_dhs.pdf}
+\includegraphics[width=1.0\columnwidth]{HAT-P-12b_kmr_cloudy_dhs.pdf}
 \caption{Model spectra separated by molecule for for the inflated warm Saturn HAT-P-12b, with an opaque cloud deck at 1 mbar.
-Error bars shown are for simulated observation with the DHS grism, F322W2 and F444W modes, for a total of 2 transits or about 17 hours of JWST time. A planet metallicity of 22 $\times$ solar was assumed from the relation in \citet{kreidberg2014wasp43}.}\label{fig:HATp12spec}
+Error bars shown are for simulated observation with the DHS grism, F322W2 and F444W modes, for a total of 2 transits or about 17 hours of JWST time. A planet metallicity of 22~$\times$~solar was assumed from the relation in \citet{kreidberg2014wasp43}.}\label{fig:HATp12spec}
 \end{figure}
 
 For the initial model of HD 209458b, we use solar abundances of \citet{asplund} and reduce the oxygen by a factor of 24\% to account for the settling out of MgSiO$_3$ and MgSiO$_4$ which are below their condensation temperatures \citep{sing2016continuum}.
@@ -251,15 +258,32 @@ This is compared to observations taken without the DHS to show the added scienti
 The noise models for the hot Jupiter HD 209458b are shown in Figure \ref{fig:DHSvsNIRISS209}, which is dominated by the detector noise floor (35 ppm) for the long-wavelength grisms ($>$2.44$\mu$m) but photon noise is more significant for the short-wavelength DHS observations.
 The DHS has lower throughput and a smaller wavelength coverage than the NIRISS instrument in SOSS mode, so observations which require higher SNR and full wavelength coverage from 0.7 to 2.4$\mu$m can take advantage of NIRISS (also shown in Figure \ref{fig:DHSvsNIRISS209}) at the expense of more telescope time.
 
-\begin{figure}
+\begin{figure}[t]
 \centering
-\includegraphics[width=0.5\textwidth]{HD209458b_solar_clear_1transit_DHS_vs_NIRISS_NIRCam_MIRILRS_R100.pdf}
+\includegraphics[width=1.0\columnwidth]{HD209458b_solar_clear_1transit_DHS_vs_NIRISS_NIRCam_MIRILRS_R100.pdf}
 \caption{Calculated SNR for one transit of the hot Jupiter HD209458b for the NIRISS SOSS mode, NIRCam F322W2 and F444W filters and the MIRI LRS mode for a total of 4 different transits or $\sim$44 JWST hours.
-Similar wavelength coverage can be achieved in just 3 different transits or $\sim$ 33 hours if the DHS mode is enabled (bottom spectrum).}\label{fig:DHSvsNIRISS209}
+Similar wavelength coverage can be achieved in just 3 different transits or $\sim$33 hours if the DHS mode is enabled (bottom spectrum).}\label{fig:DHSvsNIRISS209}
 \end{figure}
 
+\begin{figure*}[t]
+\centering
+\begin{subfigure}{0.48\textwidth}
+	\includegraphics[width=1\textwidth]{HD209458b_solar_clear_1trans_corner.png}
+	\caption{HD209458b}
+	\label{fig:corner209}
+\end{subfigure}
+\begin{subfigure}{0.48\textwidth}
+	\includegraphics[width=1\textwidth]{HAT-P-12b_kmr_cloudy_corner.png}
+	\caption{HAT-P-12b}
+	\label{fig:cornerHATp12}
+\end{subfigure}
+	\caption{Posterior distributions for MCMC runs of HD209458b and HAT-P-12b with the DHS (blue) and without the DHS (green). The H$_2$O correlates strongly with CO$_2$ and CO, meaning that improved measurements of H$_2$O with the DHS actually help improve constraints on the Carbon bearing species, even though there aren't any significant CO or CO$_2$ features in the 1-2$\mu$m range. Abundances are given in $\log_{10}$~(ppm). Cloud pressure is in $\log_{10}$~(bar).}
+	\label{fig:corner}
+\end{figure*} 
+
+
 We use CHIMERA and a Markov Chain Monte Carlo (MCMC) retrieval to recover the individual atmospheric abundances of the simulated spectrum.
-The retrieval model includes 13 free parameters: 1) the temperature of the isothermal profile 2) the altitude of the 10-bar pressure surface where the model begins 3) a cloud pressure level below which all stellar flux is absorbed at all wavelengths 4) through 11) the abundances of H$_2$O, CH$_4$, CO, CO$_2$, NH$_3$, C$_2$H$_2$, HCN, N$_2$, respectively 12) an amplitude of a Raleigh-like haze and 13) a power law index for the Raleigh-type haze.
+The retrieval model includes 13 free parameters: 1) the temperature of the isothermal profile; 2) the altitude of the 10-bar pressure surface where the model begins; 3) a cloud pressure level below which all stellar flux is absorbed at all wavelengths; 4) through 11) the abundances of H$_2$O, CH$_4$, CO, CO$_2$, NH$_3$, C$_2$H$_2$, HCN, N$_2$, respectively; 12) an amplitude of a Raleigh-like haze; and 13) a power law index for the Raleigh-type haze.
 We assume flat priors in log space for all abundances from volume mixing ratios of 10$^{-12}$ to 1.
 The autocorrelation time for the retrievals is about ~100 steps and we run all retrievals to 20,000 steps, only using the last 5,000 to allow for burn-in.
 
@@ -270,40 +294,63 @@ The autocorrelation time for the retrievals is about ~100 steps and we run all r
 %Vertical dashed bars show the input abundances for the initial forward model that was used to generate the simulated spectru.}\label{fig:DHSposterios}
 %\end{figure}
 
+
+
 \subsection{CHIMERA Retreivals}\label{sec:retrievals}
 
-The posterior distributions for retrieved parameters for the most important abundances are shown in Figures \ref{fig:corner209} and \ref{fig:cornerHATp12}.
+The posterior distributions for retrieved parameters for the most important abundances are shown in Figure~\ref{fig:corner}.
 We show the posterior distributions for two cases:
 \begin{enumerate}
-\item \label{it:DHSgr} An observation with the long wavelength grisms alone (2.4$\mu$m to 5.0$\mu$m), shown in green.
-\item \label{it:grAlone} An observation with the long wavelength grisms (2.44$\mu$m to 5.0$\mu$m) with simultaneous DHS spectra (1.0-2.0$\mu$m), shown in blue
+\item \label{it:DHSgr} An observation with the long wavelength grisms alone (2.4-5.0$\mu$m), shown in green.
+\item \label{it:grAlone} An observation with the long wavelength grisms (2.4-5.0$\mu$m) with simultaneous DHS spectra (1.0-2.0$\mu$m), shown in blue.
 \end{enumerate}
 For the spectral data they have in common (2.4$\mu$m to 5.0$\mu$m), we use the same noise instance to make direct comparison easier.
 
-The posterior distributions for HD 209458b in Figure \ref{fig:corner209} show improved constraints on the temperature, cloud pressure level and the abundances of H$_2$O, CO and CO$_2$ when the DHS is used with the long wavelength grisms (Case \ref{it:DHSgr}) as compared to the long wavelength grisms alone (Case \ref{it:grAlone}).
+The posterior distributions for HD 209458b in Figure~\ref{fig:corner209} show improved constraints on the temperature, cloud pressure level and the abundances of H$_2$O, CO and CO$_2$ when the DHS is used with the long wavelength grisms (Case~\ref{it:DHSgr}) as compared to the long wavelength grisms alone (Case~\ref{it:grAlone}).
 These improvements come about, in part, because the 1.0$\mu$m to 2.0$\mu$m wavelength region probes to deeper pressure layers ($\sim$ 400 mbar) to exclude clouds and better constrain the scale height.
 
-\begin{figure*}
-\centering
-\includegraphics[width=1.0\textwidth]{HD209458b_solar_clear_1trans_corner.png}
-\caption{Posterior distributions an MCMC run of HD209458b with the DHS (blue) and without the DHS (green).
-The H$_2$O correlates strongly with CO$_2$ and CO, meaning that improved measurements of H$_2$O with the DHS actually help improve constraints on the Carbon bearing species, even though there aren't any significant CO or CO$_2$ features in the 1-2$\mu$m range. Abundances are given in Log$_{10}$(ppm). Cloud pressure is in Log$_{10}$(bar).}\label{fig:corner209}
-\end{figure*}
+
+
+%\begin{figure*}
+%\centering
+%\includegraphics[width=1.0\textwidth]{HD209458b_solar_clear_1trans_corner.png}
+%\caption{Posterior distributions an MCMC run of HD209458b with the DHS (blue) and without the DHS (green).
+%The H$_2$O correlates strongly with CO$_2$ and CO, meaning that improved measurements of H$_2$O with the DHS actually help improve constraints on the Carbon bearing species, even though there aren't any significant CO or CO$_2$ features in the 1-2$\mu$m range. Abundances are given in Log$_{10}$(ppm). Cloud pressure is in Log$_{10}$(bar).}\label{fig:corner209}
+%\end{figure*}
 
 The warm Saturn HAT-P-12b model shows improvements to the temperature constraints, but the cloud pressure measurements have similar uncertainties with and without the DHS.
 This is because the 1mbar cloud layer begins to affect the opacity near 4.0$\mu$m, which is measured by the long wavelength grisms.
 As with HD 209458b, the DHS improves constraints on the H$_2$O and CO$_2$ abundances, but since the planet is at a cooler temperatures, chemical equilibrium favors CH$_4$ over CO, so the constraints are much better on CH$_4$.
 
-\begin{figure*}
-\centering
-\includegraphics[width=1.0\textwidth]{HAT-P-12b_kmr_cloudy_corner.png}
-\caption{Posterior distributions an MCMC retrieval of parameters for HAT-P-12b with the DHS (blue) and without the DHS (gray).}\label{fig:cornerHATp12}
-\end{figure*}
+%\begin{figure*}
+%\centering
+%\includegraphics[width=1.0\textwidth]{HAT-P-12b_kmr_cloudy_corner.png}
+%\caption{Posterior distributions an MCMC retrieval of parameters for HAT-P-12b with the DHS (blue) and without the DHS (gray).}\label{fig:cornerHATp12}
+%\end{figure*}
 
 One of the surprising aspects to the retrievals is that the DHS improves both the constraints on the CO and CO$_2$ abundances as well as the H$_2$O abundances, seen in Figure \ref{fig:corner209} and Figure \ref{fig:cornerHATp12}. 
 A quick glance at the contributions of individual molecules to the spectrum shown in Figures \ref{fig:209spec} and \ref{fig:HATp12spec} would indicate that the DHS is mainly important for water vapor.
 However, the retrieval for the spectrum with only NIRCam's long-wavelength grisms has a strong correlation between the retrieved H$_2$O abundances with CO$_2$ and CO, shown in Figure \ref{fig:corner209}.
 Improving the water vapor constraint with the DHS, reduces the correlation and therefore improves the abundance constraints for all three.
+
+\begin{table*}[!t]
+\centering
+\begin{tabular}{lcc}
+\hline \hline
+ & DHS & Grism \\
+\hline \hline		
+Resolution: &  \DHSres & 1200 - 1550 \\
+Dispersion: & 0.29 nm / px & 1.0 nm / px \\
+Wavelengths: & 1.05 - 2.00$\mu$m (F150W2)\footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
+			 & 1.75 - 2.23$\mu$m (F200W)\footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
+			& 	1.01 - 1.94$\mu$m (F150W2) \footnote{For a field point matched to the F444W filter and long wavelength grism. There is a \DHSgap$\mu$m gap between detectors that depends on field position.}		& 3.88 - 4.98$\mu$m (F444W) \\
+Plate Scale: & 32 mas / px  &  65 mas / px\\
+Undeviated Wavelength: & 1.36$\mu$m & 3.94$\mu$m   \\
+\hline
+\end{tabular}
+\caption{Properties of DHS and simultaneous long-wavelength grism spectra. The parameters are for the A-side grism in the direction aligned with detector rows (R).}\label{tab:DHSgprop}
+\vspace{0.1in}
+\end{table*}
 
 \section{DHS Implementation}\label{sec:implementation}
 
@@ -316,33 +363,35 @@ There will be about a \DHSgap$\mu$m gap in the spectrum due to the gap between s
 The center of this gap depends on source position.
 The DHS can be used in tandem with either the F322W2 or F444W filter for the long wavelength grism observations.
 The properties of the DHS, which can be used simultaneously with the long-wavelength grisms, are listed in Table \ref{tab:DHSgprop}.
-If the region from 2-2.23 $\mu$m is highly desirable such as for measuring the CH$_4$ feature shown in Figure \ref{fig:HATp12spec}, the DHS can be used with a F200W filter (1.75 to 2.23$\mu$m half maximum) to partially fill in the gap between the short to long wavelength arms.
+If the region from 2-2.23$\mu$m is highly desirable such as for measuring the CH$_4$ feature shown in Figure \ref{fig:HATp12spec}, the DHS can be used with a F200W filter (1.75 to 2.23$\mu$m half maximum) to partially fill in the gap between the short to long wavelength arms.
+
+
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.4\textwidth]{dhs_res.pdf}
+\includegraphics[width=1.0\columnwidth]{dhs_res.pdf}
 \caption{Resolution as a function of wavelength for the DHS.}\label{fig:DHSRes}
 \end{figure}
 
-\begin{table}
-\centering
-\begin{tabular}{ccr}
-		& DHS	& Grism \\
- \hline \hline		
-Resolution &  \DHSres & 1200 - 1550 \\
-Dispersion & 0.29 nm / px & 1.0 nm / px \\
-Wavelengths & 1.05 - 2.00$\mu$m (F150W2)\footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
-			 & 1.75 - 2.23$\mu$m (F200W)\footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
-			& 	1.01 - 1.94$\mu$m (F150W2) \footnote{For a field point matched to the F444W filter and long wavelength grism. There is a \DHSgap$\mu$m gap between detectors that depends on field position.}		& 3.88 - 4.98$\mu$m (F444W) \\
-Plate Scale & 32 mas/px  &  65 mas / px\\
-Undeviated \\Wavelength & 1.36 $\mu$m & 3.94 $\mu$m   \\
-\hline
-\end{tabular}
-\caption{Properties of DHS and simultaneous long-wavelength grism spectra. The parameters are for the A-side grism in the direction aligned with detector rows (R).}\label{tab:DHSgprop}
-\vspace{0.1in}
-\end{table}
 
 \subsection{DHS Layout}
+
+\begin{figure}[b]
+\centering
+\includegraphics[width=1.0\columnwidth]{dhs_pupil_labels_modA.pdf}
+\caption{DHS pupil coverage by each of the 10 DHS prisms, with the fractional throughput given in Table \ref{tab:pupfrac}. 
+The throughput is modulated by the size of the DHS grism as well as whether it coincides with a secondary mirror support (inverted "Y" shaped feature).
+The pupil wheel is clocked to make the DHS spectra straight along rows.
+This moves the DHS elements off-center from JWST's pupil and thus decreases the throughput for elements 1 and 6, but the overall combined throughput for all 10 elements is only reduced from 32\% to 29\%.}\label{fig:DHSvsPupilOverlay}
+\end{figure}
+
+
+\begin{figure*}
+\centering
+\includegraphics[width=1.0\textwidth]{grism_pos_for_max_wcoverage.pdf}
+\caption{DHS wavelength coverage for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength arm for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors (A1 - A5) are shown with their (0,0) corners as black boxes. The circles plotted for each grism are the shortest usable wavelength, undispersed wavelength and longest usable wavelength.}\label{fig:DHSwaveWGrism}
+\end{figure*}
+
 
 A point source observed with the DHS and grism modes of NIRCam will produce 10 spectra on the short-wavelength arm and one spectrum on the long-wavelength arm -- see Figure \ref{fig:DHSwaveWGrism}.
 The DHS spectra span two of NIRCam's short-wavelength detectors covering $\sim$1 to $\sim$ 2$\mu$m with a \DHSgap$\mu$m gap due to the separation between detectors.
@@ -355,49 +404,38 @@ This is needed for bright targets that will saturate the long wavelength detecto
 There is a price for clocking the DHS pupil wheel to align spectra with rows: all DHS grisms are partially obscured by either the secondary supports or the outer edges of the primary, save element 7.
 Fortunately, the relative obscuration for all 10 DHS spectra is small, going from 32\% total throughput when the pupil wheel is centered (which produces tilted spectra), versus 29\% if the pupil wheel is clocked to align the spectra along rows.
 Table \ref{tab:pupfrac} lists the fractional pupil coverage of each DHS spectrum where 1.00 would use the entire pupil and thus take advantage of the maximum JWST collecting area.
-For a sub-array size encompassing only 1 DHS spectrum (such as a 2048 $\times$ 64 subarray), the largest unobscured DHS grisms should be used - element number 7 in Figure \ref{fig:DHSvsPupilOverlay}.
+For a sub-array size encompassing only 1 DHS spectrum (such as a 2048 $\times$ 64 subarray), the largest unobscured DHS grisms should be used - element number 7 in Figure~\ref{fig:DHSvsPupilOverlay}.
 
-\begin{figure}
+\begin{table}[!ht]
 \centering
-\includegraphics[width=0.49\textwidth]{grism_pos_for_max_wcoverage.pdf}
-\caption{DHS Wavelength coverage for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength arm for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors (A1 - A5) are shown with their (0,0) corners as black boxes. The circles plotted for each grism are the shortest usable wavelength, undispersed wavelength and longest usable wavelength.}\label{fig:DHSwaveWGrism}
-\end{figure}
+\begin{tabular}{cc}
+\hline \hline
+DHS \# & Pupil Fraction \\
+\hline \hline
+1  & 0.012 \\
+2  & 0.032 \\
+3  & 0.032 \\
+4  & 0.040 \\
+5  & 0.021 \\
+6  & 0.015 \\
+7  & 0.042 \\
+8  & 0.040 \\
+9  & 0.036 \\
+10 & 0.022 \\
+\hline
+Total & 0.292\\
+\hline
+\end{tabular}
+\caption{The approximate pupil coverage of the 10 DHS grisms compared to the total primary collecting area}
+\label{tab:pupfrac}
+%\tablecomments{The approximate pupil coverage of the 10 DHS grisms compared to the total primary collecting area.}
+\end{table}
 
 %The two DHS pupil configurations include 10 prisms spanning adjoining edges of JWST's hexagonal mirrors, at 60 degrees from each other to encompass different mirror pairs.
 %The resulting image, shown in Figure \ref{fig:DHSimage} is that 10 separate spectra are produced for every point source covering the wavelengths from 1$\mu$m to 2$\mu$m.
 %If two JWST mirrors are misaligned, they will produce a ``barber pole''-shaped interference pattern on the array.
 
 
-\begin{table}
-\centering
-\begin{tabular}{cc}
-DHS \# & Pupil Fraction \\
-\hline \hline
-1 & 0.012 \\
-2 & 0.032 \\
-3 &  0.032 \\
-4 & 0.040 \\
-5 & 0.021 \\
-6 & 0.015 \\
-7 & 0.042 \\
-8 & 0.040 \\
-9 & 0.036 \\
-10 & 0.022 \\
-\hline
-Total & 0.292
-\end{tabular}
-\caption{Pupil Coverage}\label{tab:pupfrac}
-\tablecomments{The approximate pupil coverage of the 10 DHS grisms compared to the total primary collecting area.}
-\end{table}
-
-\begin{figure}
-\centering
-\includegraphics[width=0.49\textwidth]{dhs_pupil_labels_modA.pdf}
-\caption{DHS pupil coverage by each of the 10 DHS prisms, with the fractional throughput given in Table \ref{tab:pupfrac}. 
-The throughput is modulated by the size of the DHS grism as well as whether it coincides with a secondary mirror support (inverted "Y" shaped feature).
-The pupil wheel is clocked to make the DHS spectra straight along rows.
-This moves the DHS elements off-center from JWST's pupil and thus decreases the throughput for elements 1 and 6, but the overall combined throughput for all 10 elements is only reduced from 32\% to 29\%.}\label{fig:DHSvsPupilOverlay}
-\end{figure}
 
 %\begin{figure}[!ht]
 %\includegraphics[width=0.5\textwidth]{dhs_image_example.png}
@@ -412,9 +450,9 @@ We adopt the following naming convention for the readout: an observation may con
 Within an exposure, there are 1 or more integrations, which consist of a reset frame followed by 1 or more groups of non-destructive reads up a ramp.
 This is illustrated in Fig \ref{fig:readout} for three example readout modes.
 
-\begin{figure}
+\begin{figure}[t]
 \centering
-\includegraphics[width=0.49\textwidth]{readout_schematic.pdf}
+\includegraphics[width=1.0\columnwidth]{readout_schematic.pdf}
 \caption{Schematic of example readout modes for an exposure that is 12 frame times in duration.
 A single FITS file is saved for the exposure, consisting of 1 or more groups per integration.
 No reset frames or dropped frames are saved.``1 Group Readout" can be used to increase the saturation limits provided that drifts between reset levels are sufficiently stable.
@@ -428,8 +466,8 @@ The current software requires that the sub-array locations must be identical for
 We recommend  the sub-array locations to be adjustable so that the short wavelength sub-array can be centered on one DHS spectrum or a subset of the 10 and the long wavelength array can be centered on a single grism spectrum.
 The current time series observing templates is limited subarray sizes of 2048 $\times$ 64, 2048 $\times$ 128, 2048 $\times$ 256 and 2048 $\times$ 2048 (full frame), which would cover 1, 1, 2 and 10 DHS spectra as shown in Figure \ref{fig:DHSaps}.
 
-\begin{figure}[!ht]
-\includegraphics[width=0.49\textwidth]{example_ap_sizes.pdf}
+\begin{figure}[!t]
+\includegraphics[width=1.0\columnwidth]{example_ap_sizes.pdf}
 \caption{Example DHS image on the A1 short wavelength detector taken during cryogenic vacuum testing of the flight hardware -- see Figure \ref{fig:DHSwaveWGrism} for the detector's position.
 Each element is labeled corresponding to the DHS apertures shown in Figure \ref{fig:DHSvsPupilOverlay} and pupil fraction in Table \ref{tab:pupfrac}.
 The sub-array size options currently available (all 2048 pixels wide) are shown with selections for the brightest spectra available - elements 7 and 8.}\label{fig:DHSaps}
@@ -443,16 +481,18 @@ The 1 Group Readout method can push the brightness limits by a factor of 2 over 
 The sub-array sizes and order of DHS elements is shown in Figure \ref{fig:DHSaps}.
 For the brightest sources, which require the 2048 $\times$ 64 pixel subarray, the DHS throughput loss is significant, because only 1 DHS spectrum out of 10 is used, meaning only 4.2\% of JWST's 25 m$^2$ collecting area is used.
 
-\begin{table}
+\begin{table}[!hb]
 \centering
 \begin{tabular}{llll}
+\hline \hline
 Sub-Array Size &  LW Saturation & \# of DHS & DHS Noise\\
-                         &  K Magnitude    &                               & ppm \\
+               &  K Magnitude   &           & ppm \\
 \hline \hline
 2048$\times$ 64 & 4.52 & 1 &  ?? \\
 2048$\times$ 128 & 5.26 & 1 &  ?? \\
 2048$\times$ 256 & 6.01 & 2 &  ?? \\
-2048$\times$ 2048 & 8.26 & 10 & ??
+2048$\times$ 2048 & 8.26 & 10 & ?? \\
+\hline
 \end{tabular}
 \caption{G2V-type star saturation K band limits are shown for suggested sub-array sizes.
 The size affects the number of DHS that can be included, so the SNR at 1.5$\mu$m in the DHS spectrum at the given saturation limit for a 1 hour transit is shown in column 4.}\label{tab:SatSNRsubA}
@@ -465,8 +505,8 @@ The amount of data streaming from the detectors can overload the Solid State Rec
 We consider the use of 458 Gbits of space for science data as the maximum the SSR can handle at once.
 This overload can happen in as few as 10.3 hours if three NIRCam detectors are used simultaneously and all are read out with four amplifiers in CDS mode (meaning no samples are co-added or dropped) -- see Figure \ref{fig:DataVolume}.
 
-\begin{figure}[!ht]
-\includegraphics[width=0.49\textwidth]{NIRCam_grism_max_exp.pdf}
+\begin{figure}[!t]
+\includegraphics[width=1.0\columnwidth]{NIRCam_grism_max_exp.pdf}
 \caption{The maximum time JWST NIRCam can expose three detectors (e.g. A1, A3 and A5 in Figure \ref{fig:DHSwaveWGrism}) before filling up JWST's Solid State Recorder (SSR). The readout modes shown are for Rapid readouts (no skipped frames as in CDS) and Bright1 for both 1 amplifier and 4 amplifiers. The number of pixels read out affects the integration time and thus the data rate. The time needed for a phase curve of the planet HD 189733b and a transit of the system are shown for reference.}\label{fig:DataVolume}
 \end{figure}
 
@@ -496,7 +536,8 @@ We present example usage of the DHS mode on example systems and show that the te
 Furthermore, the improved water vapor constraints also feed back to higher precision CO and CO$_2$ abundances because of the correlation of these derived parameters.
 We encourage the implementation and approval of the DHS mode to enable this additional science in less time for this limited life observatory.
 
-\section{Acknowledgements}
+\section*{Acknowledgements}
+%\acknowledgments
 
 CHIMERA retrieval makes use of \texttt{emcee} \citep{foreman-mackey2013emcee} and the covariance plot was made with \texttt{corner.py} \citep{foremanCorner}.
 For use of the El Gato computing system, this material is based upon work supported by the National Science Foundation under Grant No. 1228509.
@@ -571,7 +612,7 @@ Thanks to Michael Bruck at the High Performance Computing center at the Universi
 %% use either \url or \anchor, with the HREF as the first argument and the
 %% text to be printed in the second.
 
-\acknowledgments
+%\acknowledgments
 
 
 
