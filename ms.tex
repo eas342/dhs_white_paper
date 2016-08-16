@@ -369,7 +369,7 @@ There will be about a \DHSgap$\mu$m gap in the spectrum due to the gap between s
 The center of this gap depends on source position.
 The DHS can be used in tandem with either the F322W2 or F444W filter for the long wavelength grism observations.
 The properties of the DHS, which can be used simultaneously with the long-wavelength grisms, are listed in Table \ref{tab:DHSgprop}.
-If the region from 2-2.23$\mu$m is highly desirable such as for measuring the CH$_4$ feature shown in Figure \ref{fig:HATp12spec}, the DHS can be used with a F200W filter (1.75 to 2.23$\mu$m half maximum) to partially fill in the gap between the short to long wavelength channels.
+If the region from 2-2.23$\mu$m is highly desirable such as for measuring the CH$_4$ feature shown in Figure \ref{fig:HATp12spec}, the DHS can be used with a F200W filter (1.75 to 2.23$\mu$m half maximum) to partially fill in the gap between the short to long wavelength channels, though the grism blaze function drops off above 2.0$\mu$m, shown in Section \ref{sec:layout}. 
 
 
 \begin{figure}[!ht]
@@ -378,7 +378,7 @@ If the region from 2-2.23$\mu$m is highly desirable such as for measuring the CH
 \caption{Resolution as a function of wavelength for the DHS.}\label{fig:DHSRes}
 \end{figure}
 
-\subsection{DHS Layout}
+\subsection{DHS Layout}\label{sec:layout}
 
 \begin{figure}[b]
 \centering
@@ -414,7 +414,7 @@ For a sub-array size encompassing only 1 DHS spectrum (such as a 2048 $\times$ 6
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=1.0\columnwidth]{NIRCam+OTE_SWA_DHS_and_F150W2_efficiency.pdf}
-\caption{Throughput as a function of wavelength for the DHS grism and F150W2 filter that includes the telescope and instrument transmission. The total throughput is the multiple of the filter curve, ``DHS'' grism and the pupil area fraction from Table \ref{tab:pupfrac}..}\label{fig:DHSthrough}
+\caption{Throughput as a function of wavelength for the DHS grism, F150W2 filter and F200W filter that includes the telescope and instrument transmission. The total throughput is the multiple of the filter curve, ``DHS'' grism and the pupil area fraction from Table \ref{tab:pupfrac}..}\label{fig:DHSthrough}
 \end{figure}
 
 \begin{table}[!ht]
@@ -436,8 +436,10 @@ DHS \# & Pupil Fraction \\
 \hline
 Total & 0.292\\
 \hline
+\\
+\multicolumn{2}{c}{\textbf{DHS Pupil Coverage} }
 \end{tabular}
-\caption{The approximate pupil coverage of the 10 DHS grisms compared to the total primary collecting area}
+\caption{The pupil coverage of the 10 DHS grisms compared to the total primary collecting area for the pupil wheel position that aligns DHS spectra with detector rows.}
 \label{tab:pupfrac}
 %\tablecomments{The approximate pupil coverage of the 10 DHS grisms compared to the total primary collecting area.}
 \end{table}
@@ -468,7 +470,7 @@ This is illustrated in Fig \ref{fig:readout} for three example readout modes.
 \caption{Schematic of example readout modes for an exposure that is 12 frame times in duration.
 A single FITS file is saved for the exposure, consisting of 1 or more groups per integration.
 No reset frames or dropped frames are saved.``1 Group Readout" can be used to increase the saturation limits provided that drifts between reset levels are sufficiently stable.
-The BRIGHT1 readout increases the observing efficiency and reduces data volume over CDS but will saturate more easily.}\label{fig:readout}
+The BRIGHT1 readout increases the observing efficiency and reduces data volume over CDS but has a longer minimum integration time, resulting in fainter saturation limits.}\label{fig:readout}
 \end{figure}
 
 Each NIRCam array must be read out with identical window sizes and exposure times due to restrictions in the Onboard Scripting Software (OSS).
@@ -486,7 +488,7 @@ The sub-array size options currently available (all 2048 pixels wide) are shown 
 \end{figure}
 
 The balance between saturating the long-wavelength grism and getting enough SNR in the DHS is listed in Table \ref{tab:SatSNRsubA}.
-The table shows the brightest observable G2V star  for a given array size in the long-wavelength grism and the DHS noise at 1.5$\mu$m for a G2V type star at this brightness observing a 1 hour long transit duration and binned to a resolution of 100.
+The table shows the brightest observable G2V star  for a given array size in the long-wavelength grism and the DHS noise at 1.1 to 1.9 $\mu$m for a G2V type star at this brightness observing a 1 hour long transit and 1 hour on a star out of transit, binned to the native resolution of R $\sim$ \DHSresApprox.
 We use the standard correlated double sampling (CDS) readout mode shown in Figure \ref{fig:readout} and we consider 80\% well depth in the second read as saturation.
 If the bias level after each reset remains stable over the course of observations, it may be possible to use ``1 Group Readout'', illustrated in Figure \ref{fig:readout}.
 The 1 Group Readout method can push the brightness limits by a factor of 2 over CDS because it reduces the integration time by a factor of 2.
@@ -507,7 +509,7 @@ Sub-Array Size &  LW Saturation & \# of DHS & DHS Noise\\
 \hline
 \end{tabular}
 \caption{G2V-type star saturation K band limits are shown for suggested sub-array sizes.
-The size affects the number of DHS that can be included, so the noise in the DHS spectra over 1.1 -- 1.9$\mu$m at the given saturation limit for a 1 hour transit is shown in column 4.}\label{tab:SatSNRsubA}
+The size affects the number of DHS that can be included, so the noise in the DHS spectra over 1.1 -- 1.9$\mu$m at the given saturation limit for a 1 hour transit is shown in column 4 at native R $\sim$ \DHSresApprox\ resolution.}\label{tab:SatSNRsubA}
 \end{table}
 
 
@@ -534,7 +536,7 @@ The lower frame rate, however, means that the detector saturates at 1/4 the flux
 Second, the detector can be read out in BRIGHT1 mode, seen in Figure \ref{fig:readout}.
 This is where a frame is dropped between read 2 and read 1 to increase the integration time and efficiency while reducing data volume.
 This only works for sources faint enough that the long-wavelength grisms do not saturate.
-
+Perhaps future changes to the OSS could allow operating the LW detectors with 4 outputs and the SW ones with 1 output, reducing data volume considerably.
 
 \section{Conclusions}
 
