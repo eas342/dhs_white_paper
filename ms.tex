@@ -292,7 +292,7 @@ Similar wavelength coverage can be achieved in just 3 different transits or $\si
 \end{figure*} 
 
 
-We use the \tt{emcee} version of CHIMERA (Greene et al. 2016) to recover the individual atmospheric abundances of the simulated spectrum. The retrieval model includes 13 free parameters: 1) the temperature of the isothermal profile; 2) the altitude of the 10-bar pressure surface where the model begins; 3) a cloud pressure level below which all stellar flux is absorbed at all wavelengths; 4) through 11) the constant-with-altitude mixing ratios of H$_2$O, CH$_4$, CO, CO$_2$, NH$_3$, C$_2$H$_2$, HCN, N$_2$, respectively; 12) an amplitude of a Raleigh-like haze; and 13) a power law index for the Raleigh-type haze. We assume uniform-in-log priors from 10$^{-12}$ to 1 for all volume mixing ratios. The autocorrelation time for the retrievals is about ~100 steps and we run all retrievals to 20,000 steps, only using the last 5,000 (times $\sim$100 walkers) to allow for burn-in.
+We use the \texttt{emcee} version of CHIMERA (Greene et al. 2016) to recover the individual atmospheric abundances of the simulated spectrum. The retrieval model includes 13 free parameters: 1) the temperature of the isothermal profile; 2) the altitude of the 10-bar pressure surface where the model begins; 3) a cloud pressure level below which all stellar flux is absorbed at all wavelengths; 4) through 11) the constant-with-altitude mixing ratios of H$_2$O, CH$_4$, CO, CO$_2$, NH$_3$, C$_2$H$_2$, HCN, N$_2$, respectively; 12) an amplitude of a Raleigh-like haze; and 13) a power law index for the Raleigh-type haze. We assume uniform-in-log priors from 10$^{-12}$ to 1 for all volume mixing ratios. The autocorrelation time for the retrievals is about ~100 steps and we run all retrievals to 20,000 steps, only using the last 5,000 (times $\sim$100 walkers) to allow for burn-in.
 
 %\begin{figure}
 %\centering
@@ -303,7 +303,7 @@ We use the \tt{emcee} version of CHIMERA (Greene et al. 2016) to recover the ind
 
 
 
-\subsection{Parameter Estimation Rresults}\label{sec:retrievals}
+\subsection{Parameter Estimation Results}\label{sec:retrievals}
 
 The posterior distributions for retrieved parameters for the most important abundances are shown in Figure~\ref{fig:corner}.
 We show the posterior distributions for two cases:
