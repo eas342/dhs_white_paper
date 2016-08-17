@@ -236,11 +236,11 @@ Any known transiting planet host system can be observed with the DHS, including 
 
 \subsection{CHIMERA Models}\label{sec:models}
 
-We use the CHIMERA atmospheric retrieval suite \citep{line2013chimera,line2014CtOsecE} to show the scientific value of using the DHS simultaneously with NIRCam's long-wavelength grisms.
+We use the CHIMERA atmospheric retrieval suite \citep{line2013chimera,line2014CtOsecE} to illustrate the scientific value of using the DHS simultaneously with NIRCam's long-wavelength grisms.
 We first simulate a forward model of a transmission spectrum for two planets, HD 209458b and HAT-P-12b.
 We then add Gaussian noise using the SNR estimated on the target to create a simulated spectrum.
 Finally, we run a Markov Chain Monte Carlo (MCMC) retrieval of the atmospheric parameters for simulated spectrum to try to recover the initial abundances and determine the uncertainties in those abundances, as in \citet{greene2016jwst_trans}.
-We combine the individual gases' posterior distributions for the C/O ratio and metallicity.
+We combine the individual gases' posterior distributions to derive the C/O ratio and metallicity (\citet{greene2016jwst_trans}) .
 
 \begin{figure}[t]
 \centering
@@ -249,14 +249,15 @@ We combine the individual gases' posterior distributions for the C/O ratio and m
 Error bars shown are for simulated observation with the DHS grism, F322W2 and F444W modes, for a total of 2 transits or about 17 hours of JWST time. A planet metallicity of 22~$\times$~solar was assumed from the relation in \citet{kreidberg2014wasp43}.}\label{fig:HATp12spec}
 \end{figure}
 
-For the initial model of HD 209458b, we use solar abundances of \citet{asplund} and reduce the oxygen by a factor of 24\% to account for the settling out of MgSiO$_3$ and MgSiO$_4$ which are below their condensation temperatures \citep{sing2016continuum}.
-For HAT-P-12b, we scale the atomic abundances of all elements except Hydrogen and Helium by a factor of 22 using the mass-metallicity relation of \citep{kreidberg2014wasp43} and \citep{line2016hd209wfc3}.
-The atomic abundances are converted to molecular mixing ratios using the Chemical Equilibrium code with Applications (CEA)\footnote{http://www.grc.nasa.gov/WWW/CEAWeb/ceaHome.htm}\citep{gordon1996cea} to calculate the fractions of molecules at the given pressure and temperature.
-For HD209458b and HAT-P-12b, this is at a reference pressure of 0.01 bars and a reference temperature of 1440K and 960 K respectively.
-We assume that the abundances and temperature are constant with altitude.
-We include H$_2$O, CO, CO$_2$, CH$_4$, NH$_3$, C$_2$H$_2$, HCN and collision-induced absorption (CIA) of hydrogen as sources of opacity, but only H$_2$O, CH$_4$, CO and CO$_2$ contribute significantly to the opacity, as seen in Figures \ref{fig:209spec} and \ref{fig:HATp12spec}.
-For the HAT-P-12b model, we include an opaque cloud deck at 1 mbar to simulate the effect of clouds on reducing spectral features in a planet spectrum.
-For HD 209458b, this cloud deck is placed at a pressure level of 1 bar which is too low in altitude to affect the spectrum, as shown in Figure \ref{fig:209spec}.
+%For the underlying ``true" model of HD 209458b, we use solar abundances of \citet{asplund} and reduce the oxygen by a factor of 24\% to account for the rainout out of MgSiO$_3$ and MgSiO$_4$ which are below their condensation temperatures \citep{sing2016continuum}.
+%For HAT-P-12b, we scale the atomic abundances of all elements except Hydrogen and Helium by a factor of 22 using the mass-metallicity relation of \citep{kreidberg2014wasp43} and \citep{line2016hd209wfc3}.
+%The atomic abundances are converted to molecular mixing ratios using the Chemical Equilibrium code with Applications (CEA)\footnote{http://www.grc.nasa.gov/WWW/CEAWeb/ceaHome.htm}\citep{gordon1996cea} to calculate the fractions of molecules at the given pressure and temperature.
+
+To construct the model atmospheres and generate a spectrum we require a thermal profile and molecular abundances. For simplicity, we assume isothermal atmospheres at the planetary equilibrium temperatures. Molecular volume mixing ratios are assumed to be in thermochemical equilibrium at a represenatitive pressure (0.01 bars) and temperature using the NASA CEA code \footnote{http://www.grc.nasa.gov/WWW/CEAWeb/ceaHome.htm}\citep{gordon1996cea}) at the prescribed planetary metallicity, derived by rescaling the solar elemental abundances (Asphlund reference). 
+
+For HD209458b and HAT-P-12b we assume isothermal temperature's of 1440K and 960 K respectively. Molecular abundances are assumed constant with altitude at the 0.01 bar thermochemical values. While this ``0D" model is likely unrealistic, more sophisticated 1D models in general may be unrealistic given the uncertainties due to the impact of 3-dimensional effects (e.g., Line \& Parmentier 2016; Feng et al. 2016). We include H$_2$O, CO, CO$_2$, CH$_4$, NH$_3$, C$_2$H$_2$, HCN and collision-induced absorption (CIA) of hydrogen as the sources of opacity (with absorption cross-section derived from Freedman et al. 2014 and references therein), but only H$_2$O, CH$_4$, CO and CO$_2$ contribute significantly to the opacity, as seen in Figures \ref{fig:209spec} and \ref{fig:HATp12spec}.
+For the HAT-P-12b model, we include an opaque gray cloud deck at 1 mbar to simulate the effect of clouds on reducing spectral features in a planet spectrum.
+For HD 209458b, this cloud deck is placed at a pressure level of 1 bar which is too deep to affect the spectrum, as shown in Figure \ref{fig:209spec}.
 % if we run the simulations later, also mention emission spectra
 
 \subsubsection{Simulated Observations and Retrieval Methods}
@@ -291,10 +292,7 @@ Similar wavelength coverage can be achieved in just 3 different transits or $\si
 \end{figure*} 
 
 
-We use CHIMERA and a MCMC retrieval to recover the individual atmospheric abundances of the simulated spectrum.
-The retrieval model includes 13 free parameters: 1) the temperature of the isothermal profile; 2) the altitude of the 10-bar pressure surface where the model begins; 3) a cloud pressure level below which all stellar flux is absorbed at all wavelengths; 4) through 11) the abundances of H$_2$O, CH$_4$, CO, CO$_2$, NH$_3$, C$_2$H$_2$, HCN, N$_2$, respectively; 12) an amplitude of a Raleigh-like haze; and 13) a power law index for the Raleigh-type haze.
-We assume flat priors in log space for all abundances from volume mixing ratios of 10$^{-12}$ to 1.
-The autocorrelation time for the retrievals is about ~100 steps and we run all retrievals to 20,000 steps, only using the last 5,000 to allow for burn-in.
+We use the \tt{emcee} version of CHIMERA (Greene et al. 2016) to recover the individual atmospheric abundances of the simulated spectrum. The retrieval model includes 13 free parameters: 1) the temperature of the isothermal profile; 2) the altitude of the 10-bar pressure surface where the model begins; 3) a cloud pressure level below which all stellar flux is absorbed at all wavelengths; 4) through 11) the constant-with-altitude mixing ratios of H$_2$O, CH$_4$, CO, CO$_2$, NH$_3$, C$_2$H$_2$, HCN, N$_2$, respectively; 12) an amplitude of a Raleigh-like haze; and 13) a power law index for the Raleigh-type haze. We assume uniform-in-log priors from 10$^{-12}$ to 1 for all volume mixing ratios. The autocorrelation time for the retrievals is about ~100 steps and we run all retrievals to 20,000 steps, only using the last 5,000 (times $\sim$100 walkers) to allow for burn-in.
 
 %\begin{figure}
 %\centering
@@ -305,7 +303,7 @@ The autocorrelation time for the retrievals is about ~100 steps and we run all r
 
 
 
-\subsection{CHIMERA Retreivals}\label{sec:retrievals}
+\subsection{Parameter Estimation Rresults}\label{sec:retrievals}
 
 The posterior distributions for retrieved parameters for the most important abundances are shown in Figure~\ref{fig:corner}.
 We show the posterior distributions for two cases:
@@ -372,7 +370,7 @@ There will be about a \DHSgap$\mu$m gap in the spectrum due to the gap between s
 The center of this gap depends on source position.
 The DHS can be used in tandem with either the F322W2 or F444W filter for the long wavelength grism observations.
 The properties of the DHS, which can be used simultaneously with the long-wavelength grisms, are listed in Table \ref{tab:DHSgprop}.
-If the region from 2-2.23$\mu$m is highly desirable such as for measuring the CH$_4$ feature shown in Figure \ref{fig:HATp12spec}, the DHS can be used with a F200W filter (1.75 to 2.23$\mu$m half maximum) to partially fill in the gap between the short to long wavelength channels, though the grism blaze function drops off above 2.0$\mu$m, shown in Section \ref{sec:layout}. 
+If the region from 2-2.23$\mu$m is highly desirable such as for measuring the CH$_4$ feature shown in Figure \ref{fig:HATp12spec}, the DHS can be used with a F200W filter (1.75 to 2.23$\mu$m half maximum) to partially fill in the gap between the short to long wavelength channels, though the grism transmission is lower above 2.0$\mu$m, shown in Figure \ref{fig:DHSthrough}. 
 
 
 \begin{figure}[!ht]
