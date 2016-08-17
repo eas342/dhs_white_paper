@@ -123,14 +123,15 @@
 \begin{abstract}
 James Webb Space Telescope (JWST) offers unprecedented sensitivity, stability and wavelength coverage for transiting exoplanet studies, opening up new avenues for measuring atmospheric abundances, structure and temperature profiles.
 Taking full advantage of JWST spectroscopy of planets from 0.6 $\mu$m to 28$\mu$m, however, will require many observations with a combination of the NIRISS, NIRCam, NIRSpec and MIRI instruments.
-In this white paper, we discuss a new NIRCam mode (not yet approved and implemented) that can reduce the number of observations needed for observations in the 1.0$\mu$m to 5.0$\mu$m wavelength range.
+In this white paper, we discuss a new NIRCam mode (not yet approved or implemented) that can reduce the number of observations needed to cover the 1.0$\mu$m to 5.0$\mu$m wavelength range.
 The NIRCam instrument was primarily designed as an imager, but includes several grisms for phasing and aligning JWST's 18 hexagonal mirror segments.
-NIRCam's long-wavelength channel includes grisms that cover 2.4$\mu$m to 5.0$\mu$m with two observations at $R = 1200 - 1550$ and it has already been approved for wide field and single object (time series) slitless spectroscopy.
+NIRCam's long-wavelength channel includes grisms that cover 2.4$\mu$m to 5.0$\mu$m with a resolution of $R = 1200 - 1550$ using two separate configurations.  The long-wavelength grisms have already been approved for wide field and single object (time series) slitless spectroscopy in science operations.
 We propose a new mode that will simultaneously measure spectra for science targets in the 1.0$\mu$m to 2.0$\mu$m range using NIRCam's short-wavelength channel.
 This mode, if approved, would take advantage of NIRCam's Dispersed Hartmann Sensor (DHS), which produces 10 spatially separated spectra per source source at $R \sim \DHSresApprox$.
-The DHS can observe the brightest host stars of any JWST mode.
+%% The DHS can observe the brightest host stars of any JWST mode. [WITHOUT EXPLANATION OF MODES AND NO CONTEXT, THIS WAS A BIT JARRING WHEN I READ IT - FEEL FREE TO ADD IT BACK IN! -KAM]
 We discuss the added benefit of the DHS in constraining abundances in exoplanet atmospheres.
-The DHS essentially comes for free with any NIRCam long-wavelength grism observation, but the detector integration parameters have to be selected to ensure that the long-wavelength grism observations do not saturate and that the high frame rate images on 3 simultaneous detectors does not exceed the data volume JWST can downlink.
+The DHS essentially comes for free with any NIRCam long-wavelength grism observation, but the detector integration parameters have to be selected to ensure that the long-wavelength grism observations do not saturate and that JWST data volume downlink constraints are not violated. 
+%the high frame rate images on 3 simultaneous detectors does not exceed the data volume JWST can downlink.
 Combining both of NIRCam's channels will maximize the science potential of JWST, which is a limited life observatory.
 \end{abstract}
 
@@ -170,25 +171,25 @@ Combining both of NIRCam's channels will maximize the science potential of JWST,
 
 The James Webb Space Telescope \citep[JWST; e.g.][]{gardner2006SSRv} has the potential to profoundly expand and deepen the science of transiting exoplanets \citep[e.g.][]{greene2016jwst_trans}.
 The wavelength coverage from 0.6$\mu$m to 28$\mu$m adds significantly to the wavelengths covered by the Hubble Space Telescope (HST) (currently 0.09$\mu$m to 1.7$\mu$m).
-Its unprecedented infrared sensitivity and stable orbit at the second Lagrange (L2) point make it an excellent observatory for characterizing the atmospheres of planets that transit their host stars with time series observations.
+Its unprecedented infrared sensitivity and stable orbit at the second Lagrange (L2) point make it an excellent platform for time series observations to characterize the atmospheres of planets that transit their host stars.
 Ground-based observatories and the Hubble Space Telescope have made important measurements of Na, K, H$_2$O in a variety of hot Jupiter, hot Neptune planets \cite[e.g.][]{snellen2008Na209,kreidberg2014wasp43,fraine2014hatp11,deming13,sing2016continuum}.
 JWST has the capability of characterizing carbon-bearing molecules such as CH$_4$, CO and CO$_2$ to improve measurements of planet metallicity and C/O in comparison to it host star.
 Depending on the composition and size of the clouds and hazes in exoplanet atmospheres, the longer wavelengths observed by JWST may penetrate these clouds and hazes.
 
-No single JWST instrument may measure a spectrum over the full wavelength range from 0.6$\mu$m to 28$\mu$m, so multiple transits or secondary eclipses are necessary to piece together a broadband spectrum.
+No single JWST instrument can measure a spectrum over the full wavelength range from 0.6$\mu$m to 28$\mu$m, so multiple transits or secondary eclipses are necessary to piece together a broadband spectrum.
 The largest bandwidths possible are NIRSpec's low resolution double prism covering 0.7$\mu$m to 5$\mu$m and MIRI's low resolution prism (LRS) covering 5$\mu$m to 12$\mu$m.
-Unfortunately, NIRSpec's low resolution prism mode is so sensitive, it saturates for most sources at a $J$ magnitude of $\sim$11 \citep{beichman2014pasp}, so many nearby bright planet systems must be observed with higher resolution (but smaller wavelength coverage) modes and instruments.
-For example, to create a transmission spectrum for HD 209458b \citep{henry00,charbonneau00} from 0.7$\mu$m to 12$\mu$m, an observer would have to stitch together at least four different transits: one with NIRISS (\SOSSrange), two with NIRCam's long-wavelength channel (2.44$\mu$m to 4.98$\mu$m)\footnote{Or, alternatively NIRSpec's G235H and G395H  grisms covering 1.7~$\mu$ to 5.0$\mu$m.} and one with MIRI (5$\mu$m to 12$\mu$m).
-With typical overheads of $\sim$2 hr for 9 hours of pre-ingress, transit and post-ingress, this totals to about ~11 hours per transit or 44 JWST hours.
-This was calculated with the Astronomer's Proposal Tools software\footnote{http://www.stsci.edu/hst/proposing/apt} with the NIRISS SOSS mode, NIRCam's F322W2 and F444W grism time series and the MIRI Low Resolution spectrograph (LRS).
+Unfortunately, NIRSpec's low resolution prism mode is so sensitive, it saturates for most sources at a $J$ magnitude of $\sim$11 \citep{beichman2014pasp}, so many nearby bright planetary systems must be observed with higher resolution (but smaller wavelength coverage) modes and instruments.
+For example, to create a transmission spectrum for HD 209458b \citep{henry00,charbonneau00} from 0.7$\mu$m to 12$\mu$m, an observer would have to stitch together at least four different transits: one with NIRISS (SOSS, \SOSSrange), two with NIRCam's long-wavelength channel (F322W2 and F444W + grisms, 2.44$\mu$m to 4.98$\mu$m)\footnote{Or, alternatively NIRSpec's G235H and G395H  grisms covering 1.7~$\mu$ to 5.0$\mu$m.} and one with MIRI (LRS, 5$\mu$m to 12$\mu$m).
+Using the Astronomer's Proposal Tool software\footnote{http://www.stsci.edu/hst/proposing/apt}, each transit observation (pre-ingress, transit, and post-ingress) requires $\sim$9 hr and incurs overheads of $\sim$2 hr, resulting in a total of $\sim$11 hours per transit and hence $\sim$44 hours total to cover
+the full wavelength range.
 
 The NIRCam instrument is primarily an imager, but it includes several spectroscopic modes originally designed for observatory wavefront sensing.
 These include the grisms installed in its long-wavelength channel as well as the Dispersed Hartmann Sensors (DHSs) installed in its short-wavelength channel.
 The long-wavelength grisms are used in concert with broadband filters.
-The F322W2 filter encompasses 2.44$\mu$m to 4.02$\mu$m half maximum throughput while the F444W filter encompasses 3.88$\mu$m to 4.98$\mu$m at half maximum throughput.
+The F322W2 filter covers 2.44$\mu$m to 4.02$\mu$m half maximum throughput while the F444W filter covers 3.88$\mu$m to 4.98$\mu$m at half maximum throughput.
 These filters and grism are enabled and supported JWST science modes.
 The DHS would be used primarily with the F150W2 filter, which covers from 1.01$\mu$m to 2.35$\mu$m at half maximum throughput.
-The range from 2.0$\mu$m to 2.35$\mu$m will probably be discarded because the first order of the spectrum begins to overlap at at 2.0$\mu$m.\footnote{The prism that spatially separate the 10 DHS spectra separate the second order spectrum by 0 to 15 pixels, so the contamination can be reduced in some cases.}
+The range from 2.0$\mu$m to 2.35$\mu$m will probably be discarded because the first order of the spectrum begins to overlap at 2.0$\mu$m.\footnote{The prism that spatially separate the 10 DHS spectra separate the second order spectrum by 0 to 15 pixels, so the contamination can be reduced in some cases.}
 
 \begin{figure}[t]
 \centering
@@ -200,15 +201,16 @@ The observations longer than 5$\mu$m are simulated for MIRI's Low Resolution Spe
 \end{figure}
 
 
-The NIRCam instrument can reduce the number of transits needed to build up a transmission or emission spectrum of a planet from 1$\mu$m to 5$\mu$m.
+The NIRCam instrument can reduce the number of transits needed to build up a 1$\mu$m to 5$\mu$m transmission or emission spectrum of a planet.
 This is because the instrument has a dichroic that splits the incoming beam into a short-wavelength channel and long-wavelength channel, so simultaneous imaging and/or spectroscopy are possible at short ($<$2.4$\mu$m) and long ($>$2.4$\mu$m) wavelengths.
 In principle, the DHS can be used to simultaneously cover 1.0$\mu$m to 2.0$\mu$m while the long-wavelength grisms cover either 2.44$\mu$m to 4.02$\mu$m (with the F322W2 filter) or 3.88$\mu$m to 4.98$\mu$m (with the F444W) filter.
 Thus, the DHS data comes ``for free'' with any long-wavelength NIRCam grism data, aside from readout and data rate considerations discussed in Section \ref{sec:readout}.
-For the example above of HD 209458b, this could save about 11 JWST hours per transit if the wavelengths from 2.0$\mu$m to 2.4$\mu$m and higher Signal to Noise ratios (SNRs) from NIRISS are not required.
+%% Changed this to not read 11 hours per TRANSIT, but 11 hours per PLANET - i.e. removes 1 single transit from the run to get the same coverage
+For the example above of HD 209458b, simultaneous DHS data would reduce the required transits from four to three, saving about 11 JWST hours 
+if the wavelengths from 2.0$\mu$m to 2.4$\mu$m and higher Signal to Noise ratios (SNRs) from NIRISS are not required.
 The DHS is expected to collect similar photon levels as HST's WFC3 grisms, so it is like a free coordinated HST observation for every long-wavelength NIRCam grism transit.
 
-
-Since the DHS was not originally designed for science observations, it is not yet an approved mode for the James Webb Space Telescope.
+Since the DHS was not originally designed for science observations, it is not yet an approved mode for the James Webb Space Telescope science operations.
 In this white paper, we explain the value of the DHS mode to fully take advantage of two NIRCam channels to maximize JWST's science potential for transiting planets as well as discuss the specifics of its implementation.
 In section \ref{sec:addedScience} we discuss the added science that can be achieved with the DHS, including the brightness limits and improved precision in retrieved parameters for a representative system.
 In section \ref{sec:implementation}, we discuss how the DHS would work for time-series observations and the implications of reading out several detectors simultaneously at a high frame rate.
@@ -225,10 +227,11 @@ The filters used are F150W2 (blue), F322W2 (red) and F444W (green).}\label{fig:s
 
 \subsection{Brightness limits}\label{sec:brightness}
 
-The DHS has the best brightness limits of any spectroscopic mode on JWST because it spreads light over many pixels and reduces the effective aperture of JWST.
+The DHS has the best [** Is 'best' the best word here? Highest? Lowest? **] brightness limits of any spectroscopic mode on JWST because it
+spreads light over many pixels and reduces the effective aperture of JWST.
 Figure \ref{fig:saturationLim} shows the saturation limits for the DHS mode along with NIRCam's long-wavelength grisms.
 Any known transiting planet host system can be observed with the DHS, including the transiting super-Earth  55 Cnc e \citep{mcarthur2004disc55cnce} at $K$=4.0, which is right at the limit of saturation of the long-wavelength grism and the brightest known transiting system HD 219134b \citep{motalebi2015hd219134b} at $K$=3.4.
-The DHS also enables characterization of any future targets found in this brightness range, such as by the Transiting Exoplanet Survey Satellite (TESS) \citep{ricker2014tess}.
+%The DHS also enables characterization of any future targets found in this brightness range, such as by the Transiting Exoplanet Survey Satellite (TESS) \citep{ricker2014tess}.
 
 
 \subsection{CHIMERA Models}\label{sec:models}
@@ -259,8 +262,8 @@ For HD 209458b, this cloud deck is placed at a pressure level of 1 bar which is 
 \subsubsection{Simulated Observations and Retrieval Methods}
 For the simulated observations, we assume one transit is obtained in each of NIRCam's long-wavelength filters (F322W2 and F444W) to cover the wavelength range from 2.44$\mu$m to 4.99$\mu$m.
 We assume that each of these was accompanied by a DHS observation for the 1.0$\mu$m to 2.0$\mu$m wavelength range, which benefits in SNR by $\sqrt{2}$ for the two separate observations.
-In other words, there is one DHS measurement per grism filter (F444W and F322W2).
-This is compared to observations taken without the DHS to show the added scientific value of using the DHS spectra.
+%In other words, there is one DHS measurement per grism filter (F444W and F322W2).
+This observing scenario is compared to a scenario that does not include the DHS to show the added scientific value of using the DHS spectra.
 The noise models for the hot Jupiter HD 209458b are shown in Figure \ref{fig:DHSvsNIRISS209}, which is dominated by the residual systematic noise floor (set to 30 ppm) for the long-wavelength grisms ($>$2.44$\mu$m) but photon noise is more significant for the short-wavelength DHS observations.
 The DHS has lower throughput and a smaller wavelength coverage than the NIRISS instrument in SOSS mode, so observations which require higher SNR and full wavelength coverage from \SOSSrange\ can take advantage of NIRISS (also shown in Figure \ref{fig:DHSvsNIRISS209}) at the expense of more telescope time.
 
@@ -288,7 +291,7 @@ Similar wavelength coverage can be achieved in just 3 different transits or $\si
 \end{figure*} 
 
 
-We use CHIMERA and a Markov Chain Monte Carlo (MCMC) retrieval to recover the individual atmospheric abundances of the simulated spectrum.
+We use CHIMERA and a MCMC retrieval to recover the individual atmospheric abundances of the simulated spectrum.
 The retrieval model includes 13 free parameters: 1) the temperature of the isothermal profile; 2) the altitude of the 10-bar pressure surface where the model begins; 3) a cloud pressure level below which all stellar flux is absorbed at all wavelengths; 4) through 11) the abundances of H$_2$O, CH$_4$, CO, CO$_2$, NH$_3$, C$_2$H$_2$, HCN, N$_2$, respectively; 12) an amplitude of a Raleigh-like haze; and 13) a power law index for the Raleigh-type haze.
 We assume flat priors in log space for all abundances from volume mixing ratios of 10$^{-12}$ to 1.
 The autocorrelation time for the retrievals is about ~100 steps and we run all retrievals to 20,000 steps, only using the last 5,000 to allow for burn-in.
