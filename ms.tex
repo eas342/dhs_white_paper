@@ -262,13 +262,6 @@ For HD 209458b, this cloud deck is placed at a pressure level of 1 bar which is 
 % if we run the simulations later, also mention emission spectra
 
 \subsubsection{Simulated Observations and Retrieval Methods}
-For the simulated observations, we assume one transit is obtained in each of NIRCam's long-wavelength filters (F322W2 and F444W) to cover the wavelength range from 2.44$\mu$m to 4.99$\mu$m.
-We assume that each of these was accompanied by a DHS observation for the 1.0$\mu$m to 2.0$\mu$m wavelength range, which benefits in SNR by $\sqrt{2}$ for the two separate observations.
-%In other words, there is one DHS measurement per grism filter (F444W and F322W2).
-This observing scenario is compared to a scenario that does not include the DHS to show the added scientific value of using the DHS spectra.
-The noise models for the hot Jupiter HD 209458b are shown in Figure \ref{fig:DHSvsNIRISS209}, which is dominated by the residual systematic noise floor (set to 30 ppm) for the long-wavelength grisms ($>$2.44$\mu$m) but photon noise is more significant for the short-wavelength DHS observations.
-The DHS has lower throughput and a smaller wavelength coverage than the NIRISS instrument in SOSS mode, so observations which require higher SNR and full wavelength coverage from \SOSSrange\ can take advantage of NIRISS (also shown in Figure \ref{fig:DHSvsNIRISS209}) at the expense of more telescope time.
-
 \begin{figure}[t]
 \centering
 \includegraphics[width=1.0\columnwidth]{HD209458b_solar_clear_1transit_DHS_vs_NIRISS_NIRCam_MIRILRS_R100.pdf}
@@ -292,6 +285,12 @@ Similar wavelength coverage can be achieved in just 3 different transits or $\si
 	\label{fig:corner}
 \end{figure*} 
 
+For the simulated observations, we assume one transit is obtained in each of NIRCam's long-wavelength filters (F322W2 and F444W) to cover the wavelength range from 2.44$\mu$m to 4.99$\mu$m.
+We assume that each of these was accompanied by a DHS observation for the 1.0$\mu$m to 2.0$\mu$m wavelength range, which benefits in SNR by $\sqrt{2}$ for the two separate observations.
+%In other words, there is one DHS measurement per grism filter (F444W and F322W2).
+This observing scenario is compared to a scenario that does not include the DHS to show the added scientific value of using the DHS spectra.
+The noise models for the hot Jupiter HD 209458b are shown in Figure \ref{fig:DHSvsNIRISS209}, which is dominated by the residual systematic noise floor (set to 30 ppm) for the long-wavelength grisms ($>$2.44$\mu$m) but photon noise is more significant for the short-wavelength DHS observations.
+The DHS has lower throughput and a smaller wavelength coverage than the NIRISS instrument in SOSS mode, so observations which require higher SNR and full wavelength coverage from \SOSSrange\ can take advantage of NIRISS (also shown in Figure \ref{fig:DHSvsNIRISS209}) at the expense of more telescope time.
 
 We use the \texttt{emcee} version of CHIMERA \citep{greene2016jwst_trans} to recover the individual atmospheric abundances of the simulated spectrum. The retrieval model includes 13 free parameters: 1) the temperature of the isothermal profile; 2) the altitude of the 10-bar pressure surface where the model begins; 3) a cloud pressure level below which all stellar flux is absorbed at all wavelengths; 4) through 11) the constant-with-altitude mixing ratios of H$_2$O, CH$_4$, CO, CO$_2$, NH$_3$, C$_2$H$_2$, HCN, N$_2$, respectively; 12) an amplitude of a Raleigh-like haze; and 13) a power law index for the Raleigh-type haze. We assume uniform-in-log priors from 10$^{-12}$ to 1 for all volume mixing ratios. The autocorrelation time for the retrievals is about ~100 steps and we run all retrievals to 20,000 steps, only using the last 5,000 (times 160 walkers) to allow for burn-in.
 
@@ -552,7 +551,7 @@ We present example usage of the DHS mode on example systems and show that the te
 Furthermore, the improved water vapor constraints also feed back to higher precision CO and CO$_2$ abundances because of the correlation of these derived parameters.
 We encourage the implementation and approval of the DHS mode to enable this additional science in less time for this limited life observatory.
 
-\subsubsection{Specific Changes Needed for Implementation}
+\subsection{Specific Changes Needed for Implementation}
 We summarize the specific changes to the existing operations needed for the DHS here:
 \begin{enumerate}
 \item Allow the NIRCam pupil wheel to be used for science at the DHS element position with spectra parallel with detector rows
@@ -561,6 +560,7 @@ We summarize the specific changes to the existing operations needed for the DHS 
 \item Change the OSS software and timing so that large subarrays may used with the DHS simultaneously with small 2048$\times$64 subarrays with the long wavelength grisms
 \end{enumerate}
 
+\vspace{0.1in}
 \section*{Acknowledgements}
 %\acknowledgments
 
