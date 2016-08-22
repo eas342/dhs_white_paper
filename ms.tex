@@ -219,7 +219,7 @@ In section \ref{sec:implementation}, we discuss how the DHS would work for time-
 
 \begin{figure}[!bhtp]
 \includegraphics[width=1.0\columnwidth]{brightness_scape.pdf}
-\caption{Saturation limits of the DHS mode (blue line), and long-wavelength grism's F322W2 filter (green line) and F444W filter (dark red line) as a function of effective temperature.
+\caption{Saturation limits of the DHS mode (blue line), and long-wavelength grism's F322W2 filter (green line) and F444W filter (dark red line) as a function of stellar effective temperature.
 The magnitudes are Vega $K_S$ magnitudes where 80\% of the well depth is filled in the standard CDS readout mode (described in Figure \ref{fig:readout}) for a 2048 $\times$ 64 pixel sub-array using 4 amplifiers.
 The blue points are known transiting systems from \texttt{exoplanets.org} and the green points are simulated TESS planets \citep{sullivan2015tess}.}\label{fig:saturationLim}
 \end{figure}
@@ -228,7 +228,7 @@ The DHS has the brightest saturation limits of any spectroscopic mode on JWST be
 spreads light over many pixels and reduces the effective aperture of JWST.
 Figure \ref{fig:saturationLim} shows the saturation limits for the DHS mode along with NIRCam's long-wavelength grisms.
 The saturation limits are found using \texttt{pysynphot} \citep{lim2015pysynphot} with Phoenix stellar models \citep{allard2012phoenix} ranging from 4.0 to 5.0 in log(g).
-Any known transiting planet host system can be observed with the DHS, including the transiting super-Earth  55 Cnc e \citep{mcarthur2004disc55cnce} at $K$=4.0, which saturates the long-wavelength grism with the F322W2 filter and the brightest known transiting system HD 219134b \citep{motalebi2015hd219134b} at $K$=3.4.
+Any known transiting planet system can be observed with the DHS, including the transiting super-Earth  55 Cnc e \citep{mcarthur2004disc55cnce} at $K$=4.0, which saturates the long-wavelength grism with the F322W2 filter and the brightest known transiting system HD 219134b \citep{motalebi2015hd219134b} at $K$=3.4.
 Figure \ref{fig:saturationLim} shows the known transiting systems from \texttt{exoplanets.org} \citep{han2014exopDorg}.
 The DHS also enables characterization of any future targets found in this brightness range, such as by the Transiting Exoplanet Survey Satellite (TESS) \citep{ricker2014tess}.
 We plot the expected yield of TESS \citep{sullivan2015tess} in Figure \ref{fig:saturationLim} and none of the simulated targets saturate the DHS.
