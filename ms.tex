@@ -214,10 +214,10 @@ In section \ref{sec:addedScience} we discuss the added science that can be achie
 In section \ref{sec:implementation}, we discuss how the DHS would work for time-series observations and the implications of reading out several detectors simultaneously at a high frame rate.
 
 \begin{figure}[!b]
-\includegraphics[width=1.0\columnwidth]{sat_limits.jpg}
-\caption{Saturation limits of the DHS mode (blue), and long-wavelength grism's F322W2 filter (red) and F444W filter (light green) for a G2V star.
-The magnitudes are Vega K magnitudes where 80\% of the well depth is filled in the standard CDS readout mode described in Figure \ref{fig:readout}  for a 2048 $\times$ 64 pixel sub-array using 4 amplifiers.
-The filters used are F150W2 (blue), F322W2 (red) and F444W (green).}\label{fig:saturationLim}
+\includegraphics[width=1.0\columnwidth]{brightness_scape.pdf}
+\caption{Saturation limits of the DHS mode (blue line), and long-wavelength grism's F322W2 filter (green line) and F444W filter (dark red line) as a function of effective temperature.
+The magnitudes are Vega $K_S$ magnitudes where 80\% of the well depth is filled in the standard CDS readout mode (described in Figure \ref{fig:readout}) for a 2048 $\times$ 64 pixel sub-array using 4 amplifiers.
+The blue points are known transiting systems from \texttt{exoplanets.org} and the green points are simulated TESS planets \citep{sullivan2015tess}.}\label{fig:saturationLim}
 \end{figure}
 
 
@@ -228,9 +228,13 @@ The filters used are F150W2 (blue), F322W2 (red) and F444W (green).}\label{fig:s
 The DHS has the brightest saturation limits of any spectroscopic mode on JWST because it
 spreads light over many pixels and reduces the effective aperture of JWST.
 Figure \ref{fig:saturationLim} shows the saturation limits for the DHS mode along with NIRCam's long-wavelength grisms.
-Any known transiting planet host system can be observed with the DHS, including the transiting super-Earth  55 Cnc e \citep{mcarthur2004disc55cnce} at $K$=4.0, which is right at the limit of saturation of the long-wavelength grism and the brightest known transiting system HD 219134b \citep{motalebi2015hd219134b} at $K$=3.4.
-%The DHS also enables characterization of any future targets found in this brightness range, such as by the Transiting Exoplanet Survey Satellite (TESS) \citep{ricker2014tess}.
+The saturation limits are found using \texttt{pysynphot} \citep{lim2015pysynphot} with Phoenix stellar models \citep{allard2012phoenix} ranging from 4.0 to 5.0 in log(g).
+Any known transiting planet host system can be observed with the DHS, including the transiting super-Earth  55 Cnc e \citep{mcarthur2004disc55cnce} at $K$=4.0, which saturates the long-wavelength grism with the F322W2 filter and the brightest known transiting system HD 219134b \citep{motalebi2015hd219134b} at $K$=3.4.
+The DHS also enables characterization of any future targets found in this brightness range, such as by the Transiting Exoplanet Survey Satellite (TESS) \citep{ricker2014tess}.
+We plot the expected yield of TESS \citep{sullivan2015tess} in Figure \ref{fig:saturationLim} and still none of these targets saturate the DHS.
 
+\subsection{Short Wavelength Monitoring of Starspots}
+The fact that the DHS can be operated simultaneously with long wavelength grism observations of transits means that one can monitor for star spots during a transit.
 
 \subsection{CHIMERA Models}\label{sec:models}
 
@@ -567,6 +571,7 @@ We summarize the specific changes to the existing operations needed for the DHS 
 CHIMERA retrieval makes use of \texttt{emcee} \citep{foreman-mackey2013emcee} and the covariance plot was made with \texttt{corner.py} \citep{foremanCorner}.
 For use of the El Gato computing system, this material is based upon work supported by the National Science Foundation under Grant No. 1228509.
 Thanks to Michael Bruck at the High Performance Computing center at the University of Arizona for assisting with setting up the CHIMERA runs to utilize the HPC hardware.
+This research has made use of the Exoplanet Orbit Database and the Exoplanet Data Explorer at exoplanets.org.
 %If used, some data was collected from the Open Exoplanet Catalogue \citep{rein2012openExoCat}.
 
 %% In a manner similar to \objectname authors can provide links to dataset
