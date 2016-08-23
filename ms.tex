@@ -129,7 +129,7 @@ NIRCam's long-wavelength channel includes grisms that cover 2.4$\mu$m to 5.0$\mu
 We propose a new mode that will simultaneously measure spectra for science targets in the 1.0$\mu$m to 2.0$\mu$m range using NIRCam's short-wavelength channel.
 This mode, if approved, would take advantage of NIRCam's Dispersed Hartmann Sensor (DHS), which produces 10 spatially separated spectra per source source at $R \sim \DHSresApprox$.
 We discuss the added benefit of the DHS in constraining abundances in exoplanet atmospheres as well as its ability to observe the brightest systems.
-The DHS essentially comes for free with any NIRCam long-wavelength grism observation, but the detector integration parameters have to be selected to ensure that the long-wavelength grism observations do not saturate and that JWST data volume downlink constraints are not violated. 
+The DHS essentially comes for free (at no time cost) with any NIRCam long-wavelength grism observation, but the detector integration parameters have to be selected to ensure that the long-wavelength grism observations do not saturate and that JWST data volume downlink constraints are not violated. 
 %the high frame rate images on 3 simultaneous detectors does not exceed the data volume JWST can downlink.
 Combining both of NIRCam's channels will maximize the science potential of JWST, which is a limited life observatory.
 \end{abstract}
@@ -172,7 +172,7 @@ The James Webb Space Telescope \citep[JWST; e.g.][]{gardner2006SSRv} has the pot
 The wavelength coverage from 0.6$\mu$m to 28$\mu$m adds significantly to the wavelengths covered by the Hubble Space Telescope (HST) (currently 0.09$\mu$m to 1.7$\mu$m).
 Its unprecedented infrared sensitivity and stable orbit at the second Lagrange (L2) point make it an excellent platform for time series observations to characterize the atmospheres of planets that transit their host stars.
 Ground-based observatories and the Hubble Space Telescope have made important measurements of Na, K, H$_2$O in a variety of hot Jupiter, hot Neptune planets \cite[e.g.][]{snellen2008Na209,kreidberg2014wasp43,fraine2014hatp11,deming13,sing2016continuum}.
-JWST has the capability of characterizing carbon-bearing molecules such as CH$_4$, CO and CO$_2$ to improve measurements of planet metallicity and C/O in comparison to it host star.
+JWST has the capability of characterizing carbon-bearing molecules such as CH$_4$, CO and CO$_2$ to improve measurements of planet metallicity and C/O in comparison to its host star.
 Depending on the composition and size of the clouds and hazes in exoplanet atmospheres, the longer wavelengths observed by JWST may penetrate these clouds and hazes.
 
 No single JWST instrument can measure a spectrum over the full wavelength range from 0.6$\mu$m to 28$\mu$m, so multiple transits or secondary eclipses are necessary to piece together a broadband spectrum.
@@ -188,7 +188,7 @@ The long-wavelength grisms are used in concert with broadband filters.
 The F322W2 filter covers 2.44$\mu$m to 4.02$\mu$m half maximum throughput while the F444W filter covers 3.88$\mu$m to 4.98$\mu$m at half maximum throughput.
 These filters and grism are enabled and supported JWST science modes.
 The DHS would be used primarily with the F150W2 filter, which covers from 1.01$\mu$m to 2.35$\mu$m at half maximum throughput.
-The range from 2.0$\mu$m to 2.35$\mu$m will probably be discarded because the first order of the spectrum begins to overlap at 2.0$\mu$m.\footnote{The prism that spatially separate the 10 DHS spectra separate the second order spectrum by 0 to 15 pixels, so the contamination can be reduced in some cases.}
+The range from 2.0$\mu$m to 2.35$\mu$m will probably be discarded because the second order of the spectrum begins to overlap at 2.0$\mu$m.\footnote{The prism that spatially separate the 10 DHS spectra separate the second order spectrum by 0 to 15 pixels, so the contamination can be reduced in some cases.}
 
 \begin{figure}[t]
 \centering
@@ -224,8 +224,7 @@ The magnitudes are Vega $K_S$ magnitudes where 80\% of the well depth is filled 
 The blue points are known transiting systems from \texttt{exoplanets.org} and the green points are simulated TESS planets \citep{sullivan2015tess}.}\label{fig:saturationLim}
 \end{figure}
 
-The DHS has the brightest saturation limits of any spectroscopic mode on JWST because it
-spreads light over many pixels and reduces the effective aperture of JWST.
+The DHS has the brightest saturation limits of any spectroscopic mode on JWST because each of the 10 DHS elements samples only 1 to 4\% of the pupil and the light is dispersed over over two short wavelength detectors.
 Figure \ref{fig:saturationLim} shows the saturation limits for the DHS mode along with NIRCam's long-wavelength grisms.
 The saturation limits are found using \texttt{pysynphot} \citep{lim2015pysynphot} with Phoenix stellar models \citep{allard2012phoenix} ranging from 4.0 to 5.0 in log(g).
 Any known transiting planet system can be observed with the DHS, including the transiting super-Earth  55 Cnc e \citep{mcarthur2004disc55cnce} at $K$=4.0, which saturates the long-wavelength grism with the F322W2 filter and the brightest known transiting system HD 219134b \citep{motalebi2015hd219134b} at $K$=3.4.
@@ -241,7 +240,7 @@ We plot the expected yield of TESS \citep{sullivan2015tess} in Figure \ref{fig:s
 \begin{figure}[!tbhp]
 \centering
 \includegraphics[width=1.0\columnwidth]{HAT-P-12b_kmr_cloudy_dhs.pdf}
-\caption{Model spectra separated by molecule for for the inflated warm Saturn HAT-P-12b, with an opaque cloud deck at 1 mbar.
+\caption{Model spectra separated by molecule for the inflated warm Saturn HAT-P-12b, with an opaque cloud deck at 1 mbar.
 Error bars shown are for simulated observation with the DHS grism, F322W2 and F444W modes, for a total of 2 transits or about 17 hours of JWST time. A planet metallicity of 22~$\times$~solar was assumed from the relation in \citet{kreidberg2014wasp43}.}\label{fig:HATp12spec}
 \end{figure}
 
@@ -409,7 +408,7 @@ The DHS spectra span two of NIRCam's short-wavelength detectors covering $\sim$1
 The DHS mode is well suited for one bright source because it spreads the light over the 10 separate spectra, but is ill-suited for a crowded field, where the spectra would overlap.
 Each of the DHS spectra are separated in the spatial direction by an average of 123 pixels, so a sub-array of at least 1300 pixels must be extracted to gather all DHS flux for a single source.
 
-Each DHS spectrum roughly covers 4\% of the JWST pupil, though they vary in size and throughput depending on where they lie relative to the secondary mirror strut supports, seen in Figure \ref{fig:DHSvsPupilOverlay}.
+Each DHS spectrum covers roughly 4\% of the JWST pupil, though they vary in size and throughput depending on where they lie relative to the secondary mirror strut supports, seen in Figure \ref{fig:DHSvsPupilOverlay}.
 We elected to clock the pupil wheel by 1.9$^\circ$ in order to align the spectra with rows on the short wavelength detector.
 Aligning spectra along the rows enables small stripe mode readouts (such as 2048 $\times$ 64) to read one DHS spectra simultaneously with long wavelength grism spectra.
 This is needed for bright targets that will saturate the long wavelength detector with longer frame times, as discussed in Section \ref{sec:readout}.
