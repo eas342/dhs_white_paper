@@ -170,7 +170,7 @@ Combining both of NIRCam's channels will maximize the science potential of JWST,
 
 The James Webb Space Telescope \citep[JWST; e.g.][]{gardner2006SSRv} has the potential to profoundly expand and deepen the science of transiting exoplanets \citep[e.g.][]{greene2016jwst_trans}.
 The wavelength coverage from 0.6$\mu$m to 28$\mu$m adds significantly to the wavelengths covered by the Hubble Space Telescope (HST) (currently 0.09$\mu$m to 1.7$\mu$m).
-Its unprecedented infrared sensitivity and stable orbit at the second Lagrange (L2) point make it an excellent platform for time series observations to characterize the atmospheres of planets that transit their host stars.
+Its unprecedented infrared sensitivity and stable orbit at the second Lagrange (L2) point make it an excellent platform for time series observations to characterize the atmospheres of planets that transit their host stars \citep{beichman2014pasp,stevenson2016ers}.
 Ground-based observatories and the Hubble Space Telescope have made important measurements of Na, K, H$_2$O in a variety of hot Jupiter, hot Neptune planets \cite[e.g.][]{snellen2008Na209,kreidberg2014wasp43,fraine2014hatp11,deming13,sing2016continuum}.
 JWST has the capability of characterizing carbon-bearing molecules such as CH$_4$, CO and CO$_2$ to improve measurements of planet metallicity and C/O in comparison to its host star.
 Depending on the composition and size of the clouds and hazes in exoplanet atmospheres, the longer wavelengths observed by JWST may penetrate these clouds and hazes.
@@ -376,9 +376,14 @@ Figure \ref{fig:DHSRes} shows the resolution as a function of wavelength, estima
 There will be about a \DHSgap$\mu$m gap in the spectrum due to the gap between short wavelength detectors.
 The center of this gap depends on source position.
 The DHS can be used in tandem with either the F322W2 or F444W filter for the long wavelength grism observations.
-The properties of the DHS, which can be used simultaneously with the long-wavelength grisms, are listed in Table \ref{tab:DHSgprop}.
+The properties of the DHS as compared to the grisms are listed in Table \ref{tab:DHSgprop}.
 If the region from 2-2.23$\mu$m is highly desirable such as for measuring the CH$_4$ feature shown in Figure \ref{fig:HATp12spec}, the DHS can be used with a F200W filter (1.75 to 2.23$\mu$m half maximum) to partially fill in the gap between the short to long wavelength channels, though the grism transmission is lower above 2.0$\mu$m, shown in Figure \ref{fig:DHSthrough}. 
 
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=1.0\columnwidth]{NIRCam+OTE_SWA_DHS_and_F150W2_efficiency.pdf}
+\caption{Throughput as a function of wavelength for the DHS grism, F150W2 filter and F200W filter that includes the telescope and instrument transmission. The total throughput is the multiple of the filter curve, ``DHS'' grism and the pupil area fraction from Table \ref{tab:pupfrac}..}\label{fig:DHSthrough}
+\end{figure}
 
 \begin{figure}[!ht]
 \centering
@@ -397,33 +402,30 @@ The pupil wheel is clocked to make the DHS spectra straight along rows.
 This moves the DHS elements off-center from JWST's pupil and thus decreases the throughput for elements 1 and 6, but the overall combined throughput for all 10 elements is only reduced from 32\% to 29\%.}\label{fig:DHSvsPupilOverlay}
 \end{figure}
 
-\begin{figure*}
-\centering
-\includegraphics[width=0.7\textwidth]{grism_pos_for_max_wcoverage.pdf}
-\caption{DHS wavelength coverage for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength channel for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors (A1 - A5) are shown with their (0,0) corners as black boxes. The circles plotted for each grism are the shortest usable wavelength, undispersed wavelength and longest usable wavelength.}\label{fig:DHSwaveWGrism}
-\end{figure*}
 
 A point source observed with the DHS and grism modes of NIRCam will produce 10 spectra on the short-wavelength channel and one spectrum on the long-wavelength channel -- see Figure \ref{fig:DHSwaveWGrism}.
 The DHS spectra span two of NIRCam's short-wavelength detectors covering $\sim$1 to $\sim$ 2$\mu$m with a \DHSgap$\mu$m gap due to the separation between detectors.
 The DHS mode is well suited for one bright source because it spreads the light over the 10 separate spectra, but is ill-suited for a crowded field, where the spectra would overlap.
 Each of the DHS spectra are separated in the spatial direction by an average of 123 pixels, so a sub-array of at least 1300 pixels must be extracted to gather all DHS flux for a single source.
 
+\begin{figure*}[!hbtp]
+\centering
+\includegraphics[width=0.7\textwidth]{grism_pos_for_max_wcoverage.pdf}
+\caption{DHS wavelength coverage for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength channel for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors (A1 - A5) are shown with their (0,0) corners as black boxes. The circles plotted for each grism are the shortest usable wavelength, undispersed wavelength and longest usable wavelength.}\label{fig:DHSwaveWGrism}
+\end{figure*}
+
 Each DHS spectrum covers roughly 4\% of the JWST pupil, though they vary in size and throughput depending on where they lie relative to the secondary mirror strut supports, seen in Figure \ref{fig:DHSvsPupilOverlay}.
-We elected to clock the pupil wheel by 1.9$^\circ$ in order to align the spectra with rows on the short wavelength detector.
+We elect to clock the pupil wheel by 1.9$^\circ$ in order to align the spectra with rows on the short wavelength detector.
 Aligning spectra along the rows enables small stripe mode readouts (such as 2048 $\times$ 64) to read one DHS spectra simultaneously with long wavelength grism spectra.
 This is needed for bright targets that will saturate the long wavelength detector with longer frame times, as discussed in Section \ref{sec:readout}.
 There is a price for clocking the DHS pupil wheel to align spectra with rows: all DHS grisms are partially obscured by either the secondary supports or the outer edges of the primary, save element 7.
 Fortunately, the relative obscuration for all 10 DHS spectra is small, going from 32\% total throughput when the pupil wheel is centered (which produces tilted spectra), versus 29\% if the pupil wheel is clocked to align the spectra along rows.
 
-The throughput for DHS spectroscopy is the multiple of the DHS grating efficiency, telescope and instrument throughput for a given filter (both shown in Figure \ref{fig:DHSthrough}) and the pupil coverage by the DHS elements listed in Table \ref{tab:pupfrac}.
+
+The throughput for DHS spectroscopy is the product of the DHS grating efficiency, telescope and instrument throughput for a given filter (both shown in Figure \ref{fig:DHSthrough}) and the pupil coverage by the DHS elements listed in Table \ref{tab:pupfrac}.
 A fractional pupil 1.00 would use the entire pupil and thus take advantage of the maximum JWST collecting area.
 For a sub-array size encompassing only 1 DHS spectrum (such as a 2048 $\times$ 64 subarray), the largest unobscured DHS grisms should be used - element number 7 in Figure~\ref{fig:DHSvsPupilOverlay}.
-
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=1.0\columnwidth]{NIRCam+OTE_SWA_DHS_and_F150W2_efficiency.pdf}
-\caption{Throughput as a function of wavelength for the DHS grism, F150W2 filter and F200W filter that includes the telescope and instrument transmission. The total throughput is the multiple of the filter curve, ``DHS'' grism and the pupil area fraction from Table \ref{tab:pupfrac}..}\label{fig:DHSthrough}
-\end{figure}
+We discuss only module A (of the two redundant modules A and B) because the long wavelength grisms are anti-reflective coated for module A.
 
 \begin{table}[!ht]
 \centering
@@ -485,7 +487,7 @@ Each NIRCam array must be read out with identical window sizes and exposure time
 %The window sizes could theoretically be different between the long-wavelength and short-wavelength detectors with only software changes, but would require large changes to the existing software.
 This means that some balance must be made between saturating the grism spectrum (which has much higher throughput) in the long-wavelength and getting the most flux in the short-wavelength DHS spectra (which have lower throughput and also spread the light over more pixels).
 We recommend  the sub-array locations to be adjustable so that the short wavelength sub-array can be centered on one DHS spectrum or a subset of the 10 and the long wavelength array can be centered on a single grism spectrum.
-The current time series observing templates is limited subarray sizes of 2048 $\times$ 64, 2048 $\times$ 128, 2048 $\times$ 256 and 2048 $\times$ 2048 (full frame), which would cover 1, 1, 2 and 10 DHS spectra as shown in Figure \ref{fig:DHSaps}.
+The current time series observing templates is limited to subarray sizes of 2048 $\times$ 64, 2048 $\times$ 128, 2048 $\times$ 256 and 2048 $\times$ 2048 (full frame), which would cover 1, 1, 2 and 10 DHS spectra as shown in Figure \ref{fig:DHSaps}.
 
 \begin{figure}[!t]
 \includegraphics[width=1.0\columnwidth]{example_ap_sizes.pdf}
@@ -532,7 +534,7 @@ This overload can happen in as few as 10.3 hours if three NIRCam detectors are u
 \end{figure}
 
 In normal operations, science and telemetry data from the James Webb Space Telescope are downlinked in a 4 hour contact time with an antenna in the Deep Space Network (SDN)  \citep{dashevsky2008groundflight}.
-There will be two downlinks per day so on average the total data rate can no more than $\sim$458 Gbits per 12 hours.
+There will be two downlinks per day so on average the total data rate can be no more than $\sim$458 Gbits per 12 hours.
 Science operations can continue during the 4 hour contact time, but re-pointing the high gain antenna can cause $<$0.07 \arcsec\ disturbances \citep{beichman2014pasp}.
 To satisfy these normal operations, the data volume is a concern for bright objects requiring longer than $\sim$10 hours of continuous spectroscopy when using 3 detectors and 4 amplifiers simultaneously.
 
@@ -550,6 +552,7 @@ Perhaps future changes to the OSS could allow operating the LW detectors with 4 
 The James Webb Space Telescope will provide unprecedented measurements of transiting exoplanets, especially for carbon-bearing and nitrogen-bearing gases in their atmospheres.
 The time needed to observe in JWST's full range of wavelengths from 0.6$\mu$m to 28$\mu$m, however, can add up quickly since many transits are needed with different instrument modes to cover all wavelengths.
 We introduced a new science mode using the Dispersed Hartmann Sensors on the NIRCam instrument which enable simultaneous measurements of spectra at R $\sim$ \DHSres\ from 1.0 to 2.0$\mu$m while using the NIRCam long-wavelength grisms covering either 2.4$\mu$m to 4.0$\mu$m or 3.9$\mu$m to 5.0$\mu$m.
+The fact that the two sets of grisms operate simultaneously allows more science to be done in the same amount of time.
 The readout mode and subarray size must be chosen carefully on the DHS so as to not saturate the long-wavelength grisms.
 
 The DHS mode enables more science because it has the brightest saturation limits of any JWST spectroscopic mode and can increase the wavelength coverage of a single observation.
