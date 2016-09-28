@@ -222,7 +222,7 @@ In section \ref{sec:addedScience} we discuss the added science that can be achie
 \begin{figure}
 \centering
 \includegraphics[width=1.0\columnwidth]{NIRCam+OTE_SWA_DHS_and_F150W2_efficiency.pdf}
-\caption{Throughput as a function of wavelength for the DHS grism, F150W2 filter and F200W filter that includes the telescope and instrument transmission. The total throughput is the multiple of the filter curve, ``DHS'' grism and the pupil area fraction from Table~\ref{tab:pupfrac}..}\label{fig:DHSthrough}
+\caption{Throughput as a function of wavelength for the DHS grism, F150W2 filter and F200W filter that includes the telescope and instrument transmission. The total throughput is the product of the filter curve, ``DHS'' grism and the pupil area fraction from Table~\ref{tab:pupfrac}..}\label{fig:DHSthrough}
 \end{figure}
 
 The DHS expands the wavelength range that NIRCam can achieve on a single observation by simultaneously obtaining spectroscopy with NIRCam's short wavelength channel and long wavelength channel.
@@ -311,7 +311,7 @@ Total & 0.292\\
 \caption{DHS pupil coverage by each of the 10 DHS grisms, with the fractional throughput given in Table~\ref{tab:pupfrac}. 
 The throughput is modulated by the size of the DHS grism as well as whether it coincides with a secondary mirror support (inverted ``Y'' shaped feature).
 The pupil wheel is clocked to make the DHS spectra straight along rows.
-This moves the DHS elements off-center from JWST's pupil and thus decreases the throughput for elements 1 and 6, but the overall combined throughput for all 10 elements is only reduced from 32\% to 29\%.}\label{fig:DHSvsPupilOverlay}
+This moves the DHS elements off-center from JWST's pupil and thus decreases the throughput for elements 1 and 6 substantially, but the overall combined throughput for all 10 elements is only reduced from 32\% to 29\%.}\label{fig:DHSvsPupilOverlay}
 \end{figure}
 
 The throughput for DHS spectroscopy is the product of the DHS grating efficiency, telescope and instrument throughput for a given filter (both shown in Figure~\ref{fig:DHSthrough}) and the pupil coverage by the DHS elements listed in Table~\ref{tab:pupfrac}.
@@ -365,7 +365,7 @@ The BRIGHT1 readout increases the observing efficiency and reduces data volume o
 There are several variations of readout patterns available to NIRCam with APT.
 For exoplanets time series observations, the readout patterns most commonly used will likely be ``RAPID'', meaning every sample is saved up the ramp individually and ``BRIGHT1'' where a single frame is dropped between reads.
 These modes give high time resolution and allow one to detect and flag cosmic ray hits without having to discard large amounts of data.
-The number of groups per integration is a variable set in the APT.
+The number of groups per integration is a variable set in a proposal with APT.
 When the number of groups is 1 (``1~Group Readout''), there is no ability to subtract out the current bias frame so it relies on the bias level being constant through the whole time series.
 When the number of groups is 2, the slope can be calculated from the difference between the two reads divided by the frame time.
 It is the same as the CDS mode described above when using RAPID readout.
@@ -388,7 +388,8 @@ Sub-Array Size &  LW Saturation & \# of DHS & DHS Noise\\
 \hline
 \end{tabular}
 %\caption{G2V-type star saturation K band limits are shown for suggested sub-array sizes. The size affects the number of DHS that can be included, so the noise in the DHS spectra over 1.1 -- 1.9$\mu$m at the given saturation limit for a 1 hour transit is shown in column 4 at native R $\sim$ \DHSresApprox\ resolution.}\label{tab:SatSNRsubA}
-\tablenotetext{0}{G2V-type star saturation K band limits are shown for suggested sub-array sizes. The size affects the number of DHS that can be included, so the noise in the DHS spectra over 1.1 -- 1.9$\mu$m at the given saturation limit for a 1-hour transit is shown in column 4 at native R $\sim$ \DHSresApprox\ resolution.}
+\tablenotetext{0}{G2V-type star saturation K band limits are shown for the current available array sizes in APT, which determine the number of spectra from DHS elements that can be included.
+The noise in the DHS spectra over 1.1 -- 1.9$\mu$m at the given saturation limit for a 1-hour transit is shown in column 4 at native R $\sim$ \DHSresApprox\ resolution.}
 \end{table}
 
 Each NIRCam array must be read out with identical window sizes and exposure times due to restrictions in the Onboard Scripting Software (OSS).
@@ -396,9 +397,9 @@ Each NIRCam array must be read out with identical window sizes and exposure time
 This means that some balance must be made between saturating the grism spectrum (which has much higher throughput) in the long-wavelength and getting the most flux in the short-wavelength DHS spectra (which have lower throughput and also spread the light over more pixels).
 The current time series observing templates available in APT are limited to subarray sizes of 2048 $\times$ 64, 2048 $\times$ 128, 2048 $\times$ 256 and 2048 $\times$ 2048 (full frame), which would cover 1, 1, 2 and 10 DHS spectra as shown in Figure~\ref{fig:DHSaps}.
 These are the subarrays that will be available to Cycle 1 science programs and likely stay this way for continuity through the mission in order to stick to detector ``sweet spots'' that are well characterized and calibrated.
-In principle, the short wavelength detectors can be read out with different sizes and read patterns from long wavelength array or even what is available in APT, but we realize there are operational costs to implementing and testing new modes in the OSS software and data handling.
+In principle, the short wavelength detectors can be read out with different sizes and read patterns from long wavelength array or even what is available in APT, but there are operational costs to implementing and testing new modes in the OSS software and data handling.
 
-We recommend that the sub-array locations to be adjusted so that the short wavelength sub-array can be centered on one DHS spectrum or a subset of the 10 and the long wavelength array can be centered on a single grism spectrum. For the 2048~$\times$~64 and 2048~$\times$~128 subarrays, which can only encompass one spectrum with more than 10 pixels of background, they should be centered on the spectrum from element 7, since it has the maximum possible throughput listed in Table~\ref{tab:pupfrac}. For the 2048~$\times$~256 subarray, the location should be centered of the the middle of the spectra from elements 7 and 8 since they have the highest throughput of any adjacent pairs from Table~\ref{tab:pupfrac}. This is illustrated in Figure \ref{fig:DHSaps}.
+We recommend that the sub-array locations to be adjusted so that the short wavelength sub-array can be centered on one DHS spectrum or a subset of the 10 and the long wavelength array can be centered on a single grism spectrum. For the 2048~$\times$~64 and 2048~$\times$~128 subarrays, which can only encompass one spectrum with more than 10 pixels of background, they should be centered on the spectrum from element 7, since it has the maximum possible throughput listed in Table~\ref{tab:pupfrac}. For the 2048~$\times$~256 subarray, the location should be centered between the spectra from elements 7 and 8 since they have the highest throughput of any adjacent pairs from Table~\ref{tab:pupfrac}. This is illustrated in Figure \ref{fig:DHSaps}.
 
 \begin{figure}[!t]
 \includegraphics[width=1.0\columnwidth]{example_ap_sizes.pdf}
@@ -420,7 +421,7 @@ For the brightest sources, which require the 2048 $\times$ 64 pixel subarray, th
 \subsubsection{Data Volume}
 For most transiting planet science, the targets are bright and so the pixels will continuously be read out quickly without any co-added reads.
 The amount of data streaming from the detectors can overload the Solid State Recorder (SSR), which has a capacity of 540 Gbits \citep{johns2008L2comm}.
-We consider the use of 458 Gbits of space for science data as the maximum the SSR can handle at once.
+We consider the use of 458 Gbits of space for science data as the maximum the SSR can handle at once to allow for storage of telemetry.
 This overload can happen in as few as 10.3 hours if three NIRCam detectors are used simultaneously and all are read out with four amplifiers in CDS mode (meaning no samples are co-added or dropped) -- see Figure~\ref{fig:DataVolume}.
 
 \begin{figure}[!t]
@@ -494,7 +495,7 @@ We use the CHIMERA atmospheric retrieval suite \citep{line2013chimera,line2014Ct
 We first simulate a forward model of a transmission spectrum for two planets, HD 209458b \citep{henry00,charbonneau00} and HAT-P-12b \citep{hartman2009hatp12}.
 We then add Gaussian noise using the SNR estimated on the target to create a simulated spectrum.
 Finally, we run a Markov Chain Monte Carlo (MCMC) retrieval of the atmospheric parameters for simulated spectrum to try to recover the initial abundances and determine the uncertainties in those abundances, as in \citet{greene2016jwst_trans}.
-We combine the individual gases' posterior distributions to derive the C/O ratio and metallicity (\citet{greene2016jwst_trans}) .
+%We combine the individual gases' posterior distributions to derive the C/O ratio and metallicity (\citet{greene2016jwst_trans}) .
 
 
 %For the underlying ``true" model of HD 209458b, we use solar abundances of \citet{asplund} and reduce the oxygen by a factor of 24\% to account for the rainout out of MgSiO$_3$ and MgSiO$_4$ which are below their condensation temperatures \citep{sing2016continuum}.
