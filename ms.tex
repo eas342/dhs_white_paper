@@ -257,22 +257,23 @@ Undeviated Wavelength: & 1.36$\mu$m & 3.94$\mu$m   \\
 
 \subsection{DHS Layout}\label{sec:layout}
 
-A point source observed with the DHS and grism modes of NIRCam will produce 10 spectra on the short-wavelength channel and one spectrum on the long-wavelength channel -- see Figure~\ref{fig:DHSwaveWGrism}.
-The DHS spectra span two of NIRCam's short-wavelength detectors covering $\sim$1 to $\sim$ 2$\mu$m with a \DHSgap$\mu$m gap due to the separation between detectors.
-The DHS mode is well suited for one bright source because it spreads the light over the 10 separate spectra, but is ill-suited for a crowded field, where the spectra would overlap.
-Each of the DHS spectra are separated in the spatial direction by an average of 123 pixels, so a sub-array of at least 1300 pixels must be extracted to gather all DHS flux for a single source.
-
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.85\textwidth]{grism_pos_for_max_wcoverage.pdf}
 \caption{DHS wavelength coverage for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength channel for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors (A1 - A5) are shown with their (0,0) corners as black boxes. The circles plotted for each grism are the shortest usable wavelength, undispersed wavelength and longest usable wavelength.}\label{fig:DHSwaveWGrism}
 \end{figure*}
 
+A point source observed with the DHS and grism modes of NIRCam will produce 10 spectra on the short-wavelength channel and one spectrum on the long-wavelength channel -- see Figure~\ref{fig:DHSwaveWGrism}.
+The DHS spectra span two of NIRCam's short-wavelength detectors covering $\sim$1 to $\sim$ 2$\mu$m with a \DHSgap$\mu$m gap due to the separation between detectors.
+The DHS mode is well suited for one bright source because it spreads the light over the 10 separate spectra, but is ill-suited for a crowded field, where the spectra would overlap.
+Each of the DHS spectra are separated in the spatial direction by an average of 123 pixels, so a sub-array of at least 1300 pixels must be extracted to gather all DHS flux for a single source.
+
+
 Each DHS spectrum covers roughly 4\% of the JWST pupil, though they vary in size and throughput depending on where they lie relative to the secondary mirror strut supports, seen in Figure~\ref{fig:DHSvsPupilOverlay}.
 We elect to clock the pupil wheel by 1.9$^\circ$ in order to align the spectra with rows on the short wavelength detector.
 Aligning spectra along the rows enables small stripe mode readouts (such as 2048 $\times$ 64) to read one DHS spectra simultaneously with long wavelength grism spectra.
 This is needed for bright targets that will saturate the long wavelength detector with longer frame times, as discussed in Section \ref{sec:readout}.
-There is a price for clocking the DHS pupil wheel to align spectra with rows: all DHS grisms are partially obscured by either the secondary supports or the outer edges of the primary, save element 7.
+There is a price for clocking the DHS pupil wheel to align spectra with rows: all DHS grisms are partially obscured by either the secondary supports or the outer edges of the primary, save elements 7 and 10.
 Fortunately, the relative obscuration for all 10 DHS spectra is small, going from 32\% total throughput when the pupil wheel is centered (which produces tilted spectra), versus 29\% if the pupil wheel is clocked to align the spectra along rows.
 
 \begin{table}[!b]
@@ -332,10 +333,20 @@ Only the long-wavelength grisms if Module A are considered, because those in Mod
 %\end{figure}
 
 \subsection{Readout Considerations}\label{sec:readout}
-JWST's NIRCam has many different possible readout patterns per pixel and array that all factor in to the SNRs and saturation limits for an observation.
-We adopt the following naming convention for the readout: an observation may consist of one of more exposures which are typically combined into a single \texttt{FITS} file per exposure.
+JWST's NIRCam instrument has many different possible readout patterns per pixel and array that all factor in to the SNRs and saturation limits for an observation.
+We adopt the following naming convention for the readout: an observation may consist of one of more exposures which are combined into a single \texttt{FITS} file per exposure.
 Within an exposure, there are one or more integrations, which consist of a reset frame followed by one or more groups of non-destructive reads up a ramp.
 This is illustrated in Figure~\ref{fig:readout} for three example readout modes.
+
+We consider a simplified example of a time series using a standard correlated double sampling (CDS) illustrated in Figure~\ref{fig:readout} and assume a round frame time of 10.0 seconds, close to the actual 10.74 seconds full frame read time.
+The raw data delivered to observers for use in a pipeline would consist of a single FITS file containing a data cube.
+If the data is in full frame mode, cube would have dimensions of 2048 $\times$ 2048 $\times$ 8, which can be thought of 8 image planes.
+In this example there are 4 integrations consisting of a reset followed by two reads, which are saved as two image planes per integration.	
+For simplicity in this example, we ignore many of the corrections that are applied in a pipeline such as non-linearity correction, reference pixel correction, intrapixel capacitance, flat fielding etc.
+Under these assumptions, the flux (in DN/s) in any integration is the difference between the two reads divided by the frame time.
+This reduces the 8 image planes, to 4 flux planes, one per integration.
+Spectral extraction on the flux planes \citep[e.g.][]{horne1986optimalE} produces 1 flux per wavelength bin.
+The time series for a given wavelength would consist of the 4 fluxes with 4 time coordinates centered at 15 sec, 45 sec, 75 sec and 105 sec if we use the mid-points of the two reads.
 
 \begin{figure}[t]
 \centering
@@ -345,6 +356,17 @@ A single FITS file is saved for the exposure, consisting of 1 or more groups per
 No reset frames or dropped frames are saved.``1~Group Readout" can be used to increase the saturation limits provided that drifts between reset levels are sufficiently stable.
 The BRIGHT1 readout increases the observing efficiency and reduces data volume over CDS but has a longer minimum integration time, resulting in fainter saturation limits.}\label{fig:readout}
 \end{figure}
+
+There are several variations of readout patterns available to NIRCam with the Astronomers Proposal Tool (APT)\footnote{http://www.stsci.edu/hst/proposing/apt}.
+For exoplanets time series observations, the readout patterns most commonly used will likely be ``RAPID'', meaning every sample is saved up the ramp individually and ``BRIGHT1'' where a single frame is dropped between reads.
+These modes give high time resolution and allow one to detect and flag cosmic ray hits without having to discard large amounts of data.
+The number of groups per integration is a variable set in the APT.
+When the number of groups is 1 (``1~Group Readout''), there is no ability to subtract out the bias frame so it relies on the bias level being constant through the whole time series.
+When the number of groups is 2, the slope can be calculated from the difference between the frames divided by the frame time.
+It is the same as the CDS mode described above when using RAPID readout.
+For a higher number groups, a line is fit to the the ramp to calculate a slope image for every integration.
+In exoplanet time series, the high signal to noise ratios required generally mean that bright sources will be observed so these will generally not benefit from skipped frames or co-added frames of other JWST readout modes, which come at the expense of lower time resolution, reduced ability for cosmic ray rejection and fainter saturation limits.
+For more general discussion of HAWAII-2RG detector readout, we refer to \citet{rauscher2007detectors} and for specific readout patterns we refer to \citet{roberto2009optimalR1} and \citet{roberto2010optimalR2}.
 
 \begin{table}[!b]
 \centering
@@ -367,8 +389,11 @@ Sub-Array Size &  LW Saturation & \# of DHS & DHS Noise\\
 Each NIRCam array must be read out with identical window sizes and exposure times due to restrictions in the Onboard Scripting Software (OSS).
 %The window sizes could theoretically be different between the long-wavelength and short-wavelength detectors with only software changes, but would require large changes to the existing software.
 This means that some balance must be made between saturating the grism spectrum (which has much higher throughput) in the long-wavelength and getting the most flux in the short-wavelength DHS spectra (which have lower throughput and also spread the light over more pixels).
-We recommend  the sub-array locations to be adjustable so that the short wavelength sub-array can be centered on one DHS spectrum or a subset of the 10 and the long wavelength array can be centered on a single grism spectrum.
-The current time series observing templates is limited to subarray sizes of 2048 $\times$ 64, 2048 $\times$ 128, 2048 $\times$ 256 and 2048 $\times$ 2048 (full frame), which would cover 1, 1, 2 and 10 DHS spectra as shown in Figure~\ref{fig:DHSaps}.
+The current time series observing templates available in APT are limited to subarray sizes of 2048 $\times$ 64, 2048 $\times$ 128, 2048 $\times$ 256 and 2048 $\times$ 2048 (full frame), which would cover 1, 1, 2 and 10 DHS spectra as shown in Figure~\ref{fig:DHSaps}.
+These are the subarrays that will be available to Cycle 1 science programs and likely stay this way for continuity through the mission in order to stick to detector ``sweet spots'' that are well characterized and calibrated.
+In principle, the short wavelength detectors can be read out with different sizes and read patterns from long wavelength array or even what is available in APT, but we realize there are operational costs to implementing and testing new modes in the OSS software and data handling.
+
+We recommend that the sub-array locations to be adjusted so that the short wavelength sub-array can be centered on one DHS spectrum or a subset of the 10 and the long wavelength array can be centered on a single grism spectrum. For the 2048~$\times$~64 and 2048~$\times$~128 subarrays, which can only encompass one spectrum with more than 10 pixels of background, they should be centered on the spectrum from element 7, since it has the maximum possible throughput listed in Table~\ref{tab:pupfrac}. For the 2048~$\times$~256 subarray, the location should be centered of the the middle of the spectra from elements 7 and 8 since they have the highest throughput of any adjacent pairs from Table~\ref{tab:pupfrac}. This is illustrated in Figure \ref{fig:DHSaps}.
 
 \begin{figure}[!t]
 \includegraphics[width=1.0\columnwidth]{example_ap_sizes.pdf}
@@ -513,6 +538,8 @@ For the simulated observations, we assume one transit is obtained in each of NIR
 We assume that each of these was accompanied by a DHS observation for the 1.0$\mu$m to 2.0$\mu$m wavelength range, which benefits in SNR by $\sqrt{2}$ for the two separate observations.
 %In other words, there is one DHS measurement per grism filter (F444W and F322W2).
 This observing scenario is compared to a scenario that does not include the DHS to show the added scientific value of using the DHS spectra.
+The readout mode in all cases simulated is RAPID readout (all reads saved without skips up the ramp discussed in Section \ref{sec:readout}) with 10 reads up the ramp for HD 209458 and 25 reads up the ramp for HAT-P-12b.
+
 The noise models for the hot Jupiter HD 209458b are shown in Figure~\ref{fig:DHSvsNIRISS209}, which is dominated by the residual systematic noise floor (set to 30 ppm) for the long-wavelength grisms ($>$2.44$\mu$m) but photon noise is more significant for the short-wavelength DHS observations.
 The DHS has lower total throughput ($\sim$8\% including pupil coverage factor) and a smaller wavelength coverage than the NIRISS instrument in SOSS mode ($\sim$30\% throughput\footnote{\texttt{http://maestria.astro.umontreal.ca/niriss/simu1D/simu1D.php}}), so observations which require higher SNR and full wavelength coverage from \SOSSrangeto\ can take advantage of NIRISS (also shown in Figure~\ref{fig:DHSvsNIRISS209}) at the expense of more telescope time.
 
@@ -533,8 +560,8 @@ We use the \texttt{emcee} version of CHIMERA \citep{greene2016jwst_trans} to rec
 The posterior distributions for retrieved parameters for the most important abundances are shown in Figure~\ref{fig:corner}.
 We show the posterior distributions for two cases:
 \begin{enumerate}
-\item \label{it:DHSgr} An observation with the long wavelength grisms alone (2.4-5.0$\mu$m), shown in green.
-\item \label{it:grAlone} An observation with the long wavelength grisms (2.4-5.0$\mu$m) with simultaneous DHS spectra (1.0-2.0$\mu$m), shown in blue.
+\item \label{it:grAlone} An observation with the long wavelength grisms alone (2.4-5.0$\mu$m), shown in green.
+\item \label{it:DHSgr} An observation with the long wavelength grisms (2.4-5.0$\mu$m) with simultaneous DHS spectra (1.0-2.0$\mu$m), shown in blue.
 \end{enumerate}
 For the spectral data they have in common (2.4$\mu$m to 5.0$\mu$m), we use the same noise instance to make direct comparison easier.
 
@@ -580,7 +607,7 @@ The readout mode and subarray size must be chosen carefully on the DHS so as to 
 
 The DHS mode enables more science because it has the brightest saturation limits of any JWST spectroscopic mode and can increase the wavelength coverage of a single observation.
 The brightest known systems and similarly bright future TESS targets will be accessible with NIRCam's DHS mode.
-We present example usage of the DHS mode on example systems and show that the temperature, cloud pressure level and water vapor constraints are improved with the DHS.
+We present example usage of the DHS mode on two systems and show that the temperature, cloud pressure level and water vapor constraints are improved with the DHS.
 Furthermore, the improved water vapor constraints also feed back to higher precision CO and CO$_2$ abundances because of the correlation of these derived parameters.
 We encourage the implementation and approval of the DHS mode to enable this additional science in less time for this limited life observatory.
 
@@ -588,8 +615,8 @@ We encourage the implementation and approval of the DHS mode to enable this addi
 We summarize the specific changes to the existing operations needed for the DHS here:
 \begin{enumerate}
 \item Allow the NIRCam pupil wheel to be used for science at the DHS element position with spectra parallel with detector rows
-\item Allow subarray locations to be different for the short wavelength arrays and the long wavelength arrays in order to capture the spectrum for Element numbers 7 and 8 for subarrays
-\item Choose field points from NIRCam's long wavelength grism to allow simultaneous DHS spectroscopy with all 10 DHS elements
+\item Allow subarray locations to be different for the short wavelength arrays and the long wavelength arrays in order to capture the spectrum for element number 7 for 2048~$\times$~64 and 2048~$\times$~128 subarrays and both element numbers 7 and 8 for the 2048~$\times$~256 subarray
+\item Choose field points from NIRCam's long wavelength grism to allow simultaneous DHS spectroscopy with all 10 DHS elements when reading out in full frame (2048~$\times$~2408) mode
 \item Change the OSS software and timing so that large subarrays may used with the DHS simultaneously with small 2048$\times$64 subarrays with the long wavelength grisms
 \end{enumerate}
 
