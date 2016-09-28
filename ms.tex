@@ -339,10 +339,10 @@ Only the long-wavelength grisms of Module A are considered, because those in Mod
 JWST's NIRCam instrument has many different possible readout patterns per pixel and array that all factor in to the SNRs and saturation limits for an observation.
 We adopt the following naming convention for the readout: an observation may consist of one of more exposures which are combined into a single \texttt{FITS} file per exposure.
 Within an exposure, there are one or more integrations, which consist of a reset frame followed by one or more groups of non-destructive reads up a ramp.
-In all of our examples, there is one read per group.
 This is illustrated in Figure~\ref{fig:readout} for three example readout modes.
+In all of our examples, there is one read per group, meaning that no images are co-added.
 
-We consider a simplified example of a time series using a standard correlated double sampling (CDS) illustrated in Figure~\ref{fig:readout} and assume a round frame time of 10.0 seconds, close to the actual 10.74 seconds full frame read time.
+We consider a simplified example of a time series of 4 integrations using a standard correlated double sampling (CDS) illustrated in Figure~\ref{fig:readout} and assume a round frame time of 10.0 seconds, close to the actual 10.74 seconds full frame read time.
 CDS is equivalent to RAPID mode with 2 reads up the ramp.
 The raw data delivered to observers for use in a pipeline would consist of a single FITS file containing a data cube.
 If the data is in full frame mode, cube would have dimensions of 2048 $\times$ 2048 $\times$ 8, which can be thought of 8 image planes.
@@ -366,8 +366,8 @@ There are several variations of readout patterns available to NIRCam with APT.
 For exoplanets time series observations, the readout patterns most commonly used will likely be ``RAPID'', meaning every sample is saved up the ramp individually and ``BRIGHT1'' where a single frame is dropped between reads.
 These modes give high time resolution and allow one to detect and flag cosmic ray hits without having to discard large amounts of data.
 The number of groups per integration is a variable set in the APT.
-When the number of groups is 1 (``1~Group Readout''), there is no ability to subtract out the bias frame so it relies on the bias level being constant through the whole time series.
-When the number of groups is 2, the slope can be calculated from the difference between the frames divided by the frame time.
+When the number of groups is 1 (``1~Group Readout''), there is no ability to subtract out the current bias frame so it relies on the bias level being constant through the whole time series.
+When the number of groups is 2, the slope can be calculated from the difference between the two reads divided by the frame time.
 It is the same as the CDS mode described above when using RAPID readout.
 For a higher number groups, a line is fit to the the ramp to calculate a slope image for every integration.
 In exoplanet time series, the high signal to noise ratios required generally mean that bright sources will be observed so these will generally not benefit from skipped frames or co-added frames of other JWST readout modes, which come at the expense of lower time resolution, reduced ability for cosmic ray rejection and fainter saturation limits.
