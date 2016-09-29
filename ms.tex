@@ -122,7 +122,7 @@
 %% editorial office after submission.
 
 \begin{abstract}
-The James Webb Space Telescope (JWST) offers unprecedented sensitivity, stability, and wavelength coverage for transiting exoplanet studies, opening up new avenues for measuring atmospheric abundances, structure, and temperature profiles. Taking full advantage of JWST spectroscopy of planets from 0.6$\mu$m to 28$\mu$m, however, will require many observations with a combination of the NIRISS, NIRCam, NIRSpec, and MIRI instruments. In this white paper, we discuss a new NIRCam mode (not yet approved or implemented) that can reduce the number of necessary observations to cover the 1.0$\mu$m to 5.0$\mu$m wavelength range. Even though NIRCam was designed primarily as an imager, it also includes several grisms for phasing and aligning JWST's 18 hexagonal mirror segments. NIRCam's long-wavelength channel includes grisms that cover 2.4$\mu$m to 5.0$\mu$m with a resolution of $R = 1200 - 1550$ using two separate configurations. The long-wavelength grisms have already been approved for science operations, including wide field and single object (time series) slitless spectroscopy. We propose a new mode that will simultaneously measure spectra for science targets in the 1.0$\mu$m to 2.0$\mu$m range using NIRCam's short-wavelength channel.
+The James Webb Space Telescope (JWST) offers unprecedented sensitivity, stability, and wavelength coverage for transiting exoplanet studies, opening up new avenues for measuring atmospheric abundances, structure, and temperature profiles. Taking full advantage of JWST spectroscopy of planets from 0.6$\mu$m to 28$\mu$m, however, will require many observations with a combination of the NIRISS, NIRCam, NIRSpec, and MIRI instruments. In this white paper, we discuss a new NIRCam mode (not yet approved or implemented) that can reduce the number of necessary observations to cover the 1.0$\mu$m to 5.0$\mu$m wavelength range. Even though NIRCam was designed primarily as an imager, it also includes several grisms for phasing and aligning JWST's 18 hexagonal mirror segments. NIRCam's long-wavelength channel includes grisms that cover 2.4$\mu$m to 5.0$\mu$m with a resolving power of $R = 1200 - 1550$ using two separate configurations. The long-wavelength grisms have already been approved for science operations, including wide field and single object (time series) slitless spectroscopy. We propose a new mode that will simultaneously measure spectra for science targets in the 1.0$\mu$m to 2.0$\mu$m range using NIRCam's short-wavelength channel.
 This mode, if approved, would take advantage of NIRCam's Dispersed Hartmann Sensor (DHS), which produces 10 spatially separated spectra per source at $R \sim \DHSresApprox$.
 We discuss the added benefit of the DHS in constraining abundances in exoplanet atmospheres as well as its ability to observe the brightest systems.
 The DHS essentially comes for free (at no time cost) with any NIRCam long-wavelength grism observation, but the detector integration parameters have to be selected to ensure that the long-wavelength grism observations do not saturate and that JWST data volume downlink constraints are not violated. 
@@ -216,7 +216,7 @@ In section \ref{sec:addedScience} we discuss the added science that can be achie
 \begin{figure}
 \centering
 \includegraphics[width=1.0\columnwidth]{dhs_res.pdf}
-\caption{Resolution as a function of wavelength for the DHS.}\label{fig:DHSRes}
+\caption{Resolving power as a function of wavelength for the DHS.}\label{fig:DHSRes}
 \end{figure}
 
 \begin{figure}
@@ -228,7 +228,7 @@ In section \ref{sec:addedScience} we discuss the added science that can be achie
 The DHS expands the wavelength range that NIRCam can achieve on a single observation by simultaneously obtaining spectroscopy with NIRCam's short wavelength channel and long wavelength channel.
 The maximum wavelength range for the F150W2 filter in the short wavelength channel is fixed at 1.01 to 2.02$\mu$m with the region from 2.02-2.35$\mu$m contaminated by second order overlap.
 The DHS are slitless, so the resolution is set by the pupil sizes of the individual DHS elements, which are approximately the same width as each other in the dispersion direction.
-Figure~\ref{fig:DHSRes} shows the resolution as a function of wavelength, estimated from a narrowly peaked input spectrum and the fits to the spatial width along the spectrum.
+Figure~\ref{fig:DHSRes} shows the resolving power as a function of wavelength, estimated from a narrowly peaked input spectrum and the fits to the spatial width along the spectrum.
 There is a spatial gap between short wavelength detectors which corresponds to about \DHSgap$\mu$m in wavelength.
 The center of this gap depends on source position.
 The DHS can be used in tandem with either the F322W2 or F444W filter for the long wavelength grism observations.
@@ -242,7 +242,7 @@ If the region from 2-2.23$\mu$m is highly desirable such as for measuring the CH
 \hline \hline
  & DHS & Grism \\
 \hline \hline		
-Resolution: &  \DHSres & 1200 - 1550 \\
+Resolving Power: &  \DHSres & 1200 - 1550 \\
 Dispersion: & 0.29 nm / px & 1.0 nm / px \\
 Wavelengths: & 1.05 - 2.00$\mu$m (F150W2)\footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
 			 & 1.75 - 2.23$\mu$m (F200W)\footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
@@ -389,7 +389,7 @@ Sub-Array Size &  LW Saturation & \# of DHS & DHS Noise\\
 \end{tabular}
 %\caption{G2V-type star saturation K band limits are shown for suggested sub-array sizes. The size affects the number of DHS that can be included, so the noise in the DHS spectra over 1.1 -- 1.9$\mu$m at the given saturation limit for a 1 hour transit is shown in column 4 at native R $\sim$ \DHSresApprox\ resolution.}\label{tab:SatSNRsubA}
 \tablenotetext{0}{G2V-type star saturation K band limits are shown for the current available array sizes in APT, which determine the number of spectra from DHS elements that can be included.
-The noise in the DHS spectra over 1.1 -- 1.9$\mu$m at the given saturation limit for a 1-hour transit is shown in column 4 at native R $\sim$ \DHSresApprox\ resolution.}
+The noise in the DHS spectra over 1.1 -- 1.9$\mu$m at the given saturation limit for a 1-hour transit is shown in column 4 at native R $\sim$ \DHSresApprox\ resolving power.}
 \end{table}
 
 Each NIRCam array must be read out with identical window sizes and exposure times due to restrictions in the Onboard Scripting Software (OSS).
@@ -409,7 +409,7 @@ The sub-array size options currently available (all 2048 pixels wide) are shown 
 \end{figure}
 
 The balance between saturating the long-wavelength grism and getting enough SNR in the DHS is listed in Table~\ref{tab:SatSNRsubA}.
-The table shows the brightest observable G2V star  for a given array size in the long-wavelength grism and the DHS noise at 1.1 to 1.9 $\mu$m for a G2V type star at this brightness observing a 1 hour long transit and 1 hour on a star out of transit, binned to the native resolution of R $\sim$ \DHSresApprox.
+The table shows the brightest observable G2V star  for a given array size in the long-wavelength grism and the DHS noise at 1.1 to 1.9 $\mu$m for a G2V type star at this brightness observing a 1 hour long transit and 1 hour on a star out of transit, binned to the native resolving power of R $\sim$ \DHSresApprox.
 We use the standard correlated double sampling (CDS) readout mode shown in Figure~\ref{fig:readout} and we consider 80\% well depth in the second read as saturation.
 If the bias level after each reset remains stable over the course of observations, it may be possible to use ``1~Group Readout'', illustrated in Figure~\ref{fig:readout}.
 The 1~Group Readout method can push the brightness limits by a factor of 2 over CDS because it reduces the integration time by a factor of two.
