@@ -233,7 +233,7 @@ There is a spatial gap between short wavelength detectors which corresponds to a
 The center of this gap depends on source position.
 The DHS can be used in tandem with either the F322W2 or F444W filter for the long wavelength grism observations.
 The properties of the DHS as compared to the grisms are listed in Table~\ref{tab:DHSgprop}.
-If the region from 2-2.23$\mu$m is highly desirable such as for measuring the CH$_4$ feature shown in Figure~\ref{fig:HATp12spec}, the DHS can be used with a F200W filter (1.75 to 2.23$\mu$m half maximum) to partially fill in the gap between the DHS+F150W2 spectrum and Grism+F322W2 spectra, though the grism transmission is lower above 2.0$\mu$m, shown in Figure~\ref{fig:DHSthrough}. 
+If the region from 2-2.23$\mu$m is highly desirable such as for measuring the CH$_4$ feature shown in Figure~\ref{fig:HATp12spec}, the DHS can be used with the F200W filter (1.75 to 2.23$\mu$m half maximum) to partially fill in the gap between the DHS+F150W2 spectrum and the long wavelength channel (grism+F322W2 spectrum), though the DHS grism transmission is lower above 2.0$\mu$m, shown in Figure~\ref{fig:DHSthrough}. 
 
 \begin{table*}
 \centering
@@ -244,7 +244,7 @@ If the region from 2-2.23$\mu$m is highly desirable such as for measuring the CH
 \hline \hline		
 Resolving Power: &  \DHSres & 1200 - 1550 \\
 Dispersion: & 0.29 nm / px & 1.0 nm / px \\
-Wavelengths: & 1.05 - 2.00$\mu$m (F150W2)\footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
+Wavelengths: & 1.05 - 2.02$\mu$m (F150W2)\footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
 			 & 1.75 - 2.23$\mu$m (F200W)\footnote{For a field point matched to the F322W2 filter and long wavelength grism.} & 2.44 - 4.02$\mu$m (F322W2)\\
 			& 	1.01 - 1.94$\mu$m (F150W2) \footnote{For a field point matched to the F444W filter and long wavelength grism. There is a \DHSgap$\mu$m gap between detectors that depends on field position.}	& 3.88 - 4.98$\mu$m (F444W) \\
 Plate Scale: & 32 mas / px  &  65 mas / px\\
@@ -263,11 +263,11 @@ Undeviated Wavelength: & 1.36$\mu$m & 3.94$\mu$m   \\
 \begin{figure*}
 \centering
 \includegraphics[width=0.85\textwidth]{grism_pos_for_max_wcoverage.pdf}
-\caption{DHS wavelength coverage for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength channel for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors (A1 - A5) are shown with their (0,0) corners as black boxes. The circles plotted for each grism are the shortest usable wavelength, undispersed wavelength and longest usable wavelength.}\label{fig:DHSwaveWGrism}
+\caption{DHS wavelength coverage (when using the F150W2 filter) for two field positions that will permit grism spectroscopy simultaneously with the F322W2 and F444W filters in the long wavelength channel for the same input source. The V2/V3 axes show the JWST observatory axes and the detectors (A1 - A5) are shown with their (0,0) corners as black boxes. The circles plotted for each grism are the shortest usable wavelength, undispersed wavelength and longest usable wavelength.}\label{fig:DHSwaveWGrism}
 \end{figure*}
 
 A point source observed with the DHS and grism modes of NIRCam will produce 10 spectra on the short-wavelength channel and one spectrum on the long-wavelength channel -- see Figure~\ref{fig:DHSwaveWGrism}.
-The DHS spectra span two of NIRCam's short-wavelength detectors covering $\sim$1 to $\sim$ 2$\mu$m with a \DHSgap$\mu$m gap due to the separation between detectors.
+The DHS spectra span two of NIRCam's short-wavelength detectors (covering 1.02$\mu$m to 2.02$\mu$m when using the F150W2 filter) with a \DHSgap$\mu$m gap due to the separation between detectors.
 The DHS mode is well suited for one bright source because it spreads the light over the 10 separate spectra, but is ill-suited for a crowded field, where the spectra would overlap.
 Each of the DHS spectra are separated in the spatial direction by an average of 123 pixels, so a sub-array of at least 1300 pixels must be extracted to gather all DHS flux for a single source.
 
@@ -316,8 +316,8 @@ This moves the DHS elements off-center from JWST's pupil and thus decreases the 
 
 The throughput for DHS spectroscopy is the product of the DHS grating efficiency, telescope and instrument throughput for a given filter (both shown in Figure~\ref{fig:DHSthrough}) and the pupil coverage by the DHS elements listed in Table~\ref{tab:pupfrac}.
 A fractional pupil of 1.00 would use the entire pupil and thus take advantage of the maximum JWST collecting area.
-For a sub-array size encompassing only 1 DHS spectrum (such as a 2048 $\times$ 64 subarray), the largest unobscured DHS grisms should be used - element number 7 in Figure~\ref{fig:DHSvsPupilOverlay}.
-Only the long-wavelength grisms of Module A are considered, because those in Module B lack an anti-reflective coating.
+For a sub-array size encompassing only 1 DHS spectrum (such as a 2048 $\times$ 64 subarray), the largest unobscured DHS element should be used - number 7 in Figure~\ref{fig:DHSvsPupilOverlay}.
+Only the long-wavelength grisms of Module A are considered here, because those in Module B lack an anti-reflective coating.
 %We discuss only module A (of the two redundant modules A and B) because the long wavelength grisms are anti-reflective coated for module A.
 
 
@@ -336,7 +336,7 @@ Only the long-wavelength grisms of Module A are considered, because those in Mod
 %\end{figure}
 
 \subsection{Readout Considerations}\label{sec:readout}
-JWST's NIRCam instrument has many different possible readout patterns per pixel and array that all factor in to the SNRs and saturation limits for an observation.
+JWST's NIRCam instrument has many different possible readout patterns per pixel and array that all factor into the SNRs and saturation limits for an observation.
 We adopt the following naming convention for the readout: an observation may consist of one of more exposures which are combined into a single \texttt{FITS} file per exposure.
 Within an exposure, there are one or more integrations, which consist of a reset frame followed by one or more groups of non-destructive reads up a ramp illustrated in Figure~\ref{fig:readout}.
 
