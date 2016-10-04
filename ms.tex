@@ -338,14 +338,20 @@ Only the long-wavelength grisms of Module A are considered, because those in Mod
 \subsection{Readout Considerations}\label{sec:readout}
 JWST's NIRCam instrument has many different possible readout patterns per pixel and array that all factor in to the SNRs and saturation limits for an observation.
 We adopt the following naming convention for the readout: an observation may consist of one of more exposures which are combined into a single \texttt{FITS} file per exposure.
-Within an exposure, there are one or more integrations, which consist of a reset frame followed by one or more groups of non-destructive reads up a ramp.
-This is illustrated in Figure~\ref{fig:readout} for three example readout modes.
-In all of our examples, there is one read per group, meaning that no images are co-added.
+Within an exposure, there are one or more integrations, which consist of a reset frame followed by one or more groups of non-destructive reads up a ramp illustrated in Figure~\ref{fig:readout}.
+
+The NIRCam instrument supports 9 dedicated readout modes, each with a set number of reads up the ramp co-added on board (collectively called a group) and a set number of reads dropped between the groups to reduce data volume.
+As the exoplanet transit science case will be focused on bright targets, we consider only two of the allowed modes: RAPID (all reads up the ramp saved and downlinked) and BRIGHT1
+(alternating reads up the ramp dropped, i.e. read-drop-read-drop-...). 
+In these cases, the number of coadded frames is 1, so the number of groups is the same as the number of reads.
+A general discussion of HAWAII-2RG detector readouts can be found in  \citet{rauscher2007detectors} and
+a detailed description of the 9 readout patterns implemented for NIRCam can be found
+in  \citet{roberto2009optimalR1,roberto2010optimalR2}.
 
 We consider a simplified example of a time series of 4 integrations using a standard correlated double sampling (CDS) illustrated in Figure~\ref{fig:readout} and assume a round frame time of 10.0 seconds, close to the actual 10.74 seconds full frame read time.
 CDS is equivalent to RAPID mode with 2 reads up the ramp.
 The raw data delivered to observers for use in a pipeline would consist of a single FITS file containing a data cube.
-If the data is in full frame mode, cube would have dimensions of 2048 $\times$ 2048 $\times$ 8, which can be thought of 8 image planes.
+If the data is in full frame mode, the cube would have dimensions of 2048 $\times$ 2048 $\times$ 8, which can be thought of 8 image planes.
 In this example there are 4 integrations consisting of a reset followed by two reads, which are saved as two image planes per integration.	
 For simplicity in this example, we ignore many of the corrections that are applied in a pipeline such as non-linearity correction, reference pixel correction, intrapixel capacitance, flat fielding etc.
 Under these assumptions, the flux (in DN/s) in any integration is the difference between the two reads divided by the frame time.
@@ -362,16 +368,13 @@ No reset frames or dropped frames are saved.``1~Group Readout" can be used to in
 The BRIGHT1 readout increases the observing efficiency and reduces data volume over CDS but has a longer minimum integration time, resulting in fainter saturation limits.}\label{fig:readout}
 \end{figure}
 
-There are several variations of readout patterns available to NIRCam with APT.
-For exoplanets time series observations, the readout patterns most commonly used will likely be ``RAPID'', meaning every sample is saved up the ramp individually and ``BRIGHT1'' where a single frame is dropped between reads.
-These modes give high time resolution and allow one to detect and flag cosmic ray hits without having to discard large amounts of data.
+The BRIGHT1 and RAPID modes give high time resolution and allow one to detect and flag cosmic ray hits without having to discard large amounts of data.
 The number of groups per integration is a variable set in a proposal with APT.
 When the number of groups is 1 (``1~Group Readout''), there is no ability to subtract out the current bias frame so it relies on the bias level being constant through the whole time series.
 When the number of groups is 2, the slope can be calculated from the difference between the two reads divided by the frame time.
 It is the same as the CDS mode described above when using RAPID readout.
 For a higher number groups, a line is fit to the the ramp to calculate a slope image for every integration.
 In exoplanet time series, the high signal to noise ratios required generally mean that bright sources will be observed so these will generally not benefit from skipped frames or co-added frames of other JWST readout modes, which come at the expense of lower time resolution, reduced ability for cosmic ray rejection and fainter saturation limits.
-For more general discussion of HAWAII-2RG detector readout, we refer to \citet{rauscher2007detectors} and for specific readout patterns we refer to \citet{roberto2009optimalR1} and \citet{roberto2010optimalR2}.
 
 \begin{table}[!b]
 \centering
