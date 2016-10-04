@@ -336,34 +336,38 @@ Only the long-wavelength grisms of Module A are considered, because those in Mod
 %\end{figure}
 
 \subsection{Readout Considerations}\label{sec:readout}
-JWST's NIRCam instrument has many different possible readout patterns per pixel and array that all factor in to the SNRs and saturation limits for an observation.
-We adopt the following naming convention for the readout: an observation may consist of one of more exposures which are combined into a single \texttt{FITS} file per exposure.
-Within an exposure, there are one or more integrations, which consist of a reset frame followed by one or more groups of non-destructive reads up a ramp illustrated in Figure~\ref{fig:readout}.
 
-The NIRCam instrument supports 9 dedicated readout modes, each with a set number of reads up the ramp co-added on board (collectively called a group) and a set number of reads dropped between the groups to reduce data volume.
-As the exoplanet transit science case will be focused on bright targets, we consider only two of the allowed modes: RAPID (all reads up the ramp saved and downlinked) and BRIGHT1
-(alternating reads up the ramp dropped, i.e. read-drop-read-drop-...). 
+NIRCam's detectors have numerous pixel readout schemes that factor into saturation limits and SNR calculations for a given observation.
+%JWST's NIRCam instrument has many different possible readout patterns per pixel and array that all factor in to the SNRs and saturation limits for an observation.
+We adopt the following nomenclature for the readout (Figure~\ref{fig:readout}):\ an \emph{integration} (also commonly refered to as a ``ramp'') consists of a pixel-reset frame followed by one or more groups of non-destructive reads to sample the pixels' charge accumulation. An \emph{exposure} is considered to be a collection of multiple integrations of the same type and length. Finally, an \emph{observation} consists of many exposures.
+
+%an \emph{observation} consists of one of more exposures which are combined into a single \texttt{FITS} file per exposure.
+%Within an exposure, there are one or more integrations, which consist of a reset frame followed by one or more groups of non-destructive reads up a ramp illustrated in Figure~\ref{fig:readout}.
+
+The NIRCam instrument supports 9 dedicated readout modes, each with a set number of reads up the ramp co-added on board (collectively called a group) and a set number of reads dropped between the groups, both of which reduce data volume.
+As the exoplanet transit science case will be focused on bright targets, we consider only two of the allowed modes: RAPID (all read frames up the ramp are saved and downlinked) and BRIGHT1
+(alternating reads up the ramp dropped, i.e. reset-read-drop-read-drop-...). 
 In these cases, the number of coadded frames is 1, so the number of groups is the same as the number of reads.
 A general discussion of HAWAII-2RG detector readouts can be found in  \citet{rauscher2007detectors} and
 a detailed description of the 9 readout patterns implemented for NIRCam can be found
 in  \citet{roberto2009optimalR1,roberto2010optimalR2}.
 
-We consider a simplified example of a time series of 4 integrations using a standard correlated double sampling (CDS) illustrated in Figure~\ref{fig:readout} and assume a round frame time of 10.0 seconds, close to the actual 10.74 seconds full frame read time.
+We consider a simplified example of a time series of 4 integrations using a standard correlated double sampling (CDS) illustrated in Figure~\ref{fig:readout} and assume an approximate frame time of 10.0 seconds, close to the actual 10.74 seconds full frame read time.
 CDS is equivalent to RAPID mode with 2 reads up the ramp.
 The raw data delivered to observers for use in a pipeline would consist of a single FITS file containing a data cube.
 If the data is in full frame mode, the cube would have dimensions of 2048 $\times$ 2048 $\times$ 8, which can be thought of 8 image planes.
-In this example there are 4 integrations consisting of a reset followed by two reads, which are saved as two image planes per integration.	
+In this example there are 4 integrations, each consisting of a reset followed by two read frames, which are saved as two image planes per integration.	
 For simplicity in this example, we ignore many of the corrections that are applied in a pipeline such as non-linearity correction, reference pixel correction, intrapixel capacitance, flat fielding etc.
 Under these assumptions, the flux (in DN/s) in any integration is the difference between the two reads divided by the frame time.
 This reduces the 8 image planes, to 4 flux planes, one per integration.
-Spectral extraction on the flux planes \citep[e.g.][]{horne1986optimalE} produces 1 flux per wavelength bin.
-The time series for a given wavelength would consist of the 4 fluxes with 4 time coordinates centered at 15 sec, 45 sec, 75 sec and 105 sec if we use the mid-points of the two reads.
+Spectral extraction on the flux planes \citep[e.g.][]{horne1986optimalE} then produces the flux per wavelength bin.
+A final reduced time series would consist of flux values at each given wavelength for each of the 4 time coordinates centered on 15 sec, 45 sec, 75 sec and 105 sec relative to the beginning of the observation sequence.%, taking the mid-points between read frames.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=1.0\columnwidth]{readout_schematic.pdf}
 \caption{Schematic of example readout modes for an exposure that is 12 frame times in duration.
-A single FITS file is saved for the exposure, consisting of 1 or more groups per integration.
+A single exposure consists of 1 or more groups per integration.
 No reset frames or dropped frames are saved.``1~Group Readout" can be used to increase the saturation limits provided that drifts between reset levels are sufficiently stable.
 The BRIGHT1 readout increases the observing efficiency and reduces data volume over CDS but has a longer minimum integration time, resulting in fainter saturation limits.}\label{fig:readout}
 \end{figure}
@@ -398,11 +402,11 @@ The noise in the DHS spectra over 1.1 -- 1.9$\mu$m at the given saturation limit
 Each NIRCam array must be read out with identical window sizes and exposure times due to restrictions in the Onboard Scripting Software (OSS).
 %The window sizes could theoretically be different between the long-wavelength and short-wavelength detectors with only software changes, but would require large changes to the existing software.
 This means that some balance must be made between saturating the grism spectrum (which has much higher throughput) in the long-wavelength and getting the most flux in the short-wavelength DHS spectra (which have lower throughput and also spread the light over more pixels).
-The current time series observing templates available in APT are limited to subarray sizes of 2048 $\times$ 64, 2048 $\times$ 128, 2048 $\times$ 256 and 2048 $\times$ 2048 (full frame), which would cover 1, 1, 2 and 10 DHS spectra as shown in Figure~\ref{fig:DHSaps}.
+The current time series observing templates available in APT are limited to subarray sizes of 2048 $\times$ 64, 2048 $\times$ 128, 2048 $\times$ 256 and 2048 $\times$ 2048 (full frame), which would respectively cover 1, 1, 2 and 10 DHS spectra as shown in Figure~\ref{fig:DHSaps}.
 These are the subarrays that will be available to Cycle 1 science programs and likely stay this way for continuity through the mission in order to stick to detector ``sweet spots'' that are well characterized and calibrated.
 In principle, the short wavelength detectors can be read out with different sizes and read patterns from long wavelength array or even what is available in APT, but the science benefits must be traded off with operational costs to implementing and testing new modes in the OSS software and data handling.
 
-We recommend that the sub-array locations to be adjusted so that the short wavelength sub-array can be centered on one DHS spectrum or a subset of the 10 and the long wavelength array can be centered on a single grism spectrum. For the 2048~$\times$~64 and 2048~$\times$~128 subarrays, which can only encompass one spectrum with more than 10 pixels of background, they should be centered on the spectrum from element 7, since it has the maximum possible throughput listed in Table~\ref{tab:pupfrac}. For the 2048~$\times$~256 subarray, the location should be centered between the spectra from elements 7 and 8 since they have the highest throughput of any adjacent pairs from Table~\ref{tab:pupfrac}. This is illustrated in Figure \ref{fig:DHSaps}.
+We recommend that the sub-array locations be adjusted such that the short-wavelength sub-array can be centered on one DHS spectrum or a subset of the 10 and the long-wavelength array can be centered on a single grism spectrum. For the 2048~$\times$~64 and 2048~$\times$~128 subarrays, which can only encompass one spectrum with more than 10 pixels of background, they should be centered on the spectrum from element 7, since it has the maximum possible throughput listed in Table~\ref{tab:pupfrac}. For the 2048~$\times$~256 subarray, the location should be centered between the spectra from elements 7 and 8 since they have the highest throughput of any adjacent pairs from Table~\ref{tab:pupfrac}. This is illustrated in Figure \ref{fig:DHSaps}.
 
 \begin{figure}[!t]
 \includegraphics[width=1.0\columnwidth]{example_ap_sizes.pdf}
@@ -412,7 +416,7 @@ The sub-array size options currently available (all 2048 pixels wide) are shown 
 \end{figure}
 
 The balance between saturating the long-wavelength grism and getting enough SNR in the DHS is listed in Table~\ref{tab:SatSNRsubA}.
-The table shows the brightest observable G2V star  for a given array size in the long-wavelength grism and the DHS noise at 1.1 to 1.9 $\mu$m for a G2V type star at this brightness observing a 1 hour long transit and 1 hour on a star out of transit, binned to the native resolving power of R $\sim$ \DHSresApprox.
+The table shows the brightest observable G2V star for a given array size in the long-wavelength grism and the DHS noise at 1.1 to 1.9 $\mu$m for a G2V type star at this brightness observing a 1 hour long transit and 1 hour on a star out of transit, binned to the native resolving power of R $\sim$ \DHSresApprox.
 We use the standard correlated double sampling (CDS) readout mode shown in Figure~\ref{fig:readout} and we consider 80\% well depth in the second read as saturation.
 If the bias level after each reset remains stable over the course of observations, it may be possible to use ``1~Group Readout'', illustrated in Figure~\ref{fig:readout}.
 The 1~Group Readout method can push the brightness limits by a factor of 2 over CDS because it reduces the integration time by a factor of two.
@@ -432,7 +436,7 @@ This overload can happen in as few as 10.3 hours if three NIRCam detectors are u
 \caption{The maximum time JWST NIRCam can expose three detectors (e.g. A1, A3 and A5 in Figure~\ref{fig:DHSwaveWGrism}) before filling up JWST's Solid State Recorder (SSR). The readout modes shown are for Rapid readouts (no skipped frames as in CDS) and Bright1 for both 1 amplifier and 4 amplifiers. The number of pixels read out affects the integration time and thus the data rate. The time needed for a phase curve of the planet HD 189733b and a transit of the system are shown for reference.}\label{fig:DataVolume}
 \end{figure}
 
-In normal operations, science and telemetry data from the James Webb Space Telescope are downlinked in a 4 hour contact time with an antenna in the Deep Space Network (SDN)  \citep{dashevsky2008groundflight}.
+In normal operations, science and telemetry data from the James Webb Space Telescope are downlinked in a 4 hour contact time with an antenna in the Deep Space Network \citep{dashevsky2008groundflight}.
 There will be two downlinks per day so on average the total data rate can be no more than $\sim$458 Gbits per 12 hours.
 Science operations can continue during the 4 hour contact time, but re-pointing the high gain antenna can cause $<$0.07 \arcsec\ disturbances \citep{beichman2014pasp}.
 To satisfy these normal operations, the data volume is a concern for bright objects requiring longer than $\sim$10 hours of continuous spectroscopy when using 3 detectors and 4 amplifiers simultaneously.
