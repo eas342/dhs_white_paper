@@ -340,37 +340,37 @@ NIRCam's detectors have numerous pixel readout schemes that factor into saturati
 We adopt the following nomenclature for the readout (Figure~\ref{fig:readout}):\ an \emph{integration} (also commonly refered to as a ``ramp'') consists of a pixel-reset frame followed by one or more groups of non-destructive reads to sample the pixels' charge accumulation. An \emph{exposure} is considered to be a collection of multiple integrations of the same type and length. Finally, an \emph{observation} consists of many exposures.
 
 The NIRCam instrument supports 9 dedicated readout modes, each with a set number of reads up the ramp co-added on board (collectively called a group) and a set number of reads dropped between the groups, both of which reduce data volume.
-As the exoplanet transit science case will be focused on bright targets, we consider only two of the allowed modes: RAPID (all read frames up the ramp are saved and downlinked) and BRIGHT1
+As the exoplanet transit science case will be focused on bright targets, we consider two of the allowed modes in this paper: RAPID (all read frames up the ramp are saved and downlinked) and BRIGHT1
 (alternating reads up the ramp dropped, i.e. reset-read-drop-read-drop-...). 
 In these cases, the number of coadded frames is 1, so the number of groups is the same as the number of reads.
 A general discussion of HAWAII-2RG detector readouts can be found in  \citet{rauscher2007detectors} and
 a detailed description of the 9 readout patterns implemented for NIRCam can be found
 in  \citet{roberto2009optimalR1,roberto2010optimalR2}.
 
-We consider a simplified example of a time series of 4 integrations using a standard correlated double sampling (CDS) illustrated in Figure~\ref{fig:readout} and assume an approximate frame time of 10.0 seconds, close to the actual 10.74 seconds full frame read time.
+We consider a simplified example of a time series of 4 integrations using 2 Groups in RAPID mode (a standard correlated double sampling, CDS pattern) illustrated in Figure~\ref{fig:readout} and assume an approximate frame time of 10.0 seconds, close to the actual 10.74 seconds full frame read time.
 CDS is equivalent to RAPID mode with 2 reads up the ramp.
-The raw data delivered to observers for use in a pipeline would consist of a single FITS file containing a data cube.
-If the data is in full frame mode, the cube would have dimensions of 2048 $\times$ 2048 $\times$ 8, which can be thought of 8 image planes.
+The raw data delivered to observers for use in a pipeline would contain a data cube.
+If the data is in full frame mode, the cube would have dimensions of 2048 $\times$ 2048 $\times$ 8, which can be thought of as 8 image planes.
 In this example there are 4 integrations, each consisting of a reset followed by two read frames, which are saved as two image planes per integration.	
 For simplicity in this example, we ignore many of the corrections that are applied in a pipeline such as non-linearity correction, reference pixel correction, intrapixel capacitance, flat fielding etc.
 Under these assumptions, the flux (in DN/s) in any integration is the difference between the two reads divided by the frame time.
 This reduces the 8 image planes, to 4 flux planes, one per integration.
 Spectral extraction on the flux planes \citep[e.g.][]{horne1986optimalE} then produces the flux per wavelength bin.
-A final reduced time series would consist of flux values at each given wavelength for each of the 4 time coordinates centered on 15 sec, 45 sec, 75 sec and 105 sec relative to the beginning of the observation sequence.%, taking the mid-points between read frames.
+A final reduced time series would consist of flux values at each given wavelength bin for each of the 4 time coordinates centered on 15 sec, 45 sec, 75 sec and 105 sec relative to the beginning of the observation sequence.%, taking the mid-points between read frames.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=1.0\columnwidth]{readout_schematic.pdf}
 \caption{Schematic of example readout modes for an exposure that is 12 frame times in duration.
 A single exposure consists of 1 or more groups per integration.
-No reset frames or dropped frames are saved.``1~Group Readout" can be used to increase the saturation limits provided that drifts between reset levels are sufficiently stable.
+No reset frames or dropped frames are saved. 1~Group, RAPID readout can be used to increase the saturation limits provided that drifts between reset levels are sufficiently stable.
 The BRIGHT1 readout increases the observing efficiency and reduces data volume over CDS but has a longer minimum integration time, resulting in fainter saturation limits.}\label{fig:readout}
 \end{figure}
 
 The BRIGHT1 and RAPID modes give high time resolution and allow one to detect and flag cosmic ray hits without having to discard large amounts of data.
 The number of groups per integration is a variable set in a proposal with APT.
 When the number of groups is 1 (``1~Group Readout''), there is no ability to subtract out the current bias frame so it relies on the bias level being constant through the whole time series.
-When the number of groups is 2, the slope can be calculated from the difference between the two reads divided by the frame time.
+When the number of groups is 2, the slope can be calculated from the difference between the two reads divided by the group time.
 It is the same as the CDS mode described above when using RAPID readout.
 For a higher number groups, a line is fit to the the ramp to calculate a slope image for every integration.
 In exoplanet time series, the high signal to noise ratios required generally mean that bright sources will be observed so these will generally not benefit from skipped frames or co-added frames of other JWST readout modes, which come at the expense of lower time resolution, reduced ability for cosmic ray rejection and fainter saturation limits.
@@ -401,7 +401,7 @@ The current time series observing templates available in APT are limited to suba
 These are the subarrays that will be available to Cycle 1 science programs and likely stay this way for continuity through the mission in order to stick to detector ``sweet spots'' that are well characterized and calibrated.
 In principle, the short wavelength detectors can be read out with different sizes and read patterns from long wavelength array or even what is available in APT, but the science benefits must be traded off with operational costs to implementing and testing new modes in the OSS software and data handling.
 
-We recommend that the sub-array locations be adjusted such that the short-wavelength sub-array can be centered on one DHS spectrum or a subset of the 10 and the long-wavelength array can be centered on a single grism spectrum. For the 2048~$\times$~64 and 2048~$\times$~128 subarrays, which can only encompass one spectrum with more than 10 pixels of background, they should be centered on the spectrum from element 7, since it has the maximum possible throughput listed in Table~\ref{tab:pupfrac}. For the 2048~$\times$~256 subarray, the location should be centered between the spectra from elements 7 and 8 since they have the highest throughput of any adjacent pairs from Table~\ref{tab:pupfrac}. This is illustrated in Figure \ref{fig:DHSaps}.
+We recommend that the sub-array locations be adjusted such that the short-wavelength sub-array can be centered on one DHS spectrum or a subset of the 10 and the long-wavelength array can be centered on a single grism spectrum. For the 2048~$\times$~64 and 2048~$\times$~128 subarrays, which can only encompass one spectrum with more than 10 pixels of background, they should be centered on the spectrum from element 7, since it has the maximum possible throughput listed in Table~\ref{tab:pupfrac}. For the 2048~$\times$~256 subarray, the location should be centered between the spectra from elements 7 and 8 since they have the highest throughput of any adjacent pairs from Table~\ref{tab:pupfrac}. These recommended subarray positions are illustrated in Figure \ref{fig:DHSaps}.
 
 \begin{figure}[!t]
 \includegraphics[width=1.0\columnwidth]{example_ap_sizes.pdf}
@@ -421,14 +421,14 @@ For the brightest sources, which require the 2048 $\times$ 64 pixel subarray, th
 
 
 \subsubsection{Data Volume}
-For most transiting planet science, the targets are bright and so the pixels will continuously be read out quickly without any co-added reads.
+For most transiting planet science, the targets are bright so the pixels will be read out with very few or zero co-added and dropped frames.
 The amount of data streaming from the detectors can overload the Solid State Recorder (SSR), which has a capacity of 540 Gbits \citep{johns2008L2comm}.
 We consider the use of 458 Gbits of space for science data as the maximum the SSR can handle at once to allow for storage of telemetry.
 This overload can happen in as few as 10.3 hours if three NIRCam detectors are used simultaneously and all are read out with four amplifiers in CDS mode (meaning no samples are co-added or dropped) -- see Figure~\ref{fig:DataVolume}.
 
 \begin{figure}[!t]
 \includegraphics[width=1.0\columnwidth]{NIRCam_grism_max_exp.pdf}
-\caption{The maximum time JWST NIRCam can expose three detectors (e.g. A1, A3 and A5 in Figure~\ref{fig:DHSwaveWGrism}) before filling up JWST's Solid State Recorder (SSR). The readout modes shown are for Rapid readouts (no skipped frames as in CDS) and Bright1 for both 1 amplifier and 4 amplifiers. The number of pixels read out affects the integration time and thus the data rate. The time needed for a phase curve of the planet HD 189733b and a transit of the system are shown for reference.}\label{fig:DataVolume}
+\caption{The maximum time JWST NIRCam can expose three detectors (e.g. A1, A3 and A5 in Figure~\ref{fig:DHSwaveWGrism}) before filling up JWST's Solid State Recorder (SSR). The readout modes shown are for RAPID readout and BRIGHT1 readout for both 1 amplifier and 4 amplifiers. The number of pixels read out affects the integration time and thus the data rate. The time needed for a phase curve of the planet HD 189733b and a transit of the system are shown for reference.}\label{fig:DataVolume}
 \end{figure}
 
 In normal operations, science and telemetry data from the James Webb Space Telescope are downlinked in a 4 hour contact time with an antenna in the Deep Space Network \citep{dashevsky2008groundflight}.
@@ -440,8 +440,8 @@ There are a few ways to reduce the data volume streaming from the detectors.
 One way is to read each detector with a single amplifier.
 This reduces the frame rate by a factor of four (for the four amplifiers), thus allowing $\sim$40 hours before filling JWST's solid state recorders.
 The lower frame rate, however, means that the detector saturates at 1/4 the flux as four amplifiers.
-Second, the detector can be read out in BRIGHT1 mode, seen in Figure~\ref{fig:readout}.
-This is where a frame is dropped between read 2 and read 1 to increase the integration time and efficiency while reducing data volume.
+Second, the detector reads can be skipped or co-added such as in BRIGHT1 mode, seen in Figure~\ref{fig:readout}.
+In BRIGHT1 mode, a frame is dropped between read 2 and read 1 to increase the integration time and efficiency while reducing data volume.
 This only works for sources faint enough that the long-wavelength grisms do not saturate.
 Perhaps future changes to the OSS could allow operating the LW detectors with 4 outputs and the SW ones with 1 output, reducing data volume considerably.
 
