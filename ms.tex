@@ -174,7 +174,7 @@ Depending on the composition and size of the clouds and hazes in exoplanet atmos
 No single JWST instrument can measure a spectrum over the full wavelength range from 0.6$\mu$m to 28$\mu$m, so multiple transits or secondary eclipses are necessary to piece together a broadband spectrum.
 The largest bandwidths possible are NIRSpec's low resolution double prism ($0.7-5.0~\mu$m) and MIRI's low resolution prism (LRS; $5-12~\mu$m).
 Unfortunately, NIRSpec's low resolution prism mode is so sensitive that it saturates for most sources at a $J$ magnitude of $\sim$11 \citep{beichman2014pasp}, so many nearby bright planetary systems must be observed with higher resolution (but smaller wavelength coverage) modes and instruments.
-For example, to create a transmission spectrum for HD 209458b \citep{henry00,charbonneau00} from 0.7$\mu$m to 12$\mu$m, an observer would have to stitch together at least four different transits:\ one with NIRISS SOSS (\SOSSrange), two with NIRCam's long-wavelength channel grisms (F322W2 and F444W + grisms; $2.44-4.98~\mu$m)\footnote{Or, alternatively NIRSpec's G235H and G395H modes ($1.7-5.0~\mu$m.} and one with MIRI LRS ($5-12~\mu$m).
+For example, to create a transmission spectrum for HD~209458b \citep{henry00,charbonneau00} from 0.7$\mu$m to 12$\mu$m, an observer would have to stitch together at least four different transits:\ one with NIRISS SOSS (\SOSSrange), two with NIRCam's long-wavelength channel grisms (F322W2 and F444W + grisms; $2.44-4.98~\mu$m)\footnote{Or, alternatively NIRSpec's G235H and G395H modes ($1.7-5.0~\mu$m.} and one with MIRI LRS ($5-12~\mu$m).
 Using the Astronomer's Proposal Tool (APT) software\footnote{http://www.stsci.edu/hst/proposing/apt}, each transit observation (pre-ingress, transit, and post-ingress) requires $\sim$9~hours and incurs overheads of $\sim$2~hours, resulting in a total of $\sim$11~hours per transit and hence $\sim$44~hours total to cover
 the full wavelength range.
 
@@ -199,7 +199,7 @@ The NIRCam instrument can reduce the number of transits needed to build up a 1$\
 This is because the instrument has a dichroic that splits the incoming beam into a short-wavelength channel and long-wavelength channel, so simultaneous imaging and/or spectroscopy are possible at short ($<$2.4$\mu$m) and long ($>$2.4$\mu$m) wavelengths.
 In principle, the DHS can be used to simultaneously cover 1.0$\mu$m to 2.0$\mu$m while the long-wavelength grisms cover either 2.44$\mu$m to 4.02$\mu$m (with the F322W2 filter) or 3.88$\mu$m to 4.98$\mu$m (with the F444W) filter.
 Thus, the DHS data come ``for free'' with any long-wavelength NIRCam grism data, aside from readout and data rate considerations discussed in Section \ref{sec:readout}.
-For the example above of HD 209458b, simultaneous DHS data would reduce the required transits from four to three, saving about 11 JWST hours 
+For the example above of HD~209458b, simultaneous DHS data would reduce the required transits from four to three, saving about 11 JWST hours 
 if the wavelengths from 2.0$\mu$m to 2.4$\mu$m and higher Signal to Noise ratios (SNRs) from NIRISS are not required.
 The DHS is expected to collect similar photon levels as HST's WFC3 grisms because the DHS pupil coverage ($\sim$30\%) and relative throughput ($\sim$30\% versus $\sim$40\% with WFC3 \texttt{http://etc.stsci.edu}) are together similar to the ratio between telescope collecting areas.
 Therefore, the DHS is like a free coordinated HST observation for every long-wavelength NIRCam grism transit but without the interruptions or thermal consequences of HST's low earth orbit.
@@ -450,7 +450,7 @@ Perhaps future changes to the OSS could allow operating the LW detectors with 4 
 \subsection{Brightness limits}\label{sec:brightness}
 
 
-The DHS has the brightest saturation limits of any spectroscopic mode on JWST because each of the 10 DHS elements samples only 1 to 4\% of the pupil and the light is dispersed over over two short wavelength detectors.
+The DHS has the brightest saturation limits of any spectroscopic mode on JWST because each of the 10 DHS elements samples only 1\% to 4\% of the pupil and the light is dispersed over two short wavelength detectors.
 Figure~\ref{fig:saturationLim} shows the saturation limits for the DHS mode along with NIRCam's long-wavelength grisms and the known transiting systems from \texttt{exoplanets.org} \citep{han2014exopDorg}, plus \citet{motalebi2015hd219134b}.
 The saturation limits are found using \texttt{pysynphot} \citep{lim2015pysynphot} with Phoenix stellar models \citep{allard2012phoenix} ranging from 4.0 to 5.0 in log(g).
 Any known transiting planet system can be observed with the DHS, including the super-Earth  55 Cnc e \citep{mcarthur2004disc55cnce} at $K$=4.0, which saturates the long-wavelength grism with the F322W2 filter and the brightest known transiting system HD 219134b \citep{motalebi2015hd219134b} at $K$=3.4.
@@ -459,9 +459,9 @@ We plot the expected yield of TESS \citep{sullivan2015tess} in Figure~\ref{fig:s
 
 \begin{figure}[!h]
 \includegraphics[width=1.0\columnwidth]{brightness_scape.pdf}
-\caption{Saturation limits of the DHS mode (blue line), and long-wavelength grism's F322W2 filter (green line) and F444W filter (dark red line) as a function of stellar effective temperature.
+\caption{Saturation limits of the DHS mode (blue line), the long-wavelength grism + F322W2 filter combination (green line) and the long-wavelength grism + F444W filter (dark red line) as a function of stellar effective temperature.
 The magnitudes are Vega $K_S$ magnitudes where 80\% of the well depth is filled in the standard CDS readout mode (described in Figure~\ref{fig:readout}) for a 2048 $\times$ 64 pixel sub-array using 4 amplifiers.
-The blue points are known transiting systems from and the green points are simulated TESS planets \citep{sullivan2015tess}.}\label{fig:saturationLim}
+The blue points are known transiting systems and the green points are simulated TESS planets \citep{sullivan2015tess}.}\label{fig:saturationLim}
 \end{figure}
 
 %\subsection{Short Wavelength Monitoring of Starspots}
@@ -480,7 +480,7 @@ The blue points are known transiting systems from and the green points are simul
 	%\caption{HAT-P-12b}
 	\label{fig:HATp12spec}
 	}
-	\caption{Model spectra separated by molecule for HD~209458b and the inflated warm Saturn HAT-P-12b.The new DHS mode would allow simultaneous spectra at 1-2$\mu$m ``for free'' when observing with either NIRCam's F322W2 or F444W slitless grism observations in its long-wavelength channel. a) The simulated data for HD~209458b consist of one transit in each of the long-wavelength grism modes, each accompanied by simultaneous DHS grism spectra. The observations longer than 5$\mu$m are simulated for MIRI's Low Resolution Spectrometer. b) HAT-P-12b is an inflated warm Saturn with an opaque cloud deck at 1 mbar. Error bars shown are for simulated observations of 2 total transits: one transit with the DHS and F322W2+grism together and one transit with the DHS and F444W+grism together for a total of about 17 hours of JWST time. A planet metallicity of 22~$\times$~solar was assumed from the relation in \citet{kreidberg2014wasp43}}
+	\caption{Model spectra separated by molecule for HD~209458b and the inflated warm Saturn HAT-P-12b. The new DHS mode would allow simultaneous spectra at 1-2$\mu$m ``for free'' when observing with either NIRCam's F322W2 or F444W slitless grism observations in its long-wavelength channel. a) The simulated data for HD~209458b consist of one transit in each of the long-wavelength grism modes, each accompanied by simultaneous DHS grism spectra. The observations longer than 5$\mu$m are simulated for MIRI's Low Resolution Spectrometer. b) HAT-P-12b is an inflated warm Saturn with an opaque cloud deck at 1 mbar. Error bars shown are for simulated observations of 2 total transits: one transit with the DHS and F322W2+grism together and one transit with the DHS and F444W+grism together for a total of about 17 hours of JWST time. A planet metallicity of 22~$\times$~solar was assumed from the relation in \citet{kreidberg2014wasp43}}
 	\label{fig:spec}
 \end{figure*} 
 
@@ -494,9 +494,9 @@ The blue points are known transiting systems from and the green points are simul
 
 
 We use the CHIMERA atmospheric retrieval suite \citep{line2013chimera,line2014CtOsecE} to illustrate the scientific value of using the DHS simultaneously with NIRCam's long-wavelength grisms.
-We first simulate a forward model of a transmission spectrum for two planets, HD 209458b \citep{henry00,charbonneau00} and HAT-P-12b \citep{hartman2009hatp12}.
+We first simulate a forward model of a transmission spectrum for two planets, HD~209458b \citep{henry00,charbonneau00} and HAT-P-12b \citep{hartman2009hatp12}.
 We then add Gaussian noise using the SNR estimated on the target to create a simulated spectrum.
-Finally, we run a Markov Chain Monte Carlo (MCMC) retrieval of the atmospheric parameters for simulated spectrum to try to recover the initial abundances and determine the uncertainties in those abundances, as in \citet{greene2016jwst_trans}.
+Finally, we run a Markov Chain Monte Carlo (MCMC) retrieval of the atmospheric parameters for the simulated spectrum to try to recover the initial abundances and determine the uncertainties in those abundances, as in \citet{greene2016jwst_trans}.
 %We combine the individual gases' posterior distributions to derive the C/O ratio and metallicity (\citet{greene2016jwst_trans}) .
 
 
@@ -505,7 +505,7 @@ Finally, we run a Markov Chain Monte Carlo (MCMC) retrieval of the atmospheric p
 %The atomic abundances are converted to molecular mixing ratios using the Chemical Equilibrium code with Applications (CEA)\footnote{http://www.grc.nasa.gov/WWW/CEAWeb/ceaHome.htm}\citep{gordon1996cea} to calculate the fractions of molecules at the given pressure and temperature.
 
 To construct the model atmospheres and generate a spectrum we require a thermal profile and molecular abundances. For simplicity, we assume isothermal atmospheres at the planetary equilibrium temperatures. Molecular volume mixing ratios are assumed to be in thermochemical equilibrium at a represenatitive pressure (0.01 bars) and temperature using the NASA CEA code\footnote{http://www.grc.nasa.gov/WWW/CEAWeb/ceaHome.htm}\citep{gordon1996cea} at the prescribed planetary metallicity, derived by rescaling the solar elemental abundances \citep{asplund}.
-For HD 209458b (0.7 M$_{Jup}$), we prescribe solar metallicity since it is close to one Jupiter mass.
+For HD~209458b (0.7 M$_{Jup}$), we prescribe solar metallicity since it is close to one Jupiter mass.
 For HAT-P-12b (0.2 M$_{Jup}$), we prescribe a planet metallicity of 22 $\times$ solar using the relation from \citet{kreidberg2014wasp43}.
 In both cases, we reduce the oxygen volume mixing ratio to account for the rainout out of MgSiO$_3$ and MgSiO$_4$ which are below their condensation temperatures \citep{sing2016continuum}, but this only results in a $\sim$ 20\% change in the Oxygen abundance.
 
@@ -522,33 +522,33 @@ In both cases, we reduce the oxygen volume mixing ratio to account for the raino
 	%\caption{HAT-P-12b}
 	\label{fig:cornerHATp12}
 	}
-	\caption{Posterior distributions for MCMC runs of HD209458b and HAT-P-12b with the DHS (blue) and without the DHS (green). The H$_2$O correlates strongly with CO$_2$ and CO, meaning that improved measurements of H$_2$O with the DHS actually help improve constraints on the Carbon bearing species, even though there aren't any significant CO or CO$_2$ features in the 1-2$\mu$m range. Abundances are given in $\log_{10}$~(ppm). Cloud pressure is in $\log_{10}$~(bar).}
+	\caption{Posterior distributions for MCMC runs of HD~209458b and HAT-P-12b with the DHS (blue) and without the DHS (green). The H$_2$O correlates strongly with CO$_2$ and CO, meaning that improved measurements of H$_2$O with the DHS actually help improve constraints on the Carbon bearing species, even though there aren't any significant CO or CO$_2$ features in the 1-2$\mu$m range. Abundances are given in $\log_{10}$~(ppm). Cloud pressure is in $\log_{10}$~(bar).}
 	\label{fig:corner}
 \end{figure*} 
 
 \begin{figure}[!b]
 \centering
-\includegraphics[width=1.0\columnwidth]{HD209458b_solar_clear_1transit_DHS_vs_NIRISS_NIRCam_MIRILRS_R100.pdf}
-\caption{Calculated SNR for one transit of the hot Jupiter HD209458b for the NIRISS SOSS mode, NIRCam F322W2 and F444W filters and the MIRI LRS mode for a total of 4 different transits or $\sim$44 JWST hours.
+\includegraphics[width=0.5 \textwidth]{HD209458b_solar_clear_1transit_DHS_vs_NIRISS_NIRCam_MIRILRS_R100.pdf}
+\caption{Calculated SNR for one transit of the hot Jupiter HD~209458b for the NIRISS SOSS mode, NIRCam F322W2 and F444W filters and the MIRI LRS mode for a total of 4 different transits or $\sim$44 JWST hours.
 Similar wavelength coverage can be achieved in just 3 different transits or $\sim$33 hours if the DHS mode is enabled (bottom spectrum).}\label{fig:DHSvsNIRISS209}
 \end{figure}
 
-We assume isothermal temperature's of 1440K and 960 K for for HD209458b and HAT-P-12b respectively. Molecular abundances are assumed constant with altitude at the 0.01 bar thermochemical values. While this ``0D" model is likely unrealistic, more sophisticated 1D models in general may be unrealistic given the uncertainties due to the impact of 3-dimensional effects \citep[e.g.][]{line2016nonUclouds,feng2016nonUniform}. We include H$_2$O, CO, CO$_2$, CH$_4$, NH$_3$, C$_2$H$_2$, HCN and collision-induced absorption (CIA) of hydrogen as the sources of opacity (with absorption cross-section derived from \citet{freedman2014opacities} and references therein), but only H$_2$O, CH$_4$, CO and CO$_2$ contribute significantly to the opacity, as seen in Figures \ref{fig:209spec} and \ref{fig:HATp12spec}.
+We assume isothermal temperatures of 1440K and 960 K for HD~209458b and HAT-P-12b respectively. Molecular abundances are assumed constant with altitude at the 0.01 bar thermochemical values. While this ``0D" model is likely unrealistic, more sophisticated 1D models in general may be unrealistic given the uncertainties due to the impact of 3-dimensional effects \citep[e.g.][]{line2016nonUclouds,feng2016nonUniform}. We include H$_2$O, CO, CO$_2$, CH$_4$, NH$_3$, C$_2$H$_2$, HCN and collision-induced absorption (CIA) of hydrogen as the sources of opacity (with absorption cross-section derived from \citet{freedman2014opacities} and references therein), but only H$_2$O, CH$_4$, CO and CO$_2$ contribute significantly to the opacity, as seen in Figures \ref{fig:209spec} and \ref{fig:HATp12spec}.
 For the HAT-P-12b model, we include an opaque gray cloud deck at 1 mbar to simulate the effect of clouds on reducing spectral features in a planet spectrum.
-For HD 209458b, this cloud deck is placed at a pressure level of 1 bar which is too deep to affect the spectrum, as shown in Figure~\ref{fig:209spec}.
+For HD~209458b, this cloud deck is placed at a pressure level of 1 bar which is too deep to affect the spectrum, as shown in Figure~\ref{fig:209spec}.
 % if we run the simulations later, also mention emission spectra
 
 
 \subsubsection{Simulated Observations and Retrieval Methods}
 
 
-For the simulated observations, we assume one transit is obtained in each of NIRCam's long-wavelength filters (F322W2 and F444W) to cover the wavelength range from 2.44$\mu$m to 4.99$\mu$m.
+For the simulated observations, we assume one transit is obtained in each of NIRCam's long-wavelength filters (F322W2 and F444W) to cover the wavelength range from 2.44$\mu$m to 4.98$\mu$m.
 We assume that each of these was accompanied by a DHS observation for the 1.0$\mu$m to 2.0$\mu$m wavelength range, which benefits in SNR by $\sqrt{2}$ for the two separate observations.
 %In other words, there is one DHS measurement per grism filter (F444W and F322W2).
 This observing scenario is compared to a scenario that does not include the DHS to show the added scientific value of using the DHS spectra.
-The readout mode in all cases simulated is RAPID readout (all reads saved up the ramp without skips, discussed in Section \ref{sec:readout}) with 10 reads up the ramp for HD 209458 and 25 reads up the ramp for HAT-P-12b.
+The readout mode in all cases simulated is RAPID readout (all reads saved up the ramp without skips, discussed in Section \ref{sec:readout}) with 10 reads up the ramp for HD~209458 and 25 reads up the ramp for HAT-P-12b.
 
-The noise models for the hot Jupiter HD 209458b are shown in Figure~\ref{fig:DHSvsNIRISS209}, which is dominated by the residual systematic noise floor (set to 30 ppm) for the long-wavelength grisms ($>$2.44$\mu$m) but photon noise is more significant for the short-wavelength DHS observations.
+The noise models for the hot Jupiter HD~209458b are shown in Figure~\ref{fig:DHSvsNIRISS209}, which is dominated by the residual systematic noise floor (set to 30 ppm) for the long-wavelength grisms ($>$2.44$\mu$m) but photon noise is more significant for the short-wavelength DHS observations.
 The DHS has lower total throughput ($\sim$8\% including pupil coverage factor) and a smaller wavelength coverage than the NIRISS instrument in SOSS mode ($\sim$30\% throughput\footnote{\texttt{http://maestria.astro.umontreal.ca/niriss/simu1D/simu1D.php}}), so observations which require higher SNR and full wavelength coverage from \SOSSrangeto\ can take advantage of NIRISS (also shown in Figure~\ref{fig:DHSvsNIRISS209}) at the expense of more telescope time.
 
 We use the \texttt{emcee} version of CHIMERA \citep{greene2016jwst_trans} to recover the individual atmospheric abundances of the simulated spectrum. The retrieval model includes 13 free parameters: 1) the temperature of the isothermal profile; 2) the altitude of the 10-bar pressure surface where the model begins; 3) a cloud pressure level below which all stellar flux is absorbed at all wavelengths; 4) through 11) the constant-with-altitude mixing ratios of H$_2$O, CH$_4$, CO, CO$_2$, NH$_3$, C$_2$H$_2$, HCN, N$_2$, respectively; 12) an amplitude of a Raleigh-like haze; and 13) a power law index for the Raleigh-type haze. We assume uniform-in-log priors from 10$^{-12}$ to 1 for all volume mixing ratios. The autocorrelation time for the retrievals is about ~100 steps and we run all retrievals to 20,000 steps, only using the last 5,000 (times 160 walkers) to allow for burn-in.
@@ -573,7 +573,7 @@ We show the posterior distributions for two cases:
 \end{enumerate}
 For the spectral data they have in common (2.4$\mu$m to 5.0$\mu$m), we use the same noise instance to make direct comparison easier.
 
-The posterior distributions for HD 209458b in Figure~\ref{fig:corner209} show improved constraints on the temperature, cloud pressure level and the abundances of H$_2$O, CO and CO$_2$ when the DHS is used simultaneously with the long wavelength grisms (Case~\ref{it:DHSgr}) as compared to when the long wavelength grisms are used alone (Case~\ref{it:grAlone}).
+The posterior distributions for HD~209458b in Figure~\ref{fig:corner209} show improved constraints on the temperature, cloud pressure level and the abundances of H$_2$O, CO and CO$_2$ when the DHS is used simultaneously with the long wavelength grisms (Case~\ref{it:DHSgr}) as compared to when the long wavelength grisms are used alone (Case~\ref{it:grAlone}).
 These improvements come about, in part, because the 1.0$\mu$m to 2.0$\mu$m wavelength region probes to deeper pressure layers ($\sim$ 400 mbar) to exclude clouds and better constrain the scale height.
 
 %\begin{figure*}
@@ -585,7 +585,7 @@ These improvements come about, in part, because the 1.0$\mu$m to 2.0$\mu$m wavel
 
 The warm Saturn HAT-P-12b model shows improvements to the temperature constraints, but the cloud pressure measurements have similar uncertainties with and without the DHS.
 This is because the 1mbar cloud layer begins to affect the opacity near 4.0$\mu$m, which is measured by the long wavelength grisms.
-As with HD 209458b, the DHS improves constraints on the H$_2$O and CO$_2$ abundances, but since the planet is at a cooler temperatures, chemical equilibrium favors CH$_4$ over CO, so the constraints are much better on CH$_4$.
+As with HD~209458b, the DHS improves constraints on the H$_2$O and CO$_2$ abundances, but since the planet is at a cooler temperatures, chemical equilibrium favors CH$_4$ over CO, so the constraints are much better on CH$_4$.
 
 %\begin{figure*}
 %\centering
